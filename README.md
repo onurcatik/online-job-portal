@@ -161,21 +161,3 @@ The application should now be running on `http://localhost:3000`
 4. Push to branch (`git push origin feature-branch`)
 5. Create a Pull Request
 
----
-## License
-This project is licensed under the MIT License. See the **LICENSE** file for details.
-
----
-## Contact
-For questions or suggestions, please open an issue on GitHub or reach out via email.
-
----
-### 🔥 Future Enhancements
-- Integrate Stripe for job posting payments.
-- Implement AI-based resume screening.
-- Add user notifications for job status updates.
-- Improve filtering and sorting options.
-- Enhance UI with better animations.
-
-
-
