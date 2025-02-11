@@ -1,8 +1,10 @@
-// layout.tsx
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import {ClerkProvider, SignInButton, SignedIn, SignedOut,UserButton} from "@clerk/nextjs"
+import { Button } from "@/components/ui/button";
+import { ClerkProvider } from "@clerk/nextjs";
+
+
 
 
 const poppins = Poppins({
@@ -12,18 +14,20 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Online Job Portal",
-  description: "Find your dream job with ease. The best job portal online.",
+  description: "Create your own online portal application",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <ClerkProvider>
     <html lang="en">
-     <body className={poppins.className}>{children}</body>
- 
+      <body className={poppins.className}>{children}</body>
     </html>
+
     </ClerkProvider>
   );
 }
