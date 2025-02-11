@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Button } from "@/components/ui/button";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ToastProvider } from "@/providers/toast-providers";
 
 
 
@@ -26,6 +27,7 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body className={poppins.className}>{children}</body>
+      <ToastProvider/>
     </html>
 
     </ClerkProvider>

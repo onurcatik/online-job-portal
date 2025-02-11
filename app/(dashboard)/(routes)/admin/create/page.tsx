@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {  useForm } from "react-hook-form";
 import * as z from "zod"
 
@@ -20,12 +22,19 @@ const JobCreatePage = () => {
     },
   });
 
-  const isLoading = false; // Define isLoading variable
+  const { isSubmitting, isValid } = form.formState;
+  const router = useRouter();
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values)
-    // Handle form submission
-  };
+const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  try {
+    const response = await axios.post<{ id: string }>("/api/jobs", values);
+    router.push(`/admin/jobs/${response.data.id}`);
+  } catch (error) {
+    console.log((error as Error)?.message);
+    // toast notification
+  }
+};
+
 
   return (
     <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
@@ -47,7 +56,7 @@ const JobCreatePage = () => {
           <FormLabel>Job Title</FormLabel>
           <FormControl>
             <Input
-              disabled={isLoading}
+              disabled={isSubmitting}
               placeholder="e.g 'Full-Stack Developer'"
               {...field}
             />
@@ -63,7 +72,7 @@ const JobCreatePage = () => {
             Cancel
         </Button>
         </Link>
-        <Button type="submit" disabled={isLoading}>
+        <Button type="submit" disabled={isSubmitting}>
             Continue
         </Button>
     </div>
