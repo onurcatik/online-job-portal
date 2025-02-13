@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider     = "mongodb"
-  url         = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
@@ -20,15 +20,26 @@ model Job {
   title            String
   description      String?
   short_description String?
-  imageUrl        String?
-  isPublished     Boolean  @default(false)
-  tags           String[]
+  imageUrl         String?
+  isPublished      Boolean  @default(false)
+  tags            String[]
   savedUsers      String[]
-  shiftTiming     String?
-  hourlyRate      String?
+  shiftTiming      String?
+  hourlyRate       String?
   yearsOfExperience String?
-  workMode        String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @default(now())
+  workMode         String?
+  categoryId       String?  @db.ObjectId
+  category        Category? @relation(fields: [categoryId], references: [id])
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @default(now())
+
+  @@index([categoryId])
 }
 
+model Category {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String   @unique
+  jobs       Job[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+}

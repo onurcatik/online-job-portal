@@ -1,19 +1,17 @@
 
 
-
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { ArrowLeft, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-
-import { Banner } from "@/components/banner"
+import { Banner } from "@/components/banner";
 import { IconBadge } from "@/components/icon-badge";
 import { TitleForm } from "./_components/title-form";
 import { JobPublishAction } from "./_components/job-publish-actions";
-
-
+import { CategoryForm } from "./_components/category-form";
+import { ImageForm } from "./_components/image-form";
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   // Destructure the jobId synchronously
@@ -38,11 +36,21 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
     },
   });
 
+  const categories = await db.category.findMany({
+    orderBy: { name: "asc" },
+  });
+
   if (!job) {
     return redirect("/admin/jobs");
   }
 
-  const requiredFields = [job.title, job.description, job.imageUrl];
+  const requiredFields = [
+    job.title,
+    job.description,
+    job.imageUrl,
+    job.categoryId,
+  ];
+
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
   const completionText = `${completedFields}/${totalFields}`;
@@ -66,10 +74,10 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           </span>
         </div>
         {/* action button */}
-        <JobPublishAction 
+        <JobPublishAction
           jobId={jobId} // use the destructured jobId here
           isPublished={job.isPublished}
-          disabled={!isComplete} 
+          disabled={!isComplete}
         />
       </div>
       {/* warning before publishing the course */}
@@ -90,6 +98,17 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           </div>
           {/* title form */}
           <TitleForm initialData={job} jobId={job.id} />
+
+          <CategoryForm
+            initialData={job}
+            jobId={job.id}
+            options={categories.map((category) => ({
+              label: category.name,
+              value: category.id,
+            }))}
+          />
+
+          <ImageForm initialData={job} jobId={job.id}/>
         </div>
       </div>
     </div>
@@ -97,4 +116,3 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 };
 
 export default JobDetailsPage;
-
