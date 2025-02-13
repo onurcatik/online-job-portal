@@ -12,6 +12,7 @@ import { TitleForm } from "./_components/title-form";
 import { JobPublishAction } from "./_components/job-publish-actions";
 import { CategoryForm } from "./_components/category-form";
 import { ImageForm } from "./_components/image-form";
+import { ShortDescription } from "./_components/short-description";
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   // Destructure the jobId synchronously
@@ -109,6 +110,9 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           />
 
           <ImageForm initialData={job} jobId={job.id}/>
+
+
+          <ShortDescription initialData= {job} jobId={job.id}/>
         </div>
       </div>
     </div>
