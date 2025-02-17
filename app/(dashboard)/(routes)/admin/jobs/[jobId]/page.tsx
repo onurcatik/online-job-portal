@@ -1,8 +1,6 @@
-
-
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { ArrowLeft, LayoutDashboard } from "lucide-react";
+import { ArrowLeft, LayoutDashboard, ListChecks } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -17,6 +15,9 @@ import { ShiftTimingForm } from "./_components/shift-timing-mode";
 import { HourlyRateForm } from "./_components/hourly-rate-form";
 import { WorkModeForm } from "./_components/work-mode-form";
 import { YearsOfExperienceForm } from "./_components/work-experience-form";
+import { JobDescription } from "./_components/job-description";
+import { TagsForm } from "./_components/tags-form";
+
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   // Destructure the jobId synchronously
@@ -112,24 +113,40 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
               value: category.id,
             }))}
           />
+       <div>
+          <ImageForm initialData={job} jobId={job.id} />
 
-          <ImageForm initialData={job} jobId={job.id}/>
+          <ShortDescription initialData={job} jobId={job.id} />
 
+          <ShiftTimingForm initialData={job} jobId={job.id} />
 
-          <ShortDescription initialData= {job} jobId={job.id}/>
+          <HourlyRateForm initialData={job} jobId={job.id} />
 
-          <ShiftTimingForm initialData={job} jobId={job.id}/>
+          <WorkModeForm initialData={job} jobId={job.id} />
 
-          <HourlyRateForm initialData={job} jobId={job.id}/>
+          <YearsOfExperienceForm initialData={job} jobId={job.id} />
 
-          <WorkModeForm initialData={job} jobId={job.id}/>
+          <JobDescription initialData={job} jobId={job.id} />
+    </div>
+          {/* right container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16 relative left-[1400px] bottom-[1300px]">
+          <div className="space-y-6">
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={ListChecks} />
+              <h2 className="text-xl text-neutral-700">Job Requirements</h2>
+            </div>
+            <TagsForm initialData={job} jobId={job.id} />
+          </div>
+          </div>
 
-          <YearsOfExperienceForm initialData={job} jobId={job.id}/>
- 
-
+          {/* description */}
+          {/* <div className="col-span-2">
+            <JobDescription initialData={job} jobId={job.id} />
+          </div> */}
         </div>
       </div>
     </div>
+
   );
 };
 
