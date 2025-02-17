@@ -1,4 +1,3 @@
-
 import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
@@ -7,7 +6,7 @@ import { columns, JobsColumns } from "./[jobId]/_components/columns";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import {format } from "date-fns"
+import { format } from "date-fns";
 
 const JobsPageOverview = async () => {
   const authUser = await auth();
@@ -26,10 +25,10 @@ const JobsPageOverview = async () => {
     },
     orderBy: {
       createdAt: "desc",
-    }
+    },
   });
 
-  console.log("Jobs :", jobs)
+  console.log("Jobs :", jobs);
 
   const formattedJobs: JobsColumns[] = jobs.map((job) => ({
     id: job.id,
@@ -40,10 +39,8 @@ const JobsPageOverview = async () => {
     createdAt: job.createdAt
       ? format(new Date(job.createdAt), "MMMM do, yyyy")
       : "N/A",
+    job: job.title // Assuming the job title is appropriate for the job property
   }));
-  
-  
-  
 
   return (
     <div className="p-6">
@@ -58,7 +55,11 @@ const JobsPageOverview = async () => {
 
       {/* datatable - List of jobs */}
       <div>
-        <DataTable columns={columns} data={jobs} />
+        {formattedJobs.length === 0 ? (
+          <div>Loading...</div>
+        ) : (
+          <DataTable columns={columns} data={formattedJobs} />
+        )}
       </div>
     </div>
   );
