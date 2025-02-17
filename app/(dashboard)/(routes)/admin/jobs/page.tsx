@@ -58,7 +58,7 @@ const JobsPageOverview = async () => {
         {formattedJobs.length === 0 ? (
           <div>Loading...</div>
         ) : (
-          <DataTable columns={columns} data={formattedJobs} />
+          <DataTable columns={columns} data={formattedJobs} searchKey="title" />
         )}
       </div>
     </div>
