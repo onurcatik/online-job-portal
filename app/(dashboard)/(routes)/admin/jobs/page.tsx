@@ -29,6 +29,8 @@ const JobsPageOverview = async () => {
     }
   });
 
+  console.log("Jobs :", jobs)
+
   const formattedJobs: JobsColumns[] = jobs.map((job) => ({
     id: job.id,
     title: job.title,
@@ -56,7 +58,7 @@ const JobsPageOverview = async () => {
 
       {/* datatable - List of jobs */}
       <div>
-        <DataTable columns={columns} data={[jobs]} />
+        <DataTable columns={columns} data={jobs} />
       </div>
     </div>
   );
