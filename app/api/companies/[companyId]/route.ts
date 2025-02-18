@@ -49,14 +49,14 @@ export const PATCH = async (
 //   { params }: { params: { companyId: string } }
 // ) => {
 //   try {
-//     // Authenticate user
+//     // Kullanıcı doğrulaması
 //     const { userId } = await auth();
 //     const { companyId } = params;
 
-//     // Read the JSON payload from the request
+//     // İstek gövdesinden gelen veriler
 //     const updatedValues = await req.json();
 
-//     // Validate required fields
+//     // Gerekli alanların kontrolü
 //     if (!userId) {
 //       return new NextResponse("Un-Authorized", { status: 401 });
 //     }
@@ -64,36 +64,88 @@ export const PATCH = async (
 //       return new NextResponse("ID is missing", { status: 400 });
 //     }
 
-//     // Map the incoming field "title" to the "name" field in the database,
-//     // since the Prisma model doesn't have a "title" field.
+//     // dataToUpdate nesnesini oluşturuyoruz. Tüm güncellemek istediğimiz alanlar burada toplanır.
 //     const dataToUpdate: {
 //       name?: string;
 //       logo?: string;
-//       // add any other fields as necessary
+//       coverImage?: string;
+//       description?: string;
+//       overview?: string;
+//       mail?: string;
+//       linkedIn?: string;
+//       website?: string;
+//       address_line_1?: string;
+//       address_line_2?: string;
+//       city?: string;
+//       state?: string;
+//       zipcode?: string;
 //     } = {};
 
-//     // Update the name if a title is provided
+//     // "title" varsa, veritabanında "name" alanına aktar; aksi halde gelen "name" değeri kullanılsın.
 //     if (updatedValues.title) {
 //       dataToUpdate.name = updatedValues.title;
+//     } else if (updatedValues.name) {
+//       dataToUpdate.name = updatedValues.name;
 //     }
-//     // Update the logo if provided
+
+//     // Logo alanı ekleniyor
 //     if (updatedValues.logo) {
 //       dataToUpdate.logo = updatedValues.logo;
 //     }
 
-//     // You can add more fields here as needed,
-//     // for example, description, coverImage, etc.
+//     // Job cover image varsa, coverImage olarak aktar; yoksa coverImage varsa onu kullan.
+//     if (updatedValues.jobCoverImage) {
+//       dataToUpdate.coverImage = updatedValues.jobCoverImage;
+//     } else if (updatedValues.coverImage) {
+//       dataToUpdate.coverImage = updatedValues.coverImage;
+//     }
 
-//     // Update the company record in the database
+//     // Description alanı
+//     if (updatedValues.description) {
+//       dataToUpdate.description = updatedValues.description;
+//     }
+
+//     // Overview alanı
+//     if (updatedValues.overview) {
+//       dataToUpdate.overview = updatedValues.overview;
+//     }
+
+//     // Ek alanlar
+//     if (updatedValues.mail) {
+//       dataToUpdate.mail = updatedValues.mail;
+//     }
+//     if (updatedValues.linkedIn) {
+//       dataToUpdate.linkedIn = updatedValues.linkedIn;
+//     }
+//     if (updatedValues.website) {
+//       dataToUpdate.website = updatedValues.website;
+//     }
+//     if (updatedValues.address_line_1) {
+//       dataToUpdate.address_line_1 = updatedValues.address_line_1;
+//     }
+//     if (updatedValues.address_line_2) {
+//       dataToUpdate.address_line_2 = updatedValues.address_line_2;
+//     }
+//     if (updatedValues.city) {
+//       dataToUpdate.city = updatedValues.city;
+//     }
+//     if (updatedValues.state) {
+//       dataToUpdate.state = updatedValues.state;
+//     }
+//     if (updatedValues.zipcode) {
+//       dataToUpdate.zipcode = updatedValues.zipcode;
+//     }
+
+//     // Veritabanındaki şirket kaydını güncelle
 //     const company = await db.company.update({
 //       where: {
 //         id: companyId,
-//         userId: userId,
+//         userId,
 //       },
 //       data: dataToUpdate,
 //     });
 
-//     // Return the updated company record as JSON
+//     // Güncellenmiş şirket kaydını JSON olarak döndür
 //     return NextResponse.json(company);
 //   } catch (error) {
 //     console.error(`[COMPANY_PATCH]: ${error}`);
