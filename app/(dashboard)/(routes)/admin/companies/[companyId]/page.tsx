@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { ArrowLeft, LayoutDashboard, ListChecks } from "lucide-react";
+import { ArrowLeft, LayoutDashboard, ListChecks, Network } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -18,26 +18,19 @@ import { TagsForm } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_compone
 import { JobDescription } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/job-description";
 import { CompanyName } from "./name-form";
 import { CompanyDescription } from "./description-form";
+import { CompanyLogoForm } from "./logo-form";
+import { CompanySocialContactsForm } from "./social-contacts-form";
+import { CompanyCoverImageForm } from "./cover-image-form";
+import CompaniesOverviewPage from "../page";
+import { CompanyOverviewForm } from "./company-overview";
+import { WhyJoinUsForm } from "./why-join-us";
 
-interface CompanyNameProps {
-
-  initialData: {
-
-    name: string;
-
-    title: string;
-
-  };
-
-  companyId: string;
-
-}
-
-
-
-const CompanyEditPage = async ({ params: { companyId, jobId } }: { params: {
-    jobId: string; companyId: string 
-} }) => {
+const CompanyEditPage = async ({
+  params,
+}: {
+  params: { companyId: string };
+}) => {
+  const { companyId } = params;
 
   // verify the MongoDB ID
   const validObjectIdRegex = /^[0-9a-fA-F]{24}$/;
@@ -52,32 +45,32 @@ const CompanyEditPage = async ({ params: { companyId, jobId } }: { params: {
   }
 
   const company = await db.company.findUnique({
-      where: {
-        id: companyId,
-        userId,
-      },
-      select: {
-        name: true,
-        id: true,
-        userId: true,
-        description: true,
-        logo: true,
-        coverImage: true,
-        mail: true,
-        website: true,
-        linkedIn: true,
-        address_line_1: true,
-        city: true,
-        state: true,
-        address_line_2: true,
-        zipcode: true,
-        followers: true,
-        created: true,
-        overview: true,
-        whyJoinUs: true,
-        updated: true,
-      },
-    });
+    where: {
+      id: companyId,
+      userId,
+    },
+    select: {
+      name: true,
+      id: true,
+      userId: true,
+      description: true,
+      logo: true,
+      coverImage: true,
+      mail: true,
+      website: true,
+      linkedIn: true,
+      address_line_1: true,
+      city: true,
+      state: true,
+      address_line_2: true,
+      zipcode: true,
+      followers: true,
+      created: true,
+      overview: true,
+      whyJoinUs: true,
+      updated: true,
+    },
+  });
 
   const categories = await db.category.findMany({
     orderBy: { name: "asc" },
@@ -100,10 +93,7 @@ const CompanyEditPage = async ({ params: { companyId, jobId } }: { params: {
     company?.state,
     company?.overview,
     company?.whyJoinUs,
-    
   ].filter(Boolean); // Removes falsy values (null, undefined, empty string)
-  
-  
 
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
@@ -128,49 +118,102 @@ const CompanyEditPage = async ({ params: { companyId, jobId } }: { params: {
           </span>
         </div>
         {/* action button */}
-        
       </div>
       {/* warning before publishing the course */}
-     {/* {!company.isPublished && (
+      {/* {!company.isPublished && (
         <Banner
           variant="warning"
           label="This company is unpublished. It will not be visible in the companys list"
         />  */}
-      
 
       {/* container layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
-        <div>
-          {/* title */}
-          <div className="flex items-center gap-x-2">
+      <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+          <div>
+            {/* title */}
+            <div className="flex items-center gap-x-2">
               <IconBadge icon={LayoutDashboard} />
-              <h2 className="text-xl text-neutral-700">Customize your company</h2>
+              <h2 className="text-xl text-neutral-700">
+                Customize your company
+              </h2>
             </div>
-     
-          {/* title form */}
 
-          <CompanyName initialData={{ ...company, title: company.name }} companyId={company.id}/>
+            {/* title form */}
 
-          <CompanyDescription initialData={{ ...company, description: company.description || "" }} companyId={company.id}/>
+            <CompanyName
+              initialData={{ ...company, title: company.name }}
+              companyId={company.id}
+            />
 
-   
-          
+            <CompanyDescription
+              initialData={{
+                ...company,
+                description: company.description || "",
+              }}
+              companyId={company.id}
+            />
+
+<CompanyLogoForm
+  initialData={{
+    ...company,
+    logo: company.logo || "",
+    title: company.name,
+  }}
+  companyId={company.id}  // doğru prop ismi ve değeri
+/>
+           
+          </div>
+
           {/* right container */}
-       <div className="space-y-6"><div>
-          
-          </div>
-          </div>
+          <div className="space-y-6">
+            {/* right container */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={Network} />
+                <h2 className="text-xl">Company Social Contacts</h2>
+              </div>
+              
+              
+              <CompanySocialContactsForm
+                initialData={company}
+                companyId={company.id}
+              />
 
-          {/* description */}
-           <div className="col-span-2">
-        
-          </div> 
+              <CompanyCoverImageForm
+                initialData={{
+                  ...company,
+                  coverImage: company.coverImage || "",
+                  title: company.name,
+                }}
+                companiesId={""}
+              />
+            </div>
+            <div>
+              <div className="col-span-2">
+                <CompanyOverviewForm
+                  initialData={{
+                    ...company,
+                    overview: company.overview || "",
+                    followers: company.followers.length,
+                  }}
+                  companyId={company.id}
+                />
+              </div>
+              <div className="col-span-2">
+                <WhyJoinUsForm
+                  initialData={{
+                    ...company,
+                    overview: company.overview || "",
+                    followers: company.followers,
+                  }}
+                  companyId={company.id}
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-      
-    
-
+      </div>
+    </div>
   );
 };
 

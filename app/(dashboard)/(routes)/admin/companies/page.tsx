@@ -6,8 +6,8 @@ import { format } from "date-fns";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { columns } from "./_components/columns";
-import { CompanyColumns } from "./_components/columns";
+import { columns } from "./create/_components/columns";
+import { CompanyColumns } from "./create/_components/columns"
 
 const CompaniesOverviewPage = async () => {
   const { userId } = await auth();
@@ -25,17 +25,18 @@ const CompaniesOverviewPage = async () => {
   });
 
   const formattedCompanies: CompanyColumns[] = companies.map((company) => ({
-    id: company.id,
-    name: company.name || "",
-    logo: company.logo || "",
-    createdAt: company.created
-      ? format(new Date(company.created), "MMMM do, yyyy")
-      : "N/A",
-    title: "", // Add appropriate value
-    company: "", // Add appropriate value
-    category: "", // Add appropriate value
-    isPublished: false, // Add appropriate value
-  }));
+  id: company.id,
+  name: company.name || "",
+  logo: company.logo || "",
+  createdAt: company.created
+    ? format(new Date(company.created), "MMMM do, yyyy")
+    : "N/A",
+  title: company.name, // "title" alanını company.name ile doldurduk
+  company: company.name, // Eğer farklı bir değer kullanmak isterseniz burayı güncelleyin
+  category: "Default Category", // Uygun değeri ekleyin
+  isPublished: true, // Uygun değeri ekleyin
+}));
+
   
 
 

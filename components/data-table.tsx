@@ -66,6 +66,8 @@ export function DataTable<TData, TValue>({
     }
     className="max-w-sm"
   />
+
+  
 </div>
 
 

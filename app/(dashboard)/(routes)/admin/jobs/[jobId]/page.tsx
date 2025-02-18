@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { ArrowLeft, LayoutDashboard, ListChecks } from "lucide-react";
+import { ArrowLeft, LayoutDashboard, ListChecks, File } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -17,6 +17,7 @@ import { WorkModeForm } from "./_components/work-mode-form";
 import { YearsOfExperienceForm } from "./_components/work-experience-form";
 import { JobDescription } from "./_components/job-description";
 import { TagsForm } from "./_components/tags-form";
+import { CompanyForm } from "../../companies/[companyId]/company-form";
 
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
@@ -45,6 +46,16 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   const categories = await db.category.findMany({
     orderBy: { name: "asc" },
   });
+
+  const companies = await db.company.findMany({
+    where: {
+      userId
+    },
+    orderBy: {
+      name: "desc"
+    }
+  });
+  
 
   if (!job) {
     return redirect("/admin/jobs");
@@ -95,6 +106,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
       )}
 
       {/* container layout */}
+      <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
         <div>
           {/* title */}
@@ -103,16 +115,13 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
             <h2 className="text-xl text-neutral-700">Customize your job</h2>
           </div>
           {/* title form */}
-          <TitleForm initialData={job} jobId={job.id} />
+          <TitleForm initialData={job} jobId={job.id}  />
 
           <CategoryForm
-            initialData={job}
-            jobId={job.id}
-            options={categories.map((category) => ({
-              label: category.name,
-              value: category.id,
-            }))}
-          />
+              initialData={job} jobId={job.id} options={categories.map((category) => ({
+                label: category.name,
+                value: category.id,
+              }))} />
        <div>
           <ImageForm initialData={job} jobId={job.id} />
 
@@ -127,16 +136,50 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           <YearsOfExperienceForm initialData={job} jobId={job.id} />
 
           <JobDescription initialData={job} jobId={job.id} />
+          </div>
     </div>
           {/* right container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16 relative left-[1400px] bottom-[1300px]">
+          
           <div className="space-y-6">
+            <div>
             <div className="flex items-center gap-x-2">
               <IconBadge icon={ListChecks} />
               <h2 className="text-xl text-neutral-700">Job Requirements</h2>
             </div>
             <TagsForm initialData={job} jobId={job.id} />
+            </div>
+
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={ListChecks} />
+              <h2 className="text-xl text-neutral-700">Company Details</h2>
+            </div>
+            
+
+            {/* company details */}
+
+            <CompanyForm
+              initialData={job}
+              companyId={job.companyId ?? ""}
+              jobId={job.id}
+              options={companies.map((company) => ({
+                label: company.name,
+                value: company.id,
+              }))}
+            />
+                      <div className="flex items-center gap-x-2">
+    <IconBadge icon={File} />
+    <h2 className="text-xl text-neutral-700">Job Attachments</h2>
+  </div>
           </div>
+
+          <div>
+
+          {/* attachements */}
+
+
+  {/* company details */}
+
+
           </div>
 
           {/* description */}
@@ -145,7 +188,8 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           </div> */}
         </div>
       </div>
-    </div>
+      </div>
+    
 
   );
 };

@@ -1,4 +1,5 @@
 "use client";
+
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -6,103 +7,57 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 
-import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
-
+import { ArrowUpDown, MoreHorizontal, Pencil, Eye, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
-import { Eye } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export type CompanyColumns = {
-    id: string;
-    title: string;
-    company: string;
-    category: string;
-    createdAt: string;
-    isPublished: boolean;
-  };
-  
+  id: string;
+  title: string;
+  company: string;
+  category: string;
+  createdAt: string;
+  isPublished: boolean;
+  logo: string;
+};
 
 export const columns: ColumnDef<CompanyColumns>[] = [
   {
     accessorKey: "title",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Title
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Name
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
-
   {
-    accessorKey: "isPublished",
-    header: ({ column }) => {
+    accessorKey: "logo",
+    header: "Logo",
+    cell: ({ row }) => {
+      const { logo } = row.original;
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Published
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <div className="w-16 h-16 flex items-center justify-center relative rounded-md border">
+          {logo ? (
+            <Image
+              src={logo}
+              alt="Company Logo"
+              className="object-contain"
+              layout="fill"
+            />
+          ) : (
+            <Globe className="w-8 h-8 text-gray-400" />
+          )}
+        </div>
       );
     },
   },
-
-  {
-    accessorKey: "category",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Category
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-
-  {
-    accessorKey: "company",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Company
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-
-  {
-    accessorKey: "createdAt",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Date
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  
-   
-
-
   {
     accessorKey: "isPublished",
     header: "Published",
@@ -122,10 +77,42 @@ export const columns: ColumnDef<CompanyColumns>[] = [
       );
     },
   },
-
-  
-  
-
+  {
+    accessorKey: "category",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Category
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: "company",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Company
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: "createdAt",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Date
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
   {
     id: "actions",
     cell: ({ row }) => {
@@ -154,6 +141,5 @@ export const columns: ColumnDef<CompanyColumns>[] = [
         </DropdownMenu>
       );
     },
-  }
-  
+  },
 ];

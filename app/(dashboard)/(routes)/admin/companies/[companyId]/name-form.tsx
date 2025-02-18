@@ -71,7 +71,7 @@ interface CompanyNameProps {
       </div>
 
       {/* Display the title when not editing */}
-      {!isEditing && <p className="text-sm mt-2">{defaultValues?.name}</p>}
+      {!isEditing && <p className="text-sm mt-2">{initialData.name}</p>}
 
       {/* Display the form in editing mode */}
       {isEditing && (

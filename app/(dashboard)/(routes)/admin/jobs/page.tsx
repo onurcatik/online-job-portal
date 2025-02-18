@@ -22,6 +22,7 @@ const JobsPageOverview = async () => {
     },
     include: {
       category: true,
+      company :true
     },
     orderBy: {
       createdAt: "desc",
@@ -33,7 +34,7 @@ const JobsPageOverview = async () => {
   const formattedJobs: JobsColumns[] = jobs.map((job) => ({
     id: job.id,
     title: job.title,
-    company: "",
+    company: job.company ? job.company?.name : "N/A",
     category: job.category ? job.category?.name : "N/A",
     isPublished: job.isPublished,
     createdAt: job.createdAt
