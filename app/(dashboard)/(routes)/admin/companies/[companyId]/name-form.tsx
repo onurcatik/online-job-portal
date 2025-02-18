@@ -21,6 +21,7 @@ import { z } from "zod";
 interface CompanyNameProps {
     initialData: {
       name: string;
+      title:string;
     };
     companyId: string;
   }

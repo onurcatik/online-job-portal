@@ -19,6 +19,21 @@ import { JobDescription } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_c
 import { CompanyName } from "./name-form";
 import { CompanyDescription } from "./description-form";
 
+interface CompanyNameProps {
+
+  initialData: {
+
+    name: string;
+
+    title: string;
+
+  };
+
+  companyId: string;
+
+}
+
+
 
 const CompanyEditPage = async ({ params: { companyId, jobId } }: { params: {
     jobId: string; companyId: string 
@@ -136,7 +151,7 @@ const CompanyEditPage = async ({ params: { companyId, jobId } }: { params: {
 
           <CompanyName initialData={{ ...company, title: company.name }} companyId={company.id}/>
 
-          <CompanyDescription initialData= {company} companyId={company.id}/>
+          <CompanyDescription initialData={{ ...company, description: company.description || "" }} companyId={company.id}/>
 
    
           
