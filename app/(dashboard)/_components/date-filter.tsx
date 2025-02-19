@@ -45,7 +45,7 @@ export const DateFilter = () => {
   
 
   return (
-    <Select>
+    <Select onValueChange={(selected) => onChange(selected)}>
       <SelectTrigger className="w-48">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>

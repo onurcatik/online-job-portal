@@ -59,6 +59,38 @@ export const getJobs = async ({
         ].filter(Boolean),
       };
     }
+
+    // let query: any = {
+    //   where: {
+    //     isPublished: false,
+    //   },
+    //   include : {
+    //     company: true,
+    //     category: true,
+    //   },
+    //   orderBy: {
+    //     createdAt: "desc",
+    //   },
+    // };
+
+    // if (typeof title !== "undefined" || typeof categoryId !== "undefined") {
+    //   query.where = {
+    //     AND: [
+    //       typeof title !== "undefined" && {
+    //         title: {
+    //           contains: title,
+    //           mode: "insensitive",
+    //         },
+    //       },
+    //       typeof categoryId !== "undefined" && {
+    //         categoryId: {
+    //           equals: categoryId,
+    //         },
+    //       },
+    //     ].filter(Boolean),
+    //   };
+    // }
+
     
 
     // check whether the createdAtFilter is provided or not
