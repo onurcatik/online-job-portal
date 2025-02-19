@@ -65,7 +65,7 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
 
   return (
     <motion.div layout>
-      <Card>
+      <Card >
         <div className="w-full h-full p-4 flex flex-col items-start justify-start gap-y-6">
           <Box className="flex items-center justify-between w-full">
             <p className="text-sm text-muted-foreground">
