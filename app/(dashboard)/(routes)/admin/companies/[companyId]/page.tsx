@@ -185,7 +185,7 @@ const CompanyEditPage = async ({
                   coverImage: company.coverImage || "",
                   title: company.name,
                 }}
-                companiesId={""}
+                companyId={""}
               />
             </div>
             <div>

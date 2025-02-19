@@ -125,13 +125,13 @@ export const columns: ColumnDef<CompanyColumns>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <Link href={`/admin/compaines/${id}`}>
+            <Link href={`/admin/companies/${id}`}>
               <DropdownMenuItem>
                 <Pencil className="w-4 h-4 mr-2" />
                 Edit
               </DropdownMenuItem>
             </Link>
-            <Link href={`/admin/compaines/${id}/applicants`}>
+            <Link href={`/admin/companies/${id}/applicants`}>
               <DropdownMenuItem>
                 <Eye className="w-4 h-4 mr-2" />
                 Applicants

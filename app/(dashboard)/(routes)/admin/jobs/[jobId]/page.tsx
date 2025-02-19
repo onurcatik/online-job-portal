@@ -19,7 +19,6 @@ import { JobDescription } from "./_components/job-description";
 import { TagsForm } from "./_components/tags-form";
 import { CompanyForm } from "../../companies/[companyId]/company-form";
 
-
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   // Destructure the jobId synchronously
   const { jobId } = await params;
@@ -49,13 +48,12 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
   const companies = await db.company.findMany({
     where: {
-      userId
+      userId,
     },
     orderBy: {
-      name: "desc"
-    }
+      name: "desc",
+    },
   });
-  
 
   if (!job) {
     return redirect("/admin/jobs");
@@ -107,53 +105,55 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
       {/* container layout */}
       <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
-        <div>
-          {/* title */}
-          <div className="flex items-center gap-x-2">
-            <IconBadge icon={LayoutDashboard} />
-            <h2 className="text-xl text-neutral-700">Customize your job</h2>
-          </div>
-          {/* title form */}
-          <TitleForm initialData={job} jobId={job.id}  />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+          <div>
+            {/* title */}
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={LayoutDashboard} />
+              <h2 className="text-xl text-neutral-700">Customize your job</h2>
+            </div>
+            {/* title form */}
+            <TitleForm initialData={job} jobId={job.id} />
 
-          <CategoryForm
-              initialData={job} jobId={job.id} options={categories.map((category) => ({
+            <CategoryForm
+              initialData={job}
+              jobId={job.id}
+              options={categories.map((category) => ({
                 label: category.name,
                 value: category.id,
-              }))} />
-       <div>
-          <ImageForm initialData={job} jobId={job.id} />
+              }))}
+            />
+            <div>
+              <ImageForm initialData={job} jobId={job.id} />
 
-          <ShortDescription initialData={job} jobId={job.id} />
+              <ShortDescription initialData={job} jobId={job.id} />
 
-          <ShiftTimingForm initialData={job} jobId={job.id} />
+              <ShiftTimingForm initialData={job} jobId={job.id} />
 
-          <HourlyRateForm initialData={job} jobId={job.id} />
+              <HourlyRateForm initialData={job} jobId={job.id} />
 
-          <WorkModeForm initialData={job} jobId={job.id} />
+              <WorkModeForm initialData={job} jobId={job.id} />
 
-          <YearsOfExperienceForm initialData={job} jobId={job.id} />
+              <YearsOfExperienceForm initialData={job} jobId={job.id} />
 
-          <JobDescription initialData={job} jobId={job.id} />
+              <JobDescription initialData={job} jobId={job.id} />
+            </div>
           </div>
-    </div>
           {/* right container */}
-          
+
           <div className="space-y-6">
             <div>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={ListChecks} />
-              <h2 className="text-xl text-neutral-700">Job Requirements</h2>
-            </div>
-            <TagsForm initialData={job} jobId={job.id} />
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={ListChecks} />
+                <h2 className="text-xl text-neutral-700">Job Requirements</h2>
+              </div>
+              <TagsForm initialData={job} jobId={job.id} />
             </div>
 
             <div className="flex items-center gap-x-2">
               <IconBadge icon={ListChecks} />
               <h2 className="text-xl text-neutral-700">Company Details</h2>
             </div>
-            
 
             {/* company details */}
 
@@ -166,20 +166,16 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
                 value: company.id,
               }))}
             />
-                      <div className="flex items-center gap-x-2">
-    <IconBadge icon={File} />
-    <h2 className="text-xl text-neutral-700">Job Attachments</h2>
-  </div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={File} />
+              <h2 className="text-xl text-neutral-700">Job Attachments</h2>
+            </div>
           </div>
 
           <div>
+            {/* attachements */}
 
-          {/* attachements */}
-
-
-  {/* company details */}
-
-
+            {/* company details */}
           </div>
 
           {/* description */}
@@ -188,9 +184,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           </div> */}
         </div>
       </div>
-      </div>
-    
-
+    </div>
   );
 };
 

@@ -108,7 +108,7 @@ export const JobDescription = ({
       {/* Display description if not editing */}
       {!isEditing && (
         <div className={cn("text-sm mt-2", !initialData.description && "text-neutral-500 italic")}>
-          {!initialData.description ? "No Description" : <Preview value={initialData.description} />}
+          {!initialData.description ? "No Description" : initialData.description}
         </div>
       )}
 
