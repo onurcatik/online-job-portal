@@ -94,46 +94,49 @@ export const getJobs = async ({
     
 
     // check whether the createdAtFilter is provided or not
-if (createdAtFilter) {
-  const currentDate = new Date();
-  let startDate: Date;
-  
-  switch (createdAtFilter) {
-    case "today":
-      startDate = new Date(currentDate);
-      break;
-
-    case "yesterday":
-      startDate = new Date(currentDate);
-      startDate.setDate(currentDate.getDate() - 1);
-      break;
-
-    case "thisWeek":
-      startDate = new Date(currentDate);
-      startDate.setDate(currentDate.getDate() - currentDate.getDay());
-      // set the start date to the beginning of the current week
-      break;
-
-    case "lastWeek":
-      startDate = new Date(currentDate);
-      startDate.setDate(currentDate.getDate() - currentDate.getDay() - 7);
-      // set the start date to the beginning of the previous week
-      break;
-
-    case "thisMonth":
-      startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-      break;
-
-    default:
+    if (createdAtFilter) {
+      const currentDate = new Date();
+      let startDate: Date;
       
-        startDate = new Date(0);
+      switch (createdAtFilter) {
+        case "today":
+          // Bugünün başlangıcını ayarla (00:00:00)
+          startDate = new Date(currentDate);
+          startDate.setHours(0, 0, 0, 0);
+          break;
+    
+        case "yesterday":
+          // Dün başlangıç (00:00:00)
+          startDate = new Date(currentDate);
+          startDate.setDate(startDate.getDate() - 1);
+          startDate.setHours(0, 0, 0, 0);
+          break;
+    
+        case "thisWeek":
+          startDate = new Date(currentDate);
+          startDate.setDate(currentDate.getDate() - currentDate.getDay());
+          startDate.setHours(0, 0, 0, 0);
+          break;
+    
+        case "lastWeek":
+          startDate = new Date(currentDate);
+          startDate.setDate(currentDate.getDate() - currentDate.getDay() - 7);
+          startDate.setHours(0, 0, 0, 0);
+          break;
+    
+        case "thisMonth":
+          startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+          break;
+    
+        default:
+          startDate = new Date(0);
+      }
       
-      // add the condition in query - (include)
       query.where.createdAt = {
         gte: startDate,
       };
     }
-  }      
+    
 
   // filter the data based on the shift timing
 let formattedShiftTiming = shiftTiming?.split(",");
