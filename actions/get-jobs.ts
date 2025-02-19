@@ -29,9 +29,9 @@ export const getJobs = async ({
     // Initialize the query object with common options
     let query: any = {
       where: {
-        isPublished: true,
+        isPublished: true, // Ensure this is always present
       },
-      include : {
+      include: {
         company: true,
         category: true,
       },
@@ -39,10 +39,12 @@ export const getJobs = async ({
         createdAt: "desc",
       },
     };
-
+    
     if (typeof title !== "undefined" || typeof categoryId !== "undefined") {
+      // Ensure that the published condition is always included
       query.where = {
         AND: [
+          { isPublished: true }, // Keep the isPublished condition here
           typeof title !== "undefined" && {
             title: {
               contains: title,
@@ -57,6 +59,7 @@ export const getJobs = async ({
         ].filter(Boolean),
       };
     }
+    
 
     // check whether the createdAtFilter is provided or not
 if (createdAtFilter) {
