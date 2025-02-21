@@ -337,10 +337,18 @@ model UserProfile {
   resumes      Resumes[]
 }
 
-type AppliedJob {
+model AppliedJob {
+  id        String      @id @default(uuid()) @map("_id")
   jobId     String
-  appliedAt DateTime @default(now())
+  appliedAt DateTime    @default(now())
+  userId    String
+  user      UserProfile @relation(fields: [userId], references: [userId])
 }
+
+// type AppliedJob {
+//   jobId     String
+//   appliedAt DateTime @default(now())
+// }
 
 model Resumes {
   id           String      @id @default(auto()) @map("_id") @db.ObjectId
