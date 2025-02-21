@@ -4,7 +4,7 @@ import axios from "axios";
 import { Company, Job } from "@prisma/client";
 import { Card, CardDescription } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Bookmark,
   BookmarkCheck,
@@ -34,6 +34,13 @@ interface JobCardItemProps {
 }
 
 const JobCardItem = ({ job, userId }: JobCardItemProps) => {
+
+  useEffect(() => {
+    console.log("job:", job);
+    console.log("company:", company);
+    console.log("job.imageUrl:", job?.imageUrl);
+    console.log("company.logo:", company?.logo);
+  }, );
   const typeJob = job as Job & { company: Company | null };
   const company = typeJob.company;
 
@@ -84,10 +91,10 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
           </Box>
           <Box className="items-center justify-start gap-x-4">
             <div className="w-64 h-36 min-w-12 min-h-12 border p-2 rounded-md relative flex items-center justify-center overflow-hidden">
-              {job?.imageUrl && (
+              {company?.logo&& (
               <Image
                 alt={job?.title || "Company Logo"}
-                src={job?.imageUrl || "/default-logo.png"}
+                src={company?.logo || "/default-logo.png"}
                 width={100}
                 height={100}
                 className="object-contain"

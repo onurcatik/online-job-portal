@@ -29,7 +29,7 @@ const JobsPageOverview = async () => {
     },
   });
 
-  console.log("Jobs :", jobs);
+  // console.log("Jobs :", jobs);
 
   const formattedJobs: JobsColumns[] = jobs.map((job) => ({
     id: job.id,

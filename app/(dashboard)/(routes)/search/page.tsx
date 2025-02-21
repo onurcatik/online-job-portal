@@ -32,7 +32,7 @@ interface SearchProps {
     const jobs = await getJobs({ ...searchParams });
 
   
-    console.log(jobs, categories);
+    // console.log(jobs, categories);
   return (
     <>
       <div className="px-6 pt-6 block md:hidden md:mb-0">
