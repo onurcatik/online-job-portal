@@ -93,7 +93,7 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
             <div className="w-64 h-36 min-w-12 min-h-12 border p-2 rounded-md relative flex items-center justify-center overflow-hidden">
               {company?.logo&& (
               <Image
-                alt={job?.title || "Company Logo"}
+                alt={company?.name || "Company Logo"}
                 src={company?.logo || "/default-logo.png"}
                 width={100}
                 height={100}
@@ -102,12 +102,12 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
               )}
             </div>
             <div className="w-full">
-              <p className="text-stone-700 font-bold text-base w-full truncate mb-12">
+              <p className="text-stone-700 font-bold text-base w-full truncate mb-0">
                 {job.title}
               </p>
               
               <Link
-                href={`/jobs/${company?.id}`}
+                href={`/companies/${company?.id}`}
                 className="text-xs text-purple-500 w-full truncate"
               >
                 {company?.name}
