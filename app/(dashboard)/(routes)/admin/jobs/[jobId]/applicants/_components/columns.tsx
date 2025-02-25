@@ -5,6 +5,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Eye, MoreHorizontal, Pencil } from "lucide-react";
 import Link from "next/link";
+import { CellActions } from "./cell-actions";
+
 
 export type ApplicantColumns = {
   id: string;
@@ -71,35 +73,11 @@ export const columns: ColumnDef<ApplicantColumns>[] = [
     ),
   },
   {
-    id: "actions",
-    header: "Actions",
-    cell: ({ row }) => {
-      // satırın orijinal verisini alıyoruz
-      const job = row.original;
-      // job.id ile link oluşturuyoruz
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <MoreHorizontal className="w-4 h-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <Link href={`/admin/jobs/${job.id}`}>
-              <DropdownMenuItem>
-                <Pencil className="w-4 h-4 mr-2" />
-                Edit
-              </DropdownMenuItem>
-            </Link>
-            <Link href={`/admin/jobs/${job.id}/applicants`}>
-              <DropdownMenuItem>
-                <Eye className="w-4 h-4 mr-2" />
-                Applicants
-              </DropdownMenuItem>
-            </Link>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+  id: "actions",
+  cell: ({ row }) => {
+  const { id, fullname, email } = row.original;
+  return <CellActions id={id} fullname={fullname} email={email} />;
+},
   },
-];
+
+]

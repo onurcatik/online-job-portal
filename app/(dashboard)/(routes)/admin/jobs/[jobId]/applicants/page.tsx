@@ -131,7 +131,7 @@ import { format } from "date-fns";
 import { CustomBreadCrumb } from "@/components/custom-bread-crumb";
 import Box from "@/components/box";
 import { DataTable } from "@/components/data-table";
-import { columns } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/applicants/columns";
+import { columns } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/applicants/_components/columns";
 
 const JobApplicantsPage = async (props: { params: { jobId: string } }) => {
   const { jobId } = props.params;

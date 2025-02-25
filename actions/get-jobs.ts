@@ -163,6 +163,13 @@ if (formattedYOExperience && formattedYOExperience.length > 0) {
   };
 }
 
+if (savedJobs) {
+  query.where.savedUsers = {
+    has: userId,
+  };
+}
+
+
 
     
 

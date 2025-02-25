@@ -13,41 +13,26 @@ import getGenerativeAIResponse from "@/scripts/aistudio";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Company, Job } from "@prisma/client";
 import axios from "axios";
-import { Lightbulb, Loader2, Pencil, Copy } from "lucide-react";
+import { Lightbulb, Loader2, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
-import { Editor } from "@/components/editor";
-// import { Preview } from "@/components/preview";
-// import "react-quill";
 import { Textarea } from "@/components/ui/textarea";
 
-
 interface WhyJoinUsFormProps {
-
-    initialData: Company;
-    companyId: string;
-
-    
-  }
-  
-  
-  
-  
+  initialData: Company;
+  companyId: string;
+}
 
 const formSchema = z.object({
-  overview: z.string().min(1),
+  whyJoinUs: z.string().min(1, "This field is required"),
 });
 
-export const WhyJoinUsForm = ({
-  initialData,
-  companyId,
-}: WhyJoinUsFormProps) => {
+export const WhyJoinUsForm = ({ initialData, companyId }: WhyJoinUsFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [rollname, setRollname] = useState("");
-  const [skills, setSkills] = useState("");
   const [aiValue, setAiValue] = useState("");
   const router = useRouter();
   const [isPrompting, setIsPrompting] = useState(false);
@@ -55,7 +40,8 @@ export const WhyJoinUsForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      overview: initialData?.overview || "",
+      // Eğer whyJoinUs değeri null ise boş string atanır
+      whyJoinUs: initialData?.whyJoinUs || "",
     },
   });
 
@@ -78,21 +64,19 @@ export const WhyJoinUsForm = ({
     try {
       setIsPrompting(true);
       const sanitizedRollname = rollname.replace(/[^a-zA-Z0-9 ]/g, "");
-      const sanitizedSkills = skills.replace(/[^a-zA-Z0-9, ]/g, "");
 
       const customPrompt = `Create a compelling "Why join us" content piece 
-for ${rollname}. Highlight the unique opportunities, benefits, and 
-experiences that ${rollname} offers to its users. Emphasize the 
+for ${sanitizedRollname}. Highlight the unique opportunities, benefits, and 
+experiences that ${sanitizedRollname} offers to its users. Emphasize the 
 platform's value proposition, such as access to a vast music library, 
 personalized recommendations, exclusive content, community features, 
 and career opportunities for musicians and creators. Tailor the 
-content to attract potential users and illustrate why ${rollname} 
+content to attract potential users and illustrate why ${sanitizedRollname} 
 stands out among other music streaming platforms.`;
-
 
       const data = await getGenerativeAIResponse(customPrompt);
       const cleanedText = data.replace(/^\s+|\s+$/g, "").replace(/[\*\#]/g, "");
-      form.setValue("overview", cleanedText);
+      form.setValue("whyJoinUs", cleanedText);
       setAiValue(cleanedText);
       setIsPrompting(false);
     } catch (error) {
@@ -102,16 +86,11 @@ stands out among other music streaming platforms.`;
     }
   };
 
-//   const onCopy = () => {
-//     navigator.clipboard.writeText(aiValue);
-//     toast.success("Copied to clipboard");
-//   };
-
   return (
     <div className="mt-6 border bg-neutral-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Why Join Us
-        <Button onClick={toggleEditing} variant={"ghost"}>
+        <Button onClick={toggleEditing} variant="ghost">
           {isEditing ? "Cancel" : (
             <>
               <Pencil className="w-4 h-4 mr-2" />
@@ -121,31 +100,16 @@ stands out among other music streaming platforms.`;
         </Button>
       </div>
 
-      {/* Display overview if not editing */}
-      {/* {!isEditing && (
-        <div className={cn("text-sm mt-2", !initialData.overview && "text-neutral-500 italic")}>
-          {!initialData.overview ? "No overview" : <Preview value={initialData.overview} />}
-        </div>
-      )} */}
-
-      {/* Editing mode */}
-      {isEditing && (
+      {isEditing ? (
         <>
           <div className="flex items-center gap-2 my-2">
             <input
               type="text"
-              placeholder="Design Studio"
+              placeholder="Company Name"
               value={rollname}
               onChange={(e) => setRollname(e.target.value)}
-              className="w-full p-2 rounded-md"
+              className="w-full p-2 rounded-md border"
             />
-            {/* <input
-              type="text"
-              placeholder="Required Skills Set"
-              value={skills}
-              onChange={(e) => setSkills(e.target.value)}
-              className="w-full p-2 rounded-md"
-            /> */}
             {isPrompting ? (
               <Button disabled>
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -159,36 +123,19 @@ stands out among other music streaming platforms.`;
           <p className="text-xs text-muted-foreground text-right">
             Note: Profession Name & Required skills delimited by comma
           </p>
-
-
-
-          {/* Display the AI-generated overview */}
-          {/* {aiValue && (
-            <div className="w-full h-96 max-h-96 rounded-md bg-white overflow-y-scroll p-3 relative mt-4 text-muted-foreground">
-              {aiValue}
-              <Button
-                className="absolute top-3 right-3 z-10"
-                variant="outline"
-                size="icon"
-                onClick={onCopy}
-              >
-                <Copy className="w-4 h-4" />
-              </Button>
-            </div>
-          )} */}
-
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
               <FormField
                 control={form.control}
-                name="overview"
-                render={({field}) => (
+                name="whyJoinUs"
+                render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Textarea
                         disabled={isSubmitting}
-                        placeholder="Short overview"
-                        {...field}
+                        placeholder="Short Why Join Us content"
+                        value={field.value}
+                        onChange={field.onChange}
                       />
                     </FormControl>
                     <FormMessage />
@@ -203,8 +150,11 @@ stands out among other music streaming platforms.`;
             </form>
           </Form>
         </>
+      ) : (
+        <div className={cn("text-sm mt-2", !initialData.whyJoinUs && "text-neutral-500 italic")}>
+          {initialData.whyJoinUs || "No Why Join Us content available."}
+        </div>
       )}
     </div>
   );
 };
-  
