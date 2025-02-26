@@ -53,7 +53,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           <Separator />
           <Box className="flex-col my-4 items-start justify-start px-4 gap-2">
             <h2 className="text-lg font-semibold">Related Jobs :</h2>
-            <p className="font-sans">{job?.short_description}</p>
+            {/* <p className="font-sans">{job?.short_description}</p> */}
           </Box>
 
           <PageContent jobs={filteredJobs} userId={userId}/>
