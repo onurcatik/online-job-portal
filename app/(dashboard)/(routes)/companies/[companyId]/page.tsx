@@ -51,7 +51,7 @@ const CompanyDetailPage = async ({
 
       {/* company image */}
       {company?.logo && (
-        <div className="w-full flex items-center justify-center overflow-hidden relative h-80 -z-10">
+        <div className="w-full flex items-center justify-center overflow-hidden relative h-98 z-10">
           <Image alt={company?.name ?? "Company Logo"} src={company.logo} fill className="w-full h-full object-cover" />
         </div>
       )}

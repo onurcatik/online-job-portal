@@ -29,12 +29,11 @@ const CompanyDetailContentPage = ({
   const onClickAddRemoveFollower = async () => {
     try {
       setIsLoading(true);
-      if (isFollower) {
-        // Burada unfollow işlemi eklenmeli
-      } else {
-        await axios.patch(`/api/companies/${company?.id}/addFollower`);
-        toast.success("Following");
-      }
+      isFollower
+        ? (await axios.patch(`/api/companies/${company?.id}/removeFollower`),
+           toast.success("Unfollowed"))
+        : (await axios.patch(`/api/companies/${company?.id}/addFollower`),
+           toast.success("Following"));
       router.refresh();
     } catch (error) {
       console.log("Error = ", error);
@@ -43,6 +42,7 @@ const CompanyDetailContentPage = ({
       setIsLoading(false);
     }
   };
+  
 
   return (
     <div className="w-full rounded-2xl bg-white p-4 z-50 -mt-8">
