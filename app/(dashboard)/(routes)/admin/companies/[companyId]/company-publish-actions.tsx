@@ -1,86 +1,79 @@
-// "use client"
+"use client"
 
-// import { useState } from "react";
-// import { Button } from "@/components/ui/button";
-// import { Trash } from "lucide-react";
-// import toast from "react-hot-toast";
-// import axios from "axios";
-// import router from "next/router";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Trash } from "lucide-react";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-// interface JobPublishActionProps {
-//   disabled?: boolean;
-//   jobId: string;
-//   isPublished: boolean;
-// }
+interface CompanyPublishActionProps {
+  disabled?: boolean;
+  companyId: string;
+  isPublished: boolean;
+}
 
-// export const JobPublishAction = ({
-//   disabled,
-//   jobId,
-//   isPublished,
-// }: JobPublishActionProps) => {
-//   const [isLoading, setIsLoading] = useState(false);
+export const CompanyPublishAction = ({
+  disabled,
+  companyId,
+  isPublished,
+}: CompanyPublishActionProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  // Yerel state oluşturuyoruz
+  const [published, setPublished] = useState(isPublished);
 
-//   const onClick = async () => {
-//     try {
-//       setIsLoading(true);
-//       if (isPublished) {
-//         // unpublish the job
-//         await axios.patch(`/api/jobs/${jobId}/unpublish`);
-//         toast.success("Job Un-Published");
-//       } else {
-//         await axios.patch(`/api/jobs/${jobId}/publish`);
-//         toast.success("Job Published");
-//       }
-  
-//       router.reload();
-//     } catch (error) {
-//       // toast.error("Something went wrong");
-//       console.log((error as Error)?.message);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-  
-  
-//   const onDelete = async () => {
-//     try {
-//       setIsLoading(true);
-  
-//       await axios.delete(`/api/jobs/${jobId}`);
-//       toast.success("Job Deleted");
-//       router.reload();
-//       return router.push("/admin/jobs");
-//     } catch (error) {
-//       // toast.error("Something went wrong");
-//       console.log((error as Error)?.message);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-  
-//   return (
-//     <div className="flex items-center gap-x-3">
-// <Button
-//   variant="outline"
-//   onClick={onClick} // <-- Publish işlemine ait fonksiyon
-//   disabled={false}
-//   size="sm"
-// >
-// {isPublished ? "Unpublish" : "Publish"}
-// </Button>
+  const onClick = async () => {
+    try {
+      setIsLoading(true);
+      if (published) {
+        // Unpublish
+        await axios.patch(`/api/companies/${companyId}/unpublish`);
+        toast.success("Job Un-Published");
+        setPublished(false);
+      } else {
+        // Publish
+        await axios.patch(`/api/companies/${companyId}/publish`);
+        toast.success("Job Published");
+        setPublished(true);
+      }
+    } catch (error) {
+      console.log((error as Error)?.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  const onDelete = async () => {
+    try {
+      setIsLoading(true);
+      await axios.delete(`/api/companies/${companyId}`);
+      toast.success("Job Deleted");
+    } catch (error) {
+      console.log((error as Error)?.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  return (
+    <div className="flex items-center gap-x-3">
+      <Button
+        variant="outline"
+        onClick={onClick}
+        disabled={isLoading || disabled}
+        size="sm"
+      >
+        {published ? "Unpublish" : "Publish"}
+      </Button>
 
-
-
-//       <Button
-//         variant="destructive"
-//         size="icon"
-//         disabled={isLoading}
-//         onClick={onDelete}
-//       >
-//         <Trash className="w-4 h-4" />
-//       </Button>
-//     </div>
-//   );
-// };
+      <Button
+        variant="destructive"
+        size="icon"
+        disabled={isLoading}
+        onClick={onDelete}
+      >
+        <Trash className="w-4 h-4" />
+      </Button>
+    </div>
+  );
+};

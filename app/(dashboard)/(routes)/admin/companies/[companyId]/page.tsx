@@ -24,6 +24,7 @@ import { CompanyCoverImageForm } from "./cover-image-form";
 import CompaniesOverviewPage from "../page";
 import { CompanyOverviewForm } from "./company-overview";
 import { WhyJoinUsForm } from "./why-join-us";
+import { CompanyPublishAction } from "./company-publish-actions";
 
 const CompanyEditPage = async ({
   params,
@@ -117,7 +118,10 @@ const CompanyEditPage = async ({
             Complete All Fields {completionText}
           </span>
         </div>
-        {/* <JobPublishAction/> */}
+        <CompanyPublishAction
+        companyId={companyId} // use the destructured jobId here
+        isPublished={false}
+        disabled={false}/>
         {/* action button */}
       </div>
       {/* warning before publishing the course */}

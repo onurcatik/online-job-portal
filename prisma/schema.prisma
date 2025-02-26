@@ -285,6 +285,30 @@ model Job {
   @@fulltext ([title])
 }
 
+// model Company {
+//   id             String   @id @default(auto()) @map("_id") @db.ObjectId
+//   userId         String
+//   name           String
+//   description    String   @default("")   // Boş veri girilmediğinde boş string dönecek
+//   logo           String   @default("")
+//   coverImage     String   @default("")
+//   mail           String   @default("")
+//   website        String   @default("")
+//   linkedIn       String   @default("")
+//   address_line_1 String   @default("")
+//   address_line_2 String   @default("")
+//   city           String   @default("")
+//   state          String   @default("")
+//   zipcode        String   @default("")
+//   jobs           Job[]
+//   followers      String[] @default([])  // Boş dizi olarak varsayılan değer
+//   overview       String   @default("")
+//   whyJoinUs      String   @default("")
+//   created        DateTime @default(now())
+//   updated        DateTime @default(now())
+  
+// }
+
 model Company {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
   userId         String
@@ -306,6 +330,9 @@ model Company {
   whyJoinUs      String   @default("")
   created        DateTime @default(now())
   updated        DateTime @default(now())
+  isPublished Boolean  @default(false)
+
+  
 }
 
 model Category {
