@@ -179,14 +179,14 @@ const CompanyEditPage = async ({
                 companyId={company.id}
               />
 
-              {/* <CompanyCoverImageForm
+              <CompanyCoverImageForm
                 initialData={{
                   ...company,
                   coverImage: company.coverImage || "",
                   title: company.name,
                 }}
                 companyId={company.id}
-              /> */}
+              />
             </div>
             <div>
               <div className="col-span-2">

@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios"; // Added missing axios import
+import axios from "axios";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -9,31 +9,31 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ImageIcon, Pencil } from "lucide-react"; // Removed unused PencilIcon
+import { Pencil, ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
-import { ImageUpload } from "@/components/image-upload";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ImageUpload } from "@/components/image-upload"; // ImageUpload bileşeni eklendi
 
 interface CompanyCoverImageFormProps {
   initialData: {
     [x: string]: any;
     title: string;
+    coverImage?: string;
   };
-  companiesId: string;
+  companyId: string;
 }
 
 const formSchema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
-  imageUrl: z.string().url({ message: "Invalid URL" }).optional(),
+  coverImage: z.string().url({ message: "Invalid URL" }).optional(),
 });
 
-export const CompanyCoverImageForm = ({ initialData, companiesId }: CompanyCoverImageFormProps) => {
+export const CompanyCoverImageForm = ({ initialData, companyId }: CompanyCoverImageFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
 
@@ -46,12 +46,14 @@ export const CompanyCoverImageForm = ({ initialData, companiesId }: CompanyCover
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/companies/${companiesId}`, values);
+      axios.patch(`/api/companies/${companyId}`, values)
+
+
       toast.success("Job updated");
       toggleEditing();
       router.refresh();
     } catch (error) {
-      console.error("Error updating job:", error); // Optional: log error details
+      console.error("Error updating job:", error);
       toast.error("Something went wrong");
     }
   };
@@ -61,55 +63,49 @@ export const CompanyCoverImageForm = ({ initialData, companiesId }: CompanyCover
   return (
     <div className="mt-6 border bg-neutral-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Company Cover Image
+        Job Cover Image
         <Button onClick={toggleEditing} variant="ghost">
-          {isEditing ? (
-            <>Cancel</>
-          ) : (
+          {isEditing ? "Cancel" : (
             <>
-              <Pencil className="w-4 h-4 mr-2" />
-              Edit
+              <Pencil className="w-4 h-4 mr-2" /> Edit
             </>
           )}
         </Button>
       </div>
 
-{/* display the imageUrl if not editing */}
-{!isEditing &&
-  (!initialData.imageUrl ? (
-    <div className="flex items-center justify-center h-60 bg-neutral-200">
-      <ImageIcon className="h-10 w-10 text-neutral-500" />
-    </div>
-  ) : (
-    <div className="relative w-full h-60 aspect-video mt-2">
-      <Image
-      alt="Cover Image"
-      fill
-      className="w-full h-full object-cover"
-      src={initialData.imageUrl}/>
-    </div>
-  ))}
-
+      {/* Display the coverImage if not editing */}
+      {!isEditing &&
+        (!initialData.coverImage ? (
+          <div className="flex items-center justify-center h-60 bg-neutral-200">
+            <ImageIcon className="h-10 w-10 text-neutral-500" />
+          </div>
+        ) : (
+          <div className="relative w-full h-60 aspect-video mt-2">
+            <Image
+              alt="Cover Image"
+              fill
+              className="w-full h-full object-cover"
+              src={initialData.coverImage}
+            />
+          </div>
+        ))
+      }
 
       {/* Display the form in editing mode */}
       {isEditing && (
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4 mt-4"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
             <FormField
               control={form.control}
-              name="imageUrl"
+              name="coverImage"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <ImageUpload
-                      value={field.value || ''}
-                      disabled= {isSubmitting
-                      }
+                      value={field.value || ""}
+                      disabled={isSubmitting}
                       onChange={(url) => field.onChange(url)}
-                      onRemove={() => field.onChange('')}
+                      onRemove={() => field.onChange("")}
                     />
                   </FormControl>
                   <FormMessage />

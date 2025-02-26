@@ -268,57 +268,122 @@
 // };
 
 
+// import { db } from "@/lib/db";
+// import { auth } from "@clerk/nextjs/server";
+// import { NextResponse } from "next/server";
+
+// export const PATCH = async (
+//   req: Request,
+//   { params }: { params: { companyId: string } }
+// ) => {
+//   try {
+//     // Kullanıcı doğrulaması
+//     const { userId } = await auth();
+//     const { companyId } = params;
+//     const updatedValues = await req.json();
+//     console.log("PATCH request body:", updatedValues);
+
+//     if (!userId) {
+//       return new NextResponse("Unauthorized", { status: 401 });
+//     }
+
+//     if (!companyId) {
+//       return new NextResponse("Company ID is missing", { status: 400 });
+//     }
+
+//     // Mevcut company kaydını getiriyoruz
+//     const companyRecord = await db.company.findUnique({
+//       where: { id: companyId },
+//     });
+
+//     if (!companyRecord) {
+//       return new NextResponse("Company not found", { status: 404 });
+//     }
+
+//     // Kullanıcının yetkisini kontrol ediyoruz
+//     if (companyRecord.userId !== userId) {
+//       return new NextResponse("Unauthorized", { status: 401 });
+//     }
+
+//     // Güncelleme yapılmasını istemediğimiz alanları çıkarıyoruz (örneğin title)
+//     const { title, ...companyData } = updatedValues;
+
+//     // Company kaydını güncelliyoruz
+//     const company = await db.company.update({
+//       where: { id: companyId },
+//       data: {
+//         ...companyData,
+//       },
+//     });
+
+//     return NextResponse.json(company);
+//   } catch (error) {
+//     console.error("[COMPANY_PATCH_ERROR]:", error);
+//     return new NextResponse("Internal Server Error", { status: 500 });
+//   }
+// };
+
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
+// PATCH /api/companies/:companyId
 export const PATCH = async (
   req: Request,
   { params }: { params: { companyId: string } }
 ) => {
   try {
-    // Kullanıcı doğrulaması
+    // Authenticate the user
     const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { companyId } = params;
+    if (!companyId) {
+      return NextResponse.json({ error: "Company ID is missing" }, { status: 400 });
+    }
+
+    // Parse the JSON payload from the request
     const updatedValues = await req.json();
     console.log("PATCH request body:", updatedValues);
 
-    if (!userId) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
-    if (!companyId) {
-      return new NextResponse("Company ID is missing", { status: 400 });
-    }
-
-    // Mevcut company kaydını getiriyoruz
+    // Fetch the existing company record from the database
     const companyRecord = await db.company.findUnique({
       where: { id: companyId },
     });
-
     if (!companyRecord) {
-      return new NextResponse("Company not found", { status: 404 });
+      return NextResponse.json({ error: "Company not found" }, { status: 404 });
     }
 
-    // Kullanıcının yetkisini kontrol ediyoruz
+    // Check if the authenticated user is allowed to update this company
     if (companyRecord.userId !== userId) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Güncelleme yapılmasını istemediğimiz alanları çıkarıyoruz (örneğin title)
-    const { title, ...companyData } = updatedValues;
+    // Remove fields that should not be updated (e.g., title) and extract imageUrl
+    const { title, imageUrl, ...otherData } = updatedValues;
 
-    // Company kaydını güncelliyoruz
-    const company = await db.company.update({
+    // Map imageUrl to coverImage if it exists
+    const updateData = {
+      ...otherData,
+      ...(imageUrl && { coverImage: imageUrl }),
+    };
+
+    // Update the company record in the database
+    const updatedCompany = await db.company.update({
       where: { id: companyId },
-      data: {
-        ...companyData,
-      },
+      data: updateData,
     });
 
-    return NextResponse.json(company);
-  } catch (error) {
+    return NextResponse.json(updatedCompany);
+  } catch (error: any) {
     console.error("[COMPANY_PATCH_ERROR]:", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
+
+    if (error.response) {
+      console.error("Error response data:", error.response.data);
+    }
+
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 };
