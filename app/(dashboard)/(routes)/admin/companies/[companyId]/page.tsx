@@ -117,6 +117,7 @@ const CompanyEditPage = async ({
             Complete All Fields {completionText}
           </span>
         </div>
+        {/* <JobPublishAction/> */}
         {/* action button */}
       </div>
       {/* warning before publishing the course */}
@@ -136,8 +137,9 @@ const CompanyEditPage = async ({
               <h2 className="text-xl text-neutral-700">
                 Customize your company
               </h2>
+            
             </div>
-
+            
             {/* title form */}
 
             <CompanyName
@@ -208,6 +210,8 @@ const CompanyEditPage = async ({
                   }}
                   companyId={company.id}
                 />
+
+              
               </div>
             </div>
           </div>

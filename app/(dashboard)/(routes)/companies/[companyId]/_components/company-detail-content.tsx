@@ -222,7 +222,7 @@ const CompanyDetailContentPage = ({
         <Button
           onClick={onClickAddRemoveFollower}
           className={cn(
-            "w-24 rounded-full hover:shadow-md flex items-center justify-center border bg-purple-500",
+            "w-24 rounded-full hover:shadow-md flex items-center justify-center text-white border bg-purple-500",
             !isFollower && "bg-purple-600 hover:bg-purple-700"
           )}
           variant={isFollower ? "outline" : "default"}
