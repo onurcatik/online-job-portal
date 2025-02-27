@@ -18,6 +18,7 @@ import { YearsOfExperienceForm } from "./_components/work-experience-form";
 import { JobDescription } from "./_components/job-description";
 import { TagsForm } from "./_components/tags-form";
 import { CompanyForm } from "../../companies/[companyId]/company-form";
+import {LocationForm} from "./_components/job-location";
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   // Destructure the jobId synchronously
@@ -124,6 +125,10 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
               }))}
             />
             <div>
+
+
+              <LocationForm initialData={job} jobId={job.id}/>
+
               <ImageForm initialData={job} jobId={job.id} />
 
               <ShortDescription initialData={job} jobId={job.id} />

@@ -271,9 +271,13 @@ model Job {
   hourlyRate        String?
   yearsOfExperience String?
   workMode          String?
-  
+  location Json?
+
+
   categoryId String?   @db.ObjectId
   category   Category? @relation(fields: [categoryId], references: [id])
+
+
 
   companyId  String?   @db.ObjectId
   company    Company?  @relation(fields: [companyId], references: [id])
@@ -284,6 +288,8 @@ model Job {
   @@index([companyId])
   @@fulltext ([title])
 }
+
+
 
 // model Company {
 //   id             String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -331,8 +337,23 @@ model Company {
   created        DateTime @default(now())
   updated        DateTime @default(now())
   isPublished Boolean  @default(false)
+  location Location? @relation(fields: [locationId], references: [id])
+  locationId String?
 
   
+  
+
+  
+}
+
+model Location {
+  id       String @id @default(uuid()) @map("_id")
+  country  String
+  city     String
+  address  String?
+  zipCode  String?
+
+  Company Company[]
 }
 
 model Category {
