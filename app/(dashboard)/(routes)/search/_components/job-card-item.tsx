@@ -32,8 +32,10 @@ interface JobCardItemProps {
 }
 
 const JobCardItem = ({ job, userId }: JobCardItemProps) => {
-  const typeJob = job as Job & { company: Company | null };
+  const typeJob = job as Job & { company: Company | null;  location?: { country: string; city: string } | null};
   const company = typeJob.company;
+  const location = job.location as { country: string; city: string } | null;
+
 
   useEffect(() => {
     console.log("job:", job);
@@ -108,6 +110,15 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
               <p className="text-stone-700 font-bold text-base w-full truncate mb-0">
                 {job.title}
               </p>
+
+         
+              {job?.location ? (
+                <p className="text-sm text-gray-600">
+                  {job.location.country}, {job.location.city}
+                </p>
+              ) : (
+                <p className="text-sm text-gray-600">Location: Not provided</p>
+              )}
               
               <Link
                 href={`/companies/${company?.id}`}

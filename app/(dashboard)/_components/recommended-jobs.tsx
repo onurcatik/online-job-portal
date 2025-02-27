@@ -2,7 +2,6 @@
 
 import Box from "@/components/box";
 import { Job } from "@prisma/client";
-
 import PageContent from "../(routes)/search/_components/page-content";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -17,21 +16,20 @@ export const RecommendedJobsList = ({
   userId,
 }: RecommendedJobsListProps) => {
   return (
-    <Box className="flex-col justify-center gap-y-4 my-6 mt-12">
-      <h2 className="text-2xl font-semibold tracking-wider font-sans">
+    <Box className="flex flex-col items-center justify-center gap-y-6 my-8 px-4">
+      <h2 className="text-3xl font-bold tracking-wide text-gray-900 dark:text-white">
         Recommended Jobs
       </h2>
 
-      <div className="mt-4">
+      <div className="w-full mt-6">
         <PageContent jobs={jobs} userId={userId} />
       </div>
 
-      <Link href="/search" className="my-8">
-  <Button className="w-44 h-12 rounded-xl border border-purple-500 hover:bg-transparent hover:shadow-md text-purple-500 hover:text-purple-600 bg-transparent">
-    View All Jobs
-  </Button>
-</Link>
-
+      <Link href="/search" className="mt-8">
+        <Button className="w-48 h-12 rounded-xl border border-purple-500 text-purple-500 bg-white dark:bg-gray-800 hover:bg-purple-500 hover:text-white transition-all duration-300 shadow hover:shadow-lg">
+          View All Jobs
+        </Button>
+      </Link>
     </Box>
   );
 };
