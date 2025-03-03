@@ -162,7 +162,7 @@ const DashboardAnalyticsPage = async () => {
 
             <Separator className="my-4" />
 
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-4">
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-4 relative left-[500px]">
                 <Card className="shadow-xl border-0">
                     <CardHeader className="flex items-center justify-between bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-t">
                         <CardTitle className="text-sm font-medium text-white">Total Jobs on Portal</CardTitle>
@@ -205,7 +205,7 @@ const DashboardAnalyticsPage = async () => {
             </div>
 
             <div className="grid gap-6 grid-cols-1 md:grid-cols-2 mt-6">
-                <Card className="shadow-xl border-0">
+                <Card className="shadow-xl border-0 ml-36">
                     <CardHeader className="flex items-center justify-between bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-t">
                         <CardTitle className="text-sm font-medium text-white">Month Wise Jobs Count</CardTitle>
                         <BriefcaseBusiness className="w-5 h-5 text-white" />
