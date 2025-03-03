@@ -164,7 +164,7 @@ const DashboardAnalyticsPage = async () => {
 
             <div className="grid gap-6 grid-cols-1 md:grid-cols-4 relative left-[500px]">
                 <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-t">
+                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
                         <CardTitle className="text-sm font-medium text-white">Total Jobs on Portal</CardTitle>
                         <BriefcaseBusiness className="w-5 h-5 text-white" />
                     </CardHeader>
@@ -174,7 +174,7 @@ const DashboardAnalyticsPage = async () => {
                 </Card>
 
                 <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-green-500 to-teal-500 p-4 rounded-t">
+                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
                         <CardTitle className="text-sm font-medium text-white">My Jobs</CardTitle>
                         <BriefcaseBusiness className="w-5 h-5 text-white" />
                     </CardHeader>
@@ -184,7 +184,7 @@ const DashboardAnalyticsPage = async () => {
                 </Card>
 
                 <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-indigo-500 p-4 rounded-t">
+                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
                         <CardTitle className="text-sm font-medium text-white">Total Companies on Portal</CardTitle>
                         <BriefcaseBusiness className="w-5 h-5 text-white" />
                     </CardHeader>
@@ -194,7 +194,7 @@ const DashboardAnalyticsPage = async () => {
                 </Card>
 
                 <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-orange-500 to-yellow-500 p-4 rounded-t">
+                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
                         <CardTitle className="text-sm font-medium text-white">My Companies</CardTitle>
                         <BriefcaseBusiness className="w-5 h-5 text-white" />
                     </CardHeader>
@@ -204,9 +204,9 @@ const DashboardAnalyticsPage = async () => {
                 </Card>
             </div>
 
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 mt-6">
-                <Card className="shadow-xl border-0 ml-36">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-t">
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 mt-6 relative left-[700px] ">
+                <Card className="shadow-xl border-0">
+                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
                         <CardTitle className="text-sm font-medium text-white">Month Wise Jobs Count</CardTitle>
                         <BriefcaseBusiness className="w-5 h-5 text-white" />
                     </CardHeader>
@@ -216,7 +216,7 @@ const DashboardAnalyticsPage = async () => {
                 </Card>
 
                 <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-600 to-indigo-600 p-4 rounded-t">
+                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
                         <CardTitle className="text-sm font-medium text-white">Month Wise Companies Count</CardTitle>
                         <BriefcaseBusiness className="w-5 h-5 text-white" />
                     </CardHeader>

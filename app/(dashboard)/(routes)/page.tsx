@@ -93,7 +93,7 @@ const DashboardHomePage = async () => {
     <div className="flex flex-col items-center py-6 px-4 space-y-24">
       {/* Hero Section */}
       <Box className="flex flex-col items-center justify-center w-full space-y-4 mt-12 text-center">
-        <h2 className="text-3xl md:text-5xl font-serif font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+        <h2 className="text-3xl md:text-5xl font-serif font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-500">
           Find Your Dream Job Now
         </h2>
         <p className="text-xl md:text-2xl text-gray-700">

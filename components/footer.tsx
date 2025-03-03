@@ -80,13 +80,14 @@ export const Footer = () => {
     <Box className="bg-white text-gray-200 py-12 w-auto  ">
       <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-start ">
         {/* Logo ve sosyal medya */}
-        <div className="mb-8 md:mb-0 relative right-24">
-          <div className="flex items-center gap-4">
+        <div className="mb-8 md:mb-0 mr-[500px]">
+          <div className="flex items-center gap-4 relative right-96">
             <Logo />
             <h2 className="text-2xl font-bold text-black">WorkNow</h2>
+            <p className="mt-4 text-sm text-black">Connect with us</p>
           </div>
-          <p className="mt-4 text-sm text-black">Connect with us</p>
-          <div className="flex gap-4 mt-2 text-black">
+       
+          <div className="flex gap-4 mt-2 text-black relative right-96">
             <Link href="www.facebook.com">
               <Facebook className="w-6 h-6 hover:text-blue-500 transition-transform transform hover:scale-110" />
             </Link>
