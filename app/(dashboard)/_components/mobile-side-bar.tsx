@@ -1,33 +1,29 @@
-"use client"; // Ensure React components run correctly in Next.js app
+"use client";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import React from "react";
 import { Menu } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { SidebarRoutes } from "@/app/(dashboard)/_components/sidebar-routes";
 
-export const MobileSideBar = () => {
+export const ResponsiveSidebar = () => {
   return (
-    <Sheet>
-      <SheetTrigger className="md:hidden pr-4 hover:opacity-75 transition">
-        <Menu />
-      </SheetTrigger>
+    <>
+      {/* Mobil görünüm: md ekran boyutundan küçük */}
+      <div className="md:hidden">
+        <Sheet>
+          <SheetTrigger className="pr-4 hover:opacity-75 transition">
+            <Menu />
+          </SheetTrigger>
+          <SheetContent side="left">
+            <SidebarRoutes />
+          </SheetContent>
+        </Sheet>
+      </div>
 
-      <SheetContent side="left">
-        {" "}
-        {/* Ensure correct side value */}
-        <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
-        </SheetHeader>
-      </SheetContent>
-    </Sheet>
+      {/* Masaüstü görünüm: md ve üstü */}
+      <div className="hidden md:flex">
+        <SidebarRoutes />
+      </div>
+    </>
   );
 };
