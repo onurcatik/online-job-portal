@@ -122,7 +122,7 @@ const DashboardHomePage = async () => {
 
       {/* Companies Section */}
       <section className="w-full">
-        <h3 className="text-2xl font-serif font-semibold text-gray-800 mb-4 text-center">
+        <h3 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
           Top Companies
         </h3>
         <HomeCompaniesList companies={companies} />
