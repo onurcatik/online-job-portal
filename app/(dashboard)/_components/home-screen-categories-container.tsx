@@ -69,7 +69,7 @@ export const CategoryListItemCard = ({ data }: { data: Category }) => {
         iconNode={[]}
         className="text-purple-500 w-6 h-6"
       />
-      <span className="flex-1 font-semibold text-gray-700 dark:text-gray-300 truncate">
+      <span className="flex-1 font-semibold text-gray-700 dark:text-gray-300 truncate ">
         {data.name}
       </span>
       <ChevronRight className="w-5 h-5 text-gray-400" />

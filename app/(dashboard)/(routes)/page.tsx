@@ -87,6 +87,17 @@ const DashboardHomePage = async () => {
 
   return (
     <div className="flex flex-col items-center py-6 px-4 space-y-24">
+
+<Box className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg">
+        <Image
+          src="/img/job.jpg"
+          alt="Home Banner"
+          layout="fill"
+          objectFit="cover"
+          className="transition-transform duration-700 ease-in-out transform hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black opacity-40"></div>
+      </Box>
       {/* Hero Section */}
       <Box className="flex flex-col items-center justify-center w-full space-y-4 mt-12 text-center">
         <h2 className="text-3xl md:text-5xl font-serif font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-500">
@@ -99,20 +110,11 @@ const DashboardHomePage = async () => {
       </Box>
 
       {/* Banner Section with Overlay */}
-      <Box className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg">
-        <Image
-          src="/img/job.jpg"
-          alt="Home Banner"
-          layout="fill"
-          objectFit="cover"
-          className="transition-transform duration-700 ease-in-out transform hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black opacity-40"></div>
-      </Box>
+      
 
       {/* Categories Section */}
       <section className="w-full">
-        <h3 className="text-2xl font-serif font-semibold text-gray-800 mb-4 text-center">
+        <h3 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
           Explore Categories
         </h3>
         <HomescreenCategoriesContainer categories={categories} />
@@ -128,9 +130,7 @@ const DashboardHomePage = async () => {
 
       {/* Recommended Jobs Section */}
       <section className="w-full">
-        <h3 className="text-2xl font-serif font-semibold text-gray-800 mb-4 text-center">
-          Recommended for You
-        </h3>
+      
         <RecommendedJobsList jobs={jobs.splice(0, 10)} userId={userId} />
       </section>
 

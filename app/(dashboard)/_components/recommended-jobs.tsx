@@ -26,7 +26,7 @@ export const RecommendedJobsList = ({
       </div>
 
       <Link href="/search" className="mt-8">
-        <Button className="w-48 h-12 rounded-xl border border-purple-500 text-purple-500 bg-white dark:bg-gray-800 hover:bg-purple-500 hover:text-white transition-all duration-300 shadow hover:shadow-lg">
+        <Button className="w-48 h-12 rounded-xl border border-blue-500 text-blue-500 bg-white dark:bg-gray-800 hover:bg-blue-500 hover:text-white transition-all duration-300 shadow hover:shadow-lg">
           View All Jobs
         </Button>
       </Link>
