@@ -140,7 +140,6 @@
 //   );
 // };
 
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -193,7 +192,7 @@ export const ImageUpload = ({
     formData.append("file", file);
     formData.append(
       "public_id",
-      `JobCoverImage/${Date.now()}-${sanitizedFileName}`
+      `JobCoverImage/${Date.now()}-${sanitizedFileName}`,
     );
 
     const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
@@ -220,7 +219,7 @@ export const ImageUpload = ({
               (progressEvent.loaded / (progressEvent.total || 1)) * 100;
             setProgress(progressPercentage);
           },
-        } as any
+        } as any,
       );
 
       const downloadURL = response.data.secure_url;
@@ -229,7 +228,7 @@ export const ImageUpload = ({
     } catch (error: any) {
       toast.error(
         error.response?.data?.error?.message ||
-          "Yükleme sırasında bir hata oluştu."
+          "Yükleme sırasında bir hata oluştu.",
       );
     } finally {
       setIsLoading(false);

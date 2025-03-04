@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Box from "@/components/box";
 import { Card } from "@/components/ui/card";

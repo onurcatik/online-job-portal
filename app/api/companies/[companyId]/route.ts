@@ -38,7 +38,6 @@
 //   }
 // };
 
-
 // import { db } from "@/lib/db";
 // import { auth } from "@clerk/nextjs/server";
 // import { NextResponse } from "next/server";
@@ -153,7 +152,6 @@
 //   }
 // };
 
-
 // import { db } from "@/lib/db";
 // import { auth } from "@clerk/nextjs/server";
 // import { NextResponse } from "next/server";
@@ -267,7 +265,6 @@
 //   }
 // };
 
-
 // import { db } from "@/lib/db";
 // import { auth } from "@clerk/nextjs/server";
 // import { NextResponse } from "next/server";
@@ -330,7 +327,7 @@ import { NextResponse } from "next/server";
 // PATCH /api/companies/:companyId
 export const PATCH = async (
   req: Request,
-  { params }: { params: { companyId: string } }
+  { params }: { params: { companyId: string } },
 ) => {
   try {
     // Authenticate the user
@@ -341,7 +338,10 @@ export const PATCH = async (
 
     const { companyId } = params;
     if (!companyId) {
-      return NextResponse.json({ error: "Company ID is missing" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Company ID is missing" },
+        { status: 400 },
+      );
     }
 
     // Parse the JSON payload from the request
@@ -384,16 +384,18 @@ export const PATCH = async (
       console.error("Error response data:", error.response.data);
     }
 
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 };
 
 ///////////////////////
 
-
 export const DELETE = async (
   req: Request,
-  { params }: { params: { companyId: string } }
+  { params }: { params: { companyId: string } },
 ) => {
   try {
     const { userId } = await auth();
@@ -409,12 +411,11 @@ export const DELETE = async (
 
     const deleteCompany = await db.company.delete({
       where: {
-        id:  companyId,
+        id: companyId,
         userId,
       },
     });
 
-    
     return NextResponse.json(deleteCompany);
   } catch (error) {
     console.error("[JOB_DELETE_ERROR]:", error);

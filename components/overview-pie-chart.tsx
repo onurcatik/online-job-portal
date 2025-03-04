@@ -20,35 +20,33 @@ const PURPLE_COLORS = [
 ];
 
 const OverviewPieChart = ({ data }: OverviewPieChartProps) => {
-    const filterdata = data.filter((item) => item.value !== 0);
-  
-    return (
-      <ResponsiveContainer width={"100%"} height={350}>
-        <PieChart>
-          <Pie
-            data={filterdata}
-            dataKey={"value"}
-            nameKey={"name"}
-            cx={"50%"}
-            cy={"50%"}
-            innerRadius={60}
-            outerRadius={80}
-            fill="#82ca9d"
-            label={({ name, value }) => `${name} : ${value}`}
-          >
-            {data.map((entry, index) => (
-              <Cell 
-                key={`cell-${index}`} 
-                fill={PURPLE_COLORS[index % PURPLE_COLORS.length]} 
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-        </PieChart>
-      </ResponsiveContainer>
-    );
-  };
+  const filterdata = data.filter((item) => item.value !== 0);
 
-  export default OverviewPieChart
-  
-  
+  return (
+    <ResponsiveContainer width={"100%"} height={350}>
+      <PieChart>
+        <Pie
+          data={filterdata}
+          dataKey={"value"}
+          nameKey={"name"}
+          cx={"50%"}
+          cy={"50%"}
+          innerRadius={60}
+          outerRadius={80}
+          fill="#82ca9d"
+          label={({ name, value }) => `${name} : ${value}`}
+        >
+          {data.map((entry, index) => (
+            <Cell
+              key={`cell-${index}`}
+              fill={PURPLE_COLORS[index % PURPLE_COLORS.length]}
+            />
+          ))}
+        </Pie>
+        <Tooltip />
+      </PieChart>
+    </ResponsiveContainer>
+  );
+};
+
+export default OverviewPieChart;

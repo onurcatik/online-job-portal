@@ -17,7 +17,7 @@
 //   // Örnek kullanıcı id'si (her kullanıcı için benzersiz olmalı)
 //   const userId = "TEst12311";
 
-//   /* 
+//   /*
 //     Kullanıcının bu işe gerçekten başvurup başvurmadığını belirleyen kontrol.
 //     Gerçek senaryoda bu değer form verisi, API isteği veya başka bir mantıkla belirlenir.
 //   */
@@ -63,8 +63,6 @@
 //     });
 //   }
 // }
-
-  
 
 //   // İlgili jobId ile eşleşen profilleri sorguluyoruz.
 //   const filteredProfiles = await db.userProfile.findMany({
@@ -123,7 +121,6 @@
 
 // export default JobApplicantsPage;
 
-
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -146,7 +143,7 @@ const JobApplicantsPage = async (props: { params: { jobId: string } }) => {
   }
 
   /**
-   * Burada gerçek senaryoda kullanıcı uygulama butonuna bastığında veya 
+   * Burada gerçek senaryoda kullanıcı uygulama butonuna bastığında veya
    * form gönderdiğinde true olacak şekilde belirlenir.
    */
   const userHasApplied = true;
@@ -160,14 +157,14 @@ const JobApplicantsPage = async (props: { params: { jobId: string } }) => {
       },
     });
     console.log("Profil sorgulama sonucu:", profile);
-  
+
     if (!profile) {
       profile = await db.userProfile.create({
         data: {
           userId,
           fullName: "Gerçek Kullanıcı Adı", // Clerk'den alınan bilgiyi kullanın
-          email: "gercek@eposta.com",       // Clerk'den alınan bilgiyi kullanın
-          contact: "Kullanıcı Telefonu",     // Gerçek değeri kullanın
+          email: "gercek@eposta.com", // Clerk'den alınan bilgiyi kullanın
+          contact: "Kullanıcı Telefonu", // Gerçek değeri kullanın
           activeResume: "resume_örnek_id",
           appliedJobs: { create: { jobId } },
         },
@@ -185,7 +182,7 @@ const JobApplicantsPage = async (props: { params: { jobId: string } }) => {
   } catch (error) {
     console.error("AppliedJob oluşturulurken hata:", error);
   }
-  
+
   // Bu jobId'ye başvuran tüm profilleri çekiyoruz
   const filteredProfiles = await db.userProfile.findMany({
     where: {
@@ -212,7 +209,7 @@ const JobApplicantsPage = async (props: { params: { jobId: string } }) => {
         : "",
       resume: profile.activeResume ?? "",
       resumeName: profile.activeResume ?? "",
-    }))
+    })),
   );
 
   return (

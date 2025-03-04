@@ -8,16 +8,16 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+
 import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
+
 import getGenerativeAIResponse from "@/scripts/aistudio";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Job } from "@prisma/client";
 import axios from "axios";
 import { Lightbulb, Loader2, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
@@ -128,7 +128,7 @@ export const ShortDescription = ({
               <FormField
                 control={form.control}
                 name="short_description"
-                render={({field}) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Textarea

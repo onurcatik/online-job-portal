@@ -56,7 +56,7 @@
 //   const toggleEditing = () => setIsEditing((current) => !current);
 
 //   return (
-    
+
 //     <Box>
 
 //   <div
@@ -103,7 +103,6 @@
 //     </Box>
 //   );
 // };
-
 
 "use client";
 
@@ -167,7 +166,7 @@ export const NameForm = ({ initialData, userId }: NameFormProps) => {
       <div
         className={cn(
           "text-lg mt-2 flex items-center gap-3",
-          !initialData?.fullName && "text-neutral-500 italic"
+          !initialData?.fullName && "text-neutral-500 italic",
         )}
       >
         <UserCircle className="w-6 h-6 mr-3 text-primary-500" />

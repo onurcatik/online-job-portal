@@ -5,7 +5,6 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import JobCardItem from "@/app/(dashboard)/(routes)/search/_components/job-card-item";
 
-
 interface PageContentProps {
   jobs: Job[];
   userId: string | null;
@@ -44,7 +43,6 @@ const PageContent = ({ jobs, userId }: PageContentProps) => {
       </AnimatePresence>
     </div>
   );
-  
 };
 
 export default PageContent;

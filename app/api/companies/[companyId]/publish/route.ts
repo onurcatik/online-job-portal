@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export const PATCH = async (
   req: Request,
-  { params }: { params: { companyId: string } }
+  { params }: { params: { companyId: string } },
 ) => {
   try {
     // Kullanıcı kimliğini doğrula

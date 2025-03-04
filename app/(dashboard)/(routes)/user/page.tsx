@@ -17,7 +17,6 @@ import Link from "next/link";
 import { Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-
 // AppliedJobsColumns türü tanımlandı
 type AppliedJobsColumns = {
   id: string;
@@ -64,14 +63,14 @@ const ProfilePage = async () => {
       ? jobs
           .filter((job) =>
             profile.appliedJobs.some(
-              (appliedJob: { jobId: string }) => appliedJob.jobId === job.id
-            )
+              (appliedJob: { jobId: string }) => appliedJob.jobId === job.id,
+            ),
           )
           .map((job) => ({
             ...job,
             appliedAt: profile.appliedJobs.find(
               (appliedJob: { jobId: string; appliedAt?: Date }) =>
-                appliedJob.jobId === job.id
+                appliedJob.jobId === job.id,
             )?.appliedAt,
           }))
       : [];
@@ -83,8 +82,10 @@ const ProfilePage = async () => {
       title: job.title,
       company: job.company ? job.company.name : "",
       category: job.category ? job.category.name : "",
-      appliedAt: job.appliedAt ? format(new Date(job.appliedAt), "yyyy-MM-dd") : "",
-    })
+      appliedAt: job.appliedAt
+        ? format(new Date(job.appliedAt), "yyyy-MM-dd")
+        : "",
+    }),
   );
 
   const followedCompanies = await db.company.findMany({
@@ -97,8 +98,6 @@ const ProfilePage = async () => {
       created: "desc",
     },
   });
-  
-  
 
   return (
     <div className="flex-col p-4 md:p-8 items-center justify-center flex">
@@ -131,53 +130,54 @@ const ProfilePage = async () => {
         </h2>
 
         <div className="w-full mt-6">
-        <DataTable columns={columns} searchKey="company" data={formattedJobs} />
-
+          <DataTable
+            columns={columns}
+            searchKey="company"
+            data={formattedJobs}
+          />
         </div>
       </Box>
 
       <Box className="flex-col items-start justify-start mt-12">
-  <h2 className="text-2xl text-muted-foreground font-semibold">
-    Followed Companies
-  </h2>
+        <h2 className="text-2xl text-muted-foreground font-semibold">
+          Followed Companies
+        </h2>
 
- <div className="mt-6 w-full grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-6 gap-2">
-  {followedCompanies.length === 0 ? (
-    <p>No Companies followed yet</p>
-  ) : (
-    <React.Fragment>
-      {followedCompanies.map((com) => (
-        <Card className="p-3 space-y-2 relative" key={com.id}>
-          {/* Şirket detaylarına yönlendiren buton */}
-          <div className="w-full flex items-center justify-end">
-            {com.id && (
-              <Link href={`/companies/${com.id}`}>
-                <Button variant="ghost" size="icon">
-                  <Eye className="w-4 h-4" />
-                </Button>
-              </Link>
-            )}
-          </div>
+        <div className="mt-6 w-full grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-6 gap-2">
+          {followedCompanies.length === 0 ? (
+            <p>No Companies followed yet</p>
+          ) : (
+            <React.Fragment>
+              {followedCompanies.map((com) => (
+                <Card className="p-3 space-y-2 relative" key={com.id}>
+                  {/* Şirket detaylarına yönlendiren buton */}
+                  <div className="w-full flex items-center justify-end">
+                    {com.id && (
+                      <Link href={`/companies/${com.id}`}>
+                        <Button variant="ghost" size="icon">
+                          <Eye className="w-4 h-4" />
+                        </Button>
+                      </Link>
+                    )}
+                  </div>
 
-          {/* Şirket Logosu */}
-          {com.logo && (
-            <div className="w-full h-24 flex items-center justify-center relative overflow-hidden">
-              <Image
-                fill
-                alt="Logo"
-                src={com.logo}
-                className="object-contain w-full h-full"
-              />
-            </div>
+                  {/* Şirket Logosu */}
+                  {com.logo && (
+                    <div className="w-full h-24 flex items-center justify-center relative overflow-hidden">
+                      <Image
+                        fill
+                        alt="Logo"
+                        src={com.logo}
+                        className="object-contain w-full h-full"
+                      />
+                    </div>
+                  )}
+                </Card>
+              ))}
+            </React.Fragment>
           )}
-        </Card>
-      ))}
-    </React.Fragment>
-  )}
-</div>
-
-</Box>
-
+        </div>
+      </Box>
     </div>
   );
 };

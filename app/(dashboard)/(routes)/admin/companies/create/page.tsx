@@ -43,14 +43,14 @@ const CompanyCreatePage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       toast.success("Company created successfully");
       router.push(`/admin/companies/${response.data.id}`);
     } catch (error: any) {
       console.error(
         "Error creating company:",
-        error.response?.data || error.message
+        error.response?.data || error.message,
       );
       toast.error("Failed to create company");
     }
@@ -65,7 +65,10 @@ const CompanyCreatePage = () => {
           change <i>this</i> later.
         </p>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-8">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-8 mt-8"
+          >
             <FormField
               control={form.control}
               name="name"

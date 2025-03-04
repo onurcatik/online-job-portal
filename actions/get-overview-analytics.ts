@@ -37,7 +37,9 @@ export const getTotalCompaniesOnPortal = async () => {
   return companies.length;
 };
 
-export const getTotalCompaniesOnPortalByUserId = async (userId: string | null) => {
+export const getTotalCompaniesOnPortalByUserId = async (
+  userId: string | null,
+) => {
   if (!userId) {
     return 0;
   }
@@ -60,7 +62,7 @@ interface PieChartMonthlyCount {
 }
 
 export const getPieGraphJobCreatedByUser = async (
-  userId: string | null
+  userId: string | null,
 ): Promise<PieChartMonthlyCount[]> => {
   if (!userId) {
     return [];
@@ -98,10 +100,13 @@ export const getPieGraphJobCreatedByUser = async (
   }));
 
   const monthlyCountLookup: { [key: string]: PieChartMonthlyCount } =
-    monthlyCount.reduce((acc, item) => {
-      acc[item.name] = item;
-      return acc;
-    }, {} as { [key: string]: PieChartMonthlyCount });
+    monthlyCount.reduce(
+      (acc, item) => {
+        acc[item.name] = item;
+        return acc;
+      },
+      {} as { [key: string]: PieChartMonthlyCount },
+    );
 
   jobs.forEach((job) => {
     const createdAt = new Date(job.createdAt);

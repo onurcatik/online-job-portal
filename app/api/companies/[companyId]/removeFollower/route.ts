@@ -54,14 +54,13 @@
 //   }
 // };
 
-
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export const PATCH = async (
   req: Request,
-  context: { params: { companyId: string } }
+  context: { params: { companyId: string } },
 ) => {
   try {
     console.log("PATCH işlemi başlatıldı.");
@@ -107,7 +106,9 @@ export const PATCH = async (
         where: { id: companyId }, // userId where clause'da yer almamalı
         data: {
           followers: {
-            set: company.followers.filter((followerId) => followerId !== userId),
+            set: company.followers.filter(
+              (followerId) => followerId !== userId,
+            ),
           },
         },
       });
@@ -115,7 +116,9 @@ export const PATCH = async (
       return new NextResponse(JSON.stringify(updatedCompany), { status: 200 });
     } else {
       console.error("Kullanıcı takipçiler arasında bulunamadı.");
-      return new NextResponse("User not found in the followers", { status: 404 });
+      return new NextResponse("User not found in the followers", {
+        status: 404,
+      });
     }
   } catch (error) {
     console.error("[COMPANY_PATCH] Hata:", error);

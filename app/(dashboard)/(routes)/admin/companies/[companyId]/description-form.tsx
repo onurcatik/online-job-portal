@@ -17,45 +17,46 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
-import { Company } from "@prisma/client";
 
 interface CompanyDescriptionFormProps {
-    initialData: { description : string };
-    companyId: string;
-  }
-  
-  const formSchema = z.object({
-    description: z.string().min(1, { message: "Description is required" }),
+  initialData: { description: string };
+  companyId: string;
+}
+
+const formSchema = z.object({
+  description: z.string().min(1, { message: "Description is required" }),
+});
+
+export const CompanyDescription = ({
+  initialData,
+  companyId,
+}: CompanyDescriptionFormProps) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { description: initialData.description || "" },
   });
-  
-  export const CompanyDescription = ({ initialData, companyId }: CompanyDescriptionFormProps) => {
-    const [isEditing, setIsEditing] = useState(false);
-    const router = useRouter();
-  
-    const form = useForm<z.infer<typeof formSchema>>({
-      resolver: zodResolver(formSchema),
-      defaultValues: { description: initialData.description || "",
-      }
-    });
-  
-    const { isSubmitting, isValid, defaultValues } = form.formState;
-  
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
-      try {
-        const response = await axios.patch(`/api/companies/${companyId}`, values);
-        toast.success("Job updated");
-        toggleEditing();
-        router.refresh();
-      } catch (error) {
-        toast.error("Something went wrong");
-      }
-    };
+
+  const { isSubmitting, isValid, defaultValues } = form.formState;
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const response = await axios.patch(`/api/companies/${companyId}`, values);
+      toast.success("Job updated");
+      toggleEditing();
+      router.refresh();
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
   const toggleEditing = () => setIsEditing((current) => !current);
 
   return (
     <div className="mt-6 border bg-neutral-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-       Company Description
+        Company Description
         <Button onClick={toggleEditing} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -69,7 +70,9 @@ interface CompanyDescriptionFormProps {
       </div>
 
       {/* Display the title when not editing */}
-      {!isEditing && <p className="text-sm mt-2">{defaultValues?.description}</p>}
+      {!isEditing && (
+        <p className="text-sm mt-2">{defaultValues?.description}</p>
+      )}
 
       {/* Display the form in editing mode */}
       {isEditing && (

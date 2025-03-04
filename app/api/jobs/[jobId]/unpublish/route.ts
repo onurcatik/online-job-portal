@@ -4,12 +4,11 @@ import { NextResponse } from "next/server";
 
 export const PATCH = async (
   req: Request,
-  { params }: { params: { jobId: string } }
+  { params }: { params: { jobId: string } },
 ) => {
   try {
     const { userId } = await auth();
     const { jobId } = params;
-
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });

@@ -18,7 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ListItem } from "@/components/ui/list-item"
+import { ListItem } from "@/components/ui/list-item";
 
 // Combobox bileşeni için props tipi
 interface ComboboxProps {
@@ -36,7 +36,8 @@ export const ComboBox: React.FC<ComboboxProps> = ({
 }) => {
   const [open, setOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [filtered, setFiltered] = React.useState<{ label: string; value: string }[]>(options);
+  const [filtered, setFiltered] =
+    React.useState<{ label: string; value: string }[]>(options);
 
   // Arama terimi değiştiğinde filtreleme işlemini gerçekleştir
   React.useEffect(() => {
@@ -45,8 +46,8 @@ export const ComboBox: React.FC<ComboboxProps> = ({
     } else {
       setFiltered(
         options.filter((item) =>
-          item.label.toLowerCase().includes(searchTerm.toLowerCase())
-        )
+          item.label.toLowerCase().includes(searchTerm.toLowerCase()),
+        ),
       );
     }
   }, [searchTerm, options]);

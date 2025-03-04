@@ -24,56 +24,51 @@
 // // import "react-quill";
 // import { Textarea } from "@/components/ui/textarea";
 
-
 // interface CompaniesOverviewPageProps {
 
 //     initialData: {
-  
+
 //       overview: string;
-  
+
 //       name: string;
-  
+
 //       id: string;
-  
+
 //       userId: string;
-  
+
 //       description: string | null;
-  
+
 //       logo: string | null;
-  
+
 //       coverImage: string | null;
-  
+
 //       mail: string | null;
-  
+
 //       website: string | null;
-  
+
 //       linkedIn: string | null;
-  
+
 //       address_line_1: string | null;
-  
+
 //       city: string | null;
-  
+
 //       state: string | null;
-  
+
 //       address_line_2: string | null;
-  
+
 //       zipcode: string | null;
-  
+
 //       followers: number;
-  
+
 //       created: Date;
-  
+
 //       updated: Date;
-  
+
 //     };
-  
+
 //     companyId: string;
-  
+
 //   }
-  
-  
-  
-  
 
 // const formSchema = z.object({
 //   overview: z.string().min(1),
@@ -190,8 +185,6 @@
 //             Note: Profession Name & Required skills delimited by comma
 //           </p>
 
-
-
 //           {/* Display the AI-generated overview */}
 //           {/* {aiValue && (
 //             <div className="w-full h-96 max-h-96 rounded-md bg-white overflow-y-scroll p-3 relative mt-4 text-muted-foreground">
@@ -237,7 +230,6 @@
 //     </div>
 //   );
 // };
-  
 
 // "use client";
 
@@ -701,7 +693,8 @@ export const CompanyOverviewForm = ({
   const { isSubmitting, isValid } = form.formState;
 
   // 3.4) Local state: editorValue
-  const [editorValue, setEditorValue] = useState<Descendant[]>(initialEditorValue);
+  const [editorValue, setEditorValue] =
+    useState<Descendant[]>(initialEditorValue);
 
   // 3.5) Kaydet
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -784,7 +777,9 @@ export const CompanyOverviewForm = ({
       <div className="font-medium flex items-center justify-between">
         Company overview
         <Button onClick={toggleEditing} variant="ghost">
-          {isEditing ? "Cancel" : (
+          {isEditing ? (
+            "Cancel"
+          ) : (
             <>
               <Pencil className="w-4 h-4 mr-2" />
               Edit
@@ -798,7 +793,7 @@ export const CompanyOverviewForm = ({
         <div
           className={cn(
             "text-sm mt-2",
-            !initialData.overview && "text-neutral-500 italic"
+            !initialData.overview && "text-neutral-500 italic",
           )}
         >
           {initialData.overview ? (
@@ -848,7 +843,10 @@ export const CompanyOverviewForm = ({
           </p>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-4 mt-4"
+            >
               <FormField
                 control={form.control}
                 name="overview"

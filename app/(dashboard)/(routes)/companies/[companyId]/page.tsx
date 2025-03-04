@@ -10,7 +10,9 @@ import { TabContentSection } from "./_components/tab-content-section";
 
 const CompanyDetailPage = async ({
   params,
-}: { params: { companyId: string } }) => {
+}: {
+  params: { companyId: string };
+}) => {
   const { userId } = await auth();
 
   const company = await db.company.findUnique({
@@ -34,11 +36,6 @@ const CompanyDetailPage = async ({
       createdAt: "desc",
     },
   });
-  
-
-
-
-
 
   return (
     <div className="flex-col">
@@ -52,11 +49,16 @@ const CompanyDetailPage = async ({
       {/* company image */}
       {company?.logo && (
         <div className="w-full flex items-center justify-center overflow-hidden relative h-98 z-10">
-          <Image alt={company?.name ?? "Company Logo"} src={company.logo} fill className="w-full h-full object-cover" />
+          <Image
+            alt={company?.name ?? "Company Logo"}
+            src={company.logo}
+            fill
+            className="w-full h-full object-cover"
+          />
         </div>
       )}
       <CompanyDetailContentPage userId={userId} company={company} jobs={jobs} />
-      <TabContentSection userId={userId} company={company} jobs={jobs}/>
+      <TabContentSection userId={userId} company={company} jobs={jobs} />
     </div>
   );
 };

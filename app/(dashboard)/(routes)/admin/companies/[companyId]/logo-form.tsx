@@ -46,8 +46,7 @@ export const CompanyLogoForm = ({ initialData, companyId }: ImageFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      axios.patch(`/api/companies/${companyId}`, values)
-
+      axios.patch(`/api/companies/${companyId}`, values);
 
       toast.success("Job updated");
       toggleEditing();
@@ -65,7 +64,9 @@ export const CompanyLogoForm = ({ initialData, companyId }: ImageFormProps) => {
       <div className="font-medium flex items-center justify-between">
         Job Cover Image
         <Button onClick={toggleEditing} variant="ghost">
-          {isEditing ? "Cancel" : (
+          {isEditing ? (
+            "Cancel"
+          ) : (
             <>
               <Pencil className="w-4 h-4 mr-2" /> Edit
             </>
@@ -88,13 +89,15 @@ export const CompanyLogoForm = ({ initialData, companyId }: ImageFormProps) => {
               src={initialData.logo}
             />
           </div>
-        ))
-      }
+        ))}
 
       {/* Display the form in editing mode */}
       {isEditing && (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 mt-4"
+          >
             <FormField
               control={form.control}
               name="logo"

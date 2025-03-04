@@ -69,7 +69,7 @@ export const columns: ColumnDef<CompanyColumns>[] = [
             "border px-2 py-1 text-xs rounded-md w-24 text-center",
             isPublished
               ? "border-emerald-500 bg-emerald-100/80"
-              : "border-red-500 bg-red-100/80"
+              : "border-red-500 bg-red-100/80",
           )}
         >
           {isPublished ? "Published" : "Unpublished"}

@@ -32,10 +32,12 @@ interface JobCardItemProps {
 }
 
 const JobCardItem = ({ job, userId }: JobCardItemProps) => {
-  const typeJob = job as Job & { company: Company | null;  location?: { country: string; city: string } | null};
+  const typeJob = job as Job & {
+    company: Company | null;
+    location?: { country: string; city: string } | null;
+  };
   const company = typeJob.company;
   const location = job.location as { country: string; city: string } | null;
-
 
   useEffect(() => {
     console.log("job:", job);
@@ -83,7 +85,9 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
         <div className="w-full h-full p-6 flex flex-col gap-y-4">
           <Box className="flex items-center justify-between w-full">
             <p className="text-sm text-gray-500">
-              {formatDistanceToNow(new Date(job.createdAt), { addSuffix: true })}
+              {formatDistanceToNow(new Date(job.createdAt), {
+                addSuffix: true,
+              })}
             </p>
             <Button variant="ghost" size="icon" onClick={onClickSaveJob}>
               {isBookmarkLoading ? (
@@ -95,15 +99,15 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
           </Box>
 
           <Box className="flex items-center gap-x-6">
-          <div className="w-64 h-36 min-w-12 min-h-12 border p-2 rounded-md relative flex items-center justify-center overflow-hidden">
-              {company?.logo&& (
-              <Image
-                alt={company?.name || "Company Logo"}
-                src={company?.logo || "/default-logo.png"}
-                width={100}
-                height={100}
-                className="object-contain"
-              />
+            <div className="w-64 h-36 min-w-12 min-h-12 border p-2 rounded-md relative flex items-center justify-center overflow-hidden">
+              {company?.logo && (
+                <Image
+                  alt={company?.name || "Company Logo"}
+                  src={company?.logo || "/default-logo.png"}
+                  width={100}
+                  height={100}
+                  className="object-contain"
+                />
               )}
             </div>
             <div className="w-full">
@@ -111,7 +115,6 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
                 {job.title}
               </p>
 
-         
               {job?.location ? (
                 <p className="text-sm text-gray-600">
                   {job.location.country}, {job.location.city}
@@ -119,7 +122,7 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
               ) : (
                 <p className="text-sm text-gray-600">Location: Not provided</p>
               )}
-              
+
               <Link
                 href={`/companies/${company?.id}`}
                 className="text-base text-purple-600 hover:text-purple-800 transition-colors duration-300 truncate"
@@ -215,8 +218,3 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
 };
 
 export default JobCardItem;
-
-
-
-
-              

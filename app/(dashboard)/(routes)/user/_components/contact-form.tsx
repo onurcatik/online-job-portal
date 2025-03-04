@@ -168,7 +168,7 @@ export const ContactForm = ({ initialData, userId }: ContactFormProps) => {
         <div
           className={cn(
             "text-lg flex items-center gap-2",
-            !initialData?.contact && "text-neutral-500 italic"
+            !initialData?.contact && "text-neutral-500 italic",
           )}
         >
           <UserCircle className="w-6 h-6 text-primary-500" />

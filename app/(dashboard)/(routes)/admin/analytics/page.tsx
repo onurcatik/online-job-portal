@@ -21,8 +21,6 @@
 //     const graphJobTotal = await getPieGraphJobCreatedByUser (userId)
 //     const graphCompanyTotal = await getPieGraphJobCreatedByUser (userId)
 
-    
-
 //     return (
 //         <Box className="flex-col items-start p-4">
 //             <div className="flex-col items-start">
@@ -43,28 +41,28 @@
 //                         <BriefcaseBusiness className="w-4 h-4" />
 //                     </CardHeader>
 //                     <CardContent>{totalJobsOnPortal}</CardContent>
-//                 </Card> 
+//                 </Card>
 //                 <Card>
 //                     <CardHeader className="items-center justify-between flex-row">
 //                         <CardTitle className="text-sm font-medium">Total Jobs</CardTitle>
 //                         <BriefcaseBusiness className="w-4 h-4" />
 //                     </CardHeader>
 //                     <CardContent>{totalJobsOnPortalByUser}</CardContent>
-//                 </Card> 
+//                 </Card>
 //                 <Card>
 //                     <CardHeader className="items-center justify-between flex-row">
 //                         <CardTitle className="text-sm font-medium">Total Jobs</CardTitle>
 //                         <BriefcaseBusiness className="w-4 h-4" />
 //                     </CardHeader>
 //                     <CardContent>{totalCompaniesOnPortal}</CardContent>
-//                 </Card> 
+//                 </Card>
 //                 <Card>
 //                     <CardHeader className="items-center justify-between flex-row">
 //                         <CardTitle className="text-sm font-medium">Total Jobs</CardTitle>
 //                         <BriefcaseBusiness className="w-4 h-4" />
 //                     </CardHeader>
 //                     <CardContent>{totalCompaniesOnPortal}</CardContent>
-//                 </Card> 
+//                 </Card>
 //                 {/* month wise jobs count */}
 // <Card>
 //   <CardHeader className="items-center justify-between flex-row">
@@ -116,8 +114,6 @@
 //   </CardContent>
 // </Card>
 
-
-                
 //             </div>
 //         </Box>
 //     );
@@ -125,8 +121,13 @@
 
 // export default DashboardAnalyticsPage;
 
-
-import { getTotalCompaniesOnPortal, getTotalCompaniesOnPortalByUserId, getTotalJobsOnPortal, getTotalJobsOnPortalByUserId, getPieGraphJobCreatedByUser } from "@/actions/get-overview-analytics";
+import {
+  getTotalCompaniesOnPortal,
+  getTotalCompaniesOnPortalByUserId,
+  getTotalJobsOnPortal,
+  getTotalJobsOnPortalByUserId,
+  getPieGraphJobCreatedByUser,
+} from "@/actions/get-overview-analytics";
 import Box from "@/components/box";
 import OverviewPieChart from "@/components/overview-pie-chart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -136,97 +137,110 @@ import { BriefcaseBusiness } from "lucide-react";
 import { redirect } from "next/navigation";
 
 const DashboardAnalyticsPage = async () => {
-    const { userId } = await auth();
+  const { userId } = await auth();
 
-    if (!userId) {
-        redirect("/");
-    }
+  if (!userId) {
+    redirect("/");
+  }
 
-    const totalJobsOnPortal = await getTotalJobsOnPortal();
-    const totalJobsOnPortalByUser = await getTotalJobsOnPortalByUserId(userId);
-    const totalCompaniesOnPortal = await getTotalCompaniesOnPortal();
-    const totalCompaniesOnPortalByUser = await getTotalCompaniesOnPortalByUserId(userId);
-    const graphJobTotal = await getPieGraphJobCreatedByUser(userId);
-    const graphCompanyTotal = await getPieGraphJobCreatedByUser(userId);
+  const totalJobsOnPortal = await getTotalJobsOnPortal();
+  const totalJobsOnPortalByUser = await getTotalJobsOnPortalByUserId(userId);
+  const totalCompaniesOnPortal = await getTotalCompaniesOnPortal();
+  const totalCompaniesOnPortalByUser =
+    await getTotalCompaniesOnPortalByUserId(userId);
+  const graphJobTotal = await getPieGraphJobCreatedByUser(userId);
+  const graphCompanyTotal = await getPieGraphJobCreatedByUser(userId);
 
-    return (
-        <Box className="flex-col items-start p-6 space-y-6">
-            <div className="flex-col items-start">
-                <h2 className="font-serif tracking-wider font-bold text-3xl text-gray-800">
-                    Dashboard
-                </h2>
-                <p className="text-sm text-gray-600">
-                    Account overview with elegant analytics
-                </p>
-            </div>
+  return (
+    <Box className="flex-col items-start p-6 space-y-6">
+      <div className="flex-col items-start">
+        <h2 className="font-serif tracking-wider font-bold text-3xl text-gray-800">
+          Dashboard
+        </h2>
+        <p className="text-sm text-gray-600">
+          Account overview with elegant analytics
+        </p>
+      </div>
 
-            <Separator className="my-4" />
+      <Separator className="my-4" />
 
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-4 relative left-[500px]">
-                <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
-                        <CardTitle className="text-sm font-medium text-white">Total Jobs on Portal</CardTitle>
-                        <BriefcaseBusiness className="w-5 h-5 text-white" />
-                    </CardHeader>
-                    <CardContent className="p-4 text-2xl font-bold text-gray-800">
-                        {totalJobsOnPortal}
-                    </CardContent>
-                </Card>
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-4 ">
+        <Card className="shadow-xl border-0">
+          <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
+            <CardTitle className="text-sm font-medium text-white">
+              Total Jobs on Portal
+            </CardTitle>
+            <BriefcaseBusiness className="w-5 h-5 text-white" />
+          </CardHeader>
+          <CardContent className="p-4 text-2xl font-bold text-gray-800">
+            {totalJobsOnPortal}
+          </CardContent>
+        </Card>
 
-                <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
-                        <CardTitle className="text-sm font-medium text-white">My Jobs</CardTitle>
-                        <BriefcaseBusiness className="w-5 h-5 text-white" />
-                    </CardHeader>
-                    <CardContent className="p-4 text-2xl font-bold text-gray-800">
-                        {totalJobsOnPortalByUser}
-                    </CardContent>
-                </Card>
+        <Card className="shadow-xl border-0">
+          <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
+            <CardTitle className="text-sm font-medium text-white">
+              My Jobs
+            </CardTitle>
+            <BriefcaseBusiness className="w-5 h-5 text-white" />
+          </CardHeader>
+          <CardContent className="p-4 text-2xl font-bold text-gray-800">
+            {totalJobsOnPortalByUser}
+          </CardContent>
+        </Card>
 
-                <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
-                        <CardTitle className="text-sm font-medium text-white">Total Companies on Portal</CardTitle>
-                        <BriefcaseBusiness className="w-5 h-5 text-white" />
-                    </CardHeader>
-                    <CardContent className="p-4 text-2xl font-bold text-gray-800">
-                        {totalCompaniesOnPortal}
-                    </CardContent>
-                </Card>
+        <Card className="shadow-xl border-0">
+          <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
+            <CardTitle className="text-sm font-medium text-white">
+              Total Companies on Portal
+            </CardTitle>
+            <BriefcaseBusiness className="w-5 h-5 text-white" />
+          </CardHeader>
+          <CardContent className="p-4 text-2xl font-bold text-gray-800">
+            {totalCompaniesOnPortal}
+          </CardContent>
+        </Card>
 
-                <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
-                        <CardTitle className="text-sm font-medium text-white">My Companies</CardTitle>
-                        <BriefcaseBusiness className="w-5 h-5 text-white" />
-                    </CardHeader>
-                    <CardContent className="p-4 text-2xl font-bold text-gray-800">
-                        {totalCompaniesOnPortalByUser}
-                    </CardContent>
-                </Card>
-            </div>
+        <Card className="shadow-xl border-0">
+          <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
+            <CardTitle className="text-sm font-medium text-white">
+              My Companies
+            </CardTitle>
+            <BriefcaseBusiness className="w-5 h-5 text-white" />
+          </CardHeader>
+          <CardContent className="p-4 text-2xl font-bold text-gray-800">
+            {totalCompaniesOnPortalByUser}
+          </CardContent>
+        </Card>
+      </div>
 
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 mt-6 relative left-[700px] ">
-                <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
-                        <CardTitle className="text-sm font-medium text-white">Month Wise Jobs Count</CardTitle>
-                        <BriefcaseBusiness className="w-5 h-5 text-white" />
-                    </CardHeader>
-                    <CardContent className="p-4">
-                        <OverviewPieChart data={graphJobTotal} />
-                    </CardContent>
-                </Card>
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 mt-6 relative xl:left-[200px] ">
+        <Card className="shadow-xl border-0">
+          <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
+            <CardTitle className="text-sm font-medium text-white">
+              Month Wise Jobs Count
+            </CardTitle>
+            <BriefcaseBusiness className="w-5 h-5 text-white" />
+          </CardHeader>
+          <CardContent className="p-4">
+            <OverviewPieChart data={graphJobTotal} />
+          </CardContent>
+        </Card>
 
-                <Card className="shadow-xl border-0">
-                    <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
-                        <CardTitle className="text-sm font-medium text-white">Month Wise Companies Count</CardTitle>
-                        <BriefcaseBusiness className="w-5 h-5 text-white" />
-                    </CardHeader>
-                    <CardContent className="p-4">
-                        <OverviewPieChart data={graphCompanyTotal} />
-                    </CardContent>
-                </Card>
-            </div>
-        </Box>
-    );
+        <Card className="shadow-xl border-0">
+          <CardHeader className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-blue-500 p-4 rounded-t">
+            <CardTitle className="text-sm font-medium text-white">
+              Month Wise Companies Count
+            </CardTitle>
+            <BriefcaseBusiness className="w-5 h-5 text-white" />
+          </CardHeader>
+          <CardContent className="p-4">
+            <OverviewPieChart data={graphCompanyTotal} />
+          </CardContent>
+        </Card>
+      </div>
+    </Box>
+  );
 };
 
 export default DashboardAnalyticsPage;

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -31,7 +31,7 @@ export const JobPublishAction = ({
         await axios.patch(`/api/jobs/${jobId}/publish`);
         toast.success("Job Published");
       }
-  
+
       router.reload();
     } catch (error) {
       // toast.error("Something went wrong");
@@ -40,12 +40,11 @@ export const JobPublishAction = ({
       setIsLoading(false);
     }
   };
-  
-  
+
   const onDelete = async () => {
     try {
       setIsLoading(true);
-  
+
       await axios.delete(`/api/jobs/${jobId}`);
       toast.success("Job Deleted");
       router.reload();
@@ -57,21 +56,17 @@ export const JobPublishAction = ({
       setIsLoading(false);
     }
   };
-  
+
   return (
     <div className="flex items-center gap-x-3">
-<Button
-  variant="outline"
-  onClick={onClick} // <-- Publish işlemine ait fonksiyon
-  disabled={false}
-  size="sm"
->
-{isPublished ? "Unpublish" : "Publish"}
-</Button>
-
-
-
-
+      <Button
+        variant="outline"
+        onClick={onClick} // <-- Publish işlemine ait fonksiyon
+        disabled={false}
+        size="sm"
+      >
+        {isPublished ? "Unpublish" : "Publish"}
+      </Button>
 
       <Button
         variant="destructive"

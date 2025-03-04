@@ -9,7 +9,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -81,6 +81,8 @@ export const LocationForm = ({ initialData, jobId }: LocationFormProps) => {
       location: initialData.location ?? { country: "", city: "" },
     },
   });
+
+  // const { isSubmitting, isValid } = form.formState;
 
   const { isSubmitting, isValid } = form.formState;
 
@@ -165,7 +167,7 @@ export const LocationForm = ({ initialData, jobId }: LocationFormProps) => {
                       options={countryOptions}
                       placeholder="Select Country"
                       value={countryOptions.find(
-                        (option) => option.value === field.value
+                        (option) => option.value === field.value,
                       )}
                       onChange={(selected) =>
                         form.setValue("location.country", selected?.value || "")
@@ -189,7 +191,7 @@ export const LocationForm = ({ initialData, jobId }: LocationFormProps) => {
                       options={
                         cityOptions[
                           form.watch(
-                            "location.country"
+                            "location.country",
                           ) as keyof typeof cityOptions
                         ] || []
                       }
@@ -197,11 +199,11 @@ export const LocationForm = ({ initialData, jobId }: LocationFormProps) => {
                       value={
                         cityOptions[
                           form.watch(
-                            "location.country"
+                            "location.country",
                           ) as keyof typeof cityOptions
                         ]?.find(
                           (option: { value: string; label: string }) =>
-                            option.value === field.value
+                            option.value === field.value,
                         ) || null
                       }
                       onChange={(selected) =>

@@ -1,23 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
+
 import getGenerativeAIResponse from "@/scripts/aistudio";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Job } from "@prisma/client";
 import axios from "axios";
 import { Lightbulb, Loader2, Pencil, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
@@ -98,24 +89,23 @@ export const TagsForm = ({ initialData, jobId }: TagsFormProps) => {
         </Button>
       </div>
 
-{/* display the tags if not editing */}
-{!isEditing && (
-  <div className="flex items-center flex-wrap gap-2">
-    {initialData.tags.length > 0 ? (
-      initialData.tags.map((tag, index) => (
-        <div 
-          className="text-xs flex items-center gap-1 whitespace-nowrap py-1 px-2 rounded-md bg-purple-100" 
-          key={index}
-        >
-          {tag}
+      {/* display the tags if not editing */}
+      {!isEditing && (
+        <div className="flex items-center flex-wrap gap-2">
+          {initialData.tags.length > 0 ? (
+            initialData.tags.map((tag, index) => (
+              <div
+                className="text-xs flex items-center gap-1 whitespace-nowrap py-1 px-2 rounded-md bg-purple-100"
+                key={index}
+              >
+                {tag}
+              </div>
+            ))
+          ) : (
+            <p>No Tags</p>
+          )}
         </div>
-      ))
-    ) : (
-      <p>No Tags</p>
-    )}
-  </div>
-)}
-
+      )}
 
       {/* on editing mode display the input */}
       {isEditing && (

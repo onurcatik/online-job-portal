@@ -90,72 +90,79 @@ export const CompanySocialContactsForm = ({
 
       {/* Görünüm modunda sosyal medya bilgilerini göster */}
       {!isEditing && (
-  <div className="grid grid-cols-3 gap-2 mt-4">
-    <div className="col-span-3">
-    {/* E-posta bilgisi */}
-    {initialData.mail && (
-      <div className="col-span-3 text-sm text-neutral-500 flex items-center">
-        <Mail className="w-3 h-3 mr-2" />
-        {initialData.mail}
-      </div>
-    )}
+        <div className="grid grid-cols-3 gap-2 mt-4">
+          <div className="col-span-3">
+            {/* E-posta bilgisi */}
+            {initialData.mail && (
+              <div className="col-span-3 text-sm text-neutral-500 flex items-center">
+                <Mail className="w-3 h-3 mr-2" />
+                {initialData.mail}
+              </div>
+            )}
 
-    {/* LinkedIn bağlantısı */}
-    {initialData.linkedIn && (
-      <div className="col-span-1">
-        <Link
-          href={initialData.linkedIn}
-          className="text-sm text-neutral-500 flex items-center w-full"
-        >
-          <Linkedin className="w-3 h-3 mr-2" />
-          {initialData.linkedIn}
-        </Link>
-      </div>
-    )}
+            {/* LinkedIn bağlantısı */}
+            {initialData.linkedIn && (
+              <div className="col-span-1">
+                <Link
+                  href={initialData.linkedIn}
+                  className="text-sm text-neutral-500 flex items-center w-full"
+                >
+                  <Linkedin className="w-3 h-3 mr-2" />
+                  {initialData.linkedIn}
+                </Link>
+              </div>
+            )}
 
-    {/* Web sitesi bağlantısı */}
-    {initialData.website && (
-      <div className="col-span-1">
-        <Link
-          href={initialData.website}
-          className="text-sm text-neutral-500 flex items-center w-full"
-        >
-          <Globe className="w-3 h-3 mr-2" />
-          {initialData.website}
-        </Link>
-      </div>
-    )}
-  </div>
-  <div className="col-span-3">
-  {initialData.address_line_1 && (
-    <div className="flex items-start gap-2 justify-start">
-      <MapPin className="w-3 h-3 mr-2" />
-      <div>
-        <p className="text-sm text-muted-foreground">
-          {initialData.address_line_1}, {initialData.address_line_2}
-        </p>
-        <p className="text-sm text-muted-foreground">
-          {initialData.city}, {initialData.state} - {initialData.zipcode}
-        </p>
-      </div>
-    </div>
-  )}
-</div>
-
-  </div>
-)}
+            {/* Web sitesi bağlantısı */}
+            {initialData.website && (
+              <div className="col-span-1">
+                <Link
+                  href={initialData.website}
+                  className="text-sm text-neutral-500 flex items-center w-full"
+                >
+                  <Globe className="w-3 h-3 mr-2" />
+                  {initialData.website}
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className="col-span-3">
+            {initialData.address_line_1 && (
+              <div className="flex items-start gap-2 justify-start">
+                <MapPin className="w-3 h-3 mr-2" />
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    {initialData.address_line_1}, {initialData.address_line_2}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {initialData.city}, {initialData.state} -{" "}
+                    {initialData.zipcode}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Düzenleme modunda formu göster */}
       {isEditing && (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 mt-4"
+          >
             <FormField
               control={form.control}
               name="mail"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input disabled={isSubmitting} placeholder="Mail Address" {...field} />
+                    <Input
+                      disabled={isSubmitting}
+                      placeholder="Mail Address"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -168,7 +175,11 @@ export const CompanySocialContactsForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input disabled={isSubmitting} placeholder="Website Link" {...field} />
+                    <Input
+                      disabled={isSubmitting}
+                      placeholder="Website Link"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -181,7 +192,11 @@ export const CompanySocialContactsForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input disabled={isSubmitting} placeholder="LinkedIn URL" {...field} />
+                    <Input
+                      disabled={isSubmitting}
+                      placeholder="LinkedIn URL"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -194,7 +209,11 @@ export const CompanySocialContactsForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input disabled={isSubmitting} placeholder="Address Line 1" {...field} />
+                    <Input
+                      disabled={isSubmitting}
+                      placeholder="Address Line 1"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -207,7 +226,11 @@ export const CompanySocialContactsForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input disabled={isSubmitting} placeholder="Address Line 2" {...field} />
+                    <Input
+                      disabled={isSubmitting}
+                      placeholder="Address Line 2"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -221,7 +244,11 @@ export const CompanySocialContactsForm = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input disabled={isSubmitting} placeholder="City" {...field} />
+                      <Input
+                        disabled={isSubmitting}
+                        placeholder="City"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -234,7 +261,11 @@ export const CompanySocialContactsForm = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input disabled={isSubmitting} placeholder="State" {...field} />
+                      <Input
+                        disabled={isSubmitting}
+                        placeholder="State"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -247,7 +278,11 @@ export const CompanySocialContactsForm = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input disabled={isSubmitting} placeholder="Zipcode" {...field} />
+                      <Input
+                        disabled={isSubmitting}
+                        placeholder="Zipcode"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

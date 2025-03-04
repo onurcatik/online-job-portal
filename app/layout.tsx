@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Button } from "@/components/ui/button";
+
 import { ClerkProvider } from "@clerk/nextjs";
 import { ToastProvider } from "@/providers/toast-providers";
-
-
-
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,11 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body className={poppins.className}>{children}</body>
-      <ToastProvider/>
-    </html>
-
+      <html lang="en">
+        <body className={poppins.className}>{children}</body>
+        <ToastProvider />
+      </html>
     </ClerkProvider>
   );
 }

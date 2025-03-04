@@ -74,22 +74,22 @@ export const ImageForm = ({ initialData, jobId }: ImageFormProps) => {
         </Button>
       </div>
 
-{/* display the imageUrl if not editing */}
-{!isEditing &&
-  (!initialData.imageUrl ? (
-    <div className="flex items-center justify-center h-60 bg-neutral-200">
-      <ImageIcon className="h-10 w-10 text-neutral-500" />
-    </div>
-  ) : (
-    <div className="relative w-full h-60 aspect-video mt-2">
-      <Image
-      alt="Cover Image"
-      fill
-      className="w-full h-full object-cover"
-      src={initialData.imageUrl}/>
-    </div>
-  ))}
-
+      {/* display the imageUrl if not editing */}
+      {!isEditing &&
+        (!initialData.imageUrl ? (
+          <div className="flex items-center justify-center h-60 bg-neutral-200">
+            <ImageIcon className="h-10 w-10 text-neutral-500" />
+          </div>
+        ) : (
+          <div className="relative w-full h-60 aspect-video mt-2">
+            <Image
+              alt="Cover Image"
+              fill
+              className="w-full h-full object-cover"
+              src={initialData.imageUrl}
+            />
+          </div>
+        ))}
 
       {/* Display the form in editing mode */}
       {isEditing && (
@@ -105,11 +105,10 @@ export const ImageForm = ({ initialData, jobId }: ImageFormProps) => {
                 <FormItem>
                   <FormControl>
                     <ImageUpload
-                      value={field.value || ''}
-                      disabled= {isSubmitting
-                      }
+                      value={field.value || ""}
+                      disabled={isSubmitting}
                       onChange={(url) => field.onChange(url)}
-                      onRemove={() => field.onChange('')}
+                      onRemove={() => field.onChange("")}
                     />
                   </FormControl>
                   <FormMessage />

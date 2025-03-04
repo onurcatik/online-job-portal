@@ -22,7 +22,7 @@ const JobsPageOverview = async () => {
     },
     include: {
       category: true,
-      company :true
+      company: true,
     },
     orderBy: {
       createdAt: "desc",
@@ -40,7 +40,7 @@ const JobsPageOverview = async () => {
     createdAt: job.createdAt
       ? format(new Date(job.createdAt), "MMMM do, yyyy")
       : "N/A",
-    job: job.title // Assuming the job title is appropriate for the job property
+    job: job.title, // Assuming the job title is appropriate for the job property
   }));
 
   return (

@@ -1,27 +1,17 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { ArrowLeft, LayoutDashboard, ListChecks, Network } from "lucide-react";
+import { ArrowLeft, LayoutDashboard, Network } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { Banner } from "@/components/banner";
 import { IconBadge } from "@/components/icon-badge";
-import { TitleForm } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/title-form";
-import { JobPublishAction } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/job-publish-actions";
-import { CategoryForm } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/category-form";
-import { ImageForm } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/image-form"; // Ensure this path is correct and the file exists
-import { ShiftTimingForm } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/shift-timing-mode";
-import { HourlyRateForm } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/hourly-rate-form";
-import { WorkModeForm } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/work-mode-form";
-import { YearsOfExperienceForm } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/work-experience-form";
-import { TagsForm } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/tags-form";
-import { JobDescription } from "@/app/(dashboard)/(routes)/admin/jobs/[jobId]/_components/job-description";
+
 import { CompanyName } from "./name-form";
 import { CompanyDescription } from "./description-form";
 import { CompanyLogoForm } from "./logo-form";
 import { CompanySocialContactsForm } from "./social-contacts-form";
 import { CompanyCoverImageForm } from "./cover-image-form";
-import CompaniesOverviewPage from "../page";
+
 import { CompanyOverviewForm } from "./company-overview";
 import { WhyJoinUsForm } from "./why-join-us";
 import { CompanyPublishAction } from "./company-publish-actions";
@@ -99,7 +89,7 @@ const CompanyEditPage = async ({
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
   const completionText = `${completedFields}/${totalFields}`;
-  const isComplete = requiredFields.every(Boolean);
+  // const isComplete = requiredFields.every(Boolean);
 
   return (
     <div className="p-6">
@@ -119,9 +109,10 @@ const CompanyEditPage = async ({
           </span>
         </div>
         <CompanyPublishAction
-        companyId={companyId} // use the destructured jobId here
-        isPublished={false}
-        disabled={false}/>
+          companyId={companyId} // use the destructured jobId here
+          isPublished={false}
+          disabled={false}
+        />
         {/* action button */}
       </div>
       {/* warning before publishing the course */}
@@ -141,9 +132,8 @@ const CompanyEditPage = async ({
               <h2 className="text-xl text-neutral-700">
                 Customize your company
               </h2>
-            
             </div>
-            
+
             {/* title form */}
 
             <CompanyName
@@ -159,15 +149,14 @@ const CompanyEditPage = async ({
               companyId={company.id}
             />
 
-<CompanyLogoForm
-  initialData={{
-    ...company,
-    logo: company.logo || "",
-    title: company.name,
-  }}
-  companyId={company.id}  // doğru prop ismi ve değeri
-/>
-           
+            <CompanyLogoForm
+              initialData={{
+                ...company,
+                logo: company.logo || "",
+                title: company.name,
+              }}
+              companyId={company.id} // doğru prop ismi ve değeri
+            />
           </div>
 
           {/* right container */}
@@ -178,8 +167,7 @@ const CompanyEditPage = async ({
                 <IconBadge icon={Network} />
                 <h2 className="text-xl">Company Social Contacts</h2>
               </div>
-              
-              
+
               <CompanySocialContactsForm
                 initialData={company}
                 companyId={company.id}
@@ -214,8 +202,6 @@ const CompanyEditPage = async ({
                   }}
                   companyId={company.id}
                 />
-
-              
               </div>
             </div>
           </div>

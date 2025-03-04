@@ -42,7 +42,6 @@
 //       setIsLoading(false);
 //     }
 //   };
-  
 
 //   return (
 //     <div className="w-full rounded-2xl bg-white p-4 z-50 -mt-8">
@@ -117,7 +116,6 @@
 
 // export default CompanyDetailContentPage;
 
-
 // "use client";
 
 // import { Company, Job } from "@prisma/client";
@@ -180,7 +178,7 @@
 //           <div className="w-full h-full bg-gray-300" />
 //         )}
 //       </div>
-      
+
 //       {/* Şirket detayları */}
 //       <div className="p-4 -mt-12 z-50 relative">
 //         <div className="flex items-center justify-between">
@@ -311,7 +309,7 @@ const CompanyDetailContentPage = ({
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-40"></div>
       </div>
-      
+
       {/* Şirket detayları */}
       <div className="p-6 -mt-12 relative z-10">
         <div className="flex items-center justify-between">
@@ -357,7 +355,7 @@ const CompanyDetailContentPage = ({
               "w-32 rounded-full flex items-center justify-center text-white border transition-all duration-300",
               isFollower
                 ? "bg-transparent border-purple-500 text-purple-500 hover:bg-purple-50"
-                : "bg-purple-600 hover:bg-purple-700"
+                : "bg-purple-600 hover:bg-purple-700",
             )}
             variant={isFollower ? "outline" : "default"}
           >
@@ -382,4 +380,3 @@ const CompanyDetailContentPage = ({
 };
 
 export default CompanyDetailContentPage;
-

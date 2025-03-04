@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export const PATCH = async (
   req: Request,
-  { params }: { params: { jobId: string } }
+  { params }: { params: { jobId: string } },
 ) => {
   try {
     const { userId } = await auth();

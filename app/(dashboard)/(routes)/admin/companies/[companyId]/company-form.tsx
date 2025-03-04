@@ -1,5 +1,3 @@
-
-
 // "use client";
 
 // import axios from "axios"; // Added missing axios import
@@ -23,7 +21,6 @@
 
 // import { Job } from "@prisma/client";
 // import { ComboBox } from "@/components/ui/combo-box";
-
 
 // interface CompanyFormProps {
 //   initialData: Job;
@@ -64,9 +61,6 @@
 //     }
 //   };
 
-
-      
-
 //   const toggleEditing = () => setIsEditing((current) => !current);
 
 //   const selectedOptions = options.find(
@@ -75,7 +69,7 @@
 //   return (
 //     <div className="mt-6 border bg-neutral-100 rounded-md p-4">
 //       <div className="font-medium flex items-center justify-between">
-//         Job Created By 
+//         Job Created By
 //         {/* Job Category */}
 //         <Button onClick={toggleEditing} variant={"ghost"}>
 //           {isEditing ? (
@@ -123,8 +117,7 @@
 //               </FormItem>
 //             )}
 //           />
-          
-              
+
 //               <div className="flex items-center gap-x-2">
 //                 <Button disabled={!isValid || isSubmitting} type="submit">
 //                   Save
@@ -134,10 +127,9 @@
 //           </Form>
 //         )}
 //       </div>
-    
+
 //   );
 // };
-
 
 "use client";
 
@@ -204,7 +196,7 @@ export const CompanyForm = ({
   const toggleEditing = () => setIsEditing((current) => !current);
 
   const selectedOption = options.find(
-    (option) => option.value === initialData.companyId
+    (option) => option.value === initialData.companyId,
   );
 
   return (
@@ -227,7 +219,7 @@ export const CompanyForm = ({
         <p
           className={cn(
             "text-sm mt-2",
-            !initialData?.companyId && "text-neutral-500 italic"
+            !initialData?.companyId && "text-neutral-500 italic",
           )}
         >
           {selectedOption?.label || "No Company"}

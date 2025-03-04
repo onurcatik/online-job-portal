@@ -19,39 +19,40 @@ import toast from "react-hot-toast";
 import { z } from "zod";
 
 interface CompanyNameProps {
-    initialData: {
-      name: string;
-      title:string;
-    };
-    companyId: string;
-  }
-  
-  const formSchema = z.object({
-    name: z.string().min(1, { message: "Name is required" }),
+  initialData: {
+    name: string;
+    title: string;
+  };
+  companyId: string;
+}
+
+const formSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+});
+
+export const CompanyName = ({ initialData, companyId }: CompanyNameProps) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { name: initialData.name || "" },
   });
-  
-  export const CompanyName = ({ initialData, companyId }: CompanyNameProps) => {
-    const [isEditing, setIsEditing] = useState(false);
-    const router = useRouter();
-  
-    const form = useForm<z.infer<typeof formSchema>>({
-      resolver: zodResolver(formSchema),
-      defaultValues: { name: initialData.name || "",
-      }
-    });
-  
-    const { isSubmitting, isValid, defaultValues } = form.formState;
-  
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
-      try {
-        const response = await axios.patch(`/api/companies/${companyId}`, values);
-        toast.success("Job updated");
-        toggleEditing();
-        router.refresh();
-      } catch (error) {
-        toast.error("Something went wrong");
-      }
-    };
+
+  const { isSubmitting, isValid } = form.formState;
+
+  // const { isSubmitting, isValid, defaultValues } = form.formState;
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const response = await axios.patch(`/api/companies/${companyId}`, values);
+      toast.success("Job updated");
+      toggleEditing();
+      router.refresh();
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
   const toggleEditing = () => setIsEditing((current) => !current);
 
   return (

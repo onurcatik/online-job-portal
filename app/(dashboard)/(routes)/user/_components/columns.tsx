@@ -87,18 +87,18 @@ export const columns: ColumnDef<AppliedJobsColumns>[] = [
       </Button>
     ),
   },
-  
-    {
-        id: "actions",
-        cell: ({ row }) => {
-          const { id } = row.original;
-          return (
-            <Link href={`/search/${id}`}>
-              <Button variant={"ghost"} size={"icon"}>
-                <Eye className="w-4 h-4" />
-              </Button>
-            </Link>
-          );
-        },
-      },
-]      
+
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const { id } = row.original;
+      return (
+        <Link href={`/search/${id}`}>
+          <Button variant={"ghost"} size={"icon"}>
+            <Eye className="w-4 h-4" />
+          </Button>
+        </Link>
+      );
+    },
+  },
+];

@@ -129,7 +129,6 @@
 //   );
 // };
 
-
 "use client";
 
 import { Company, Job } from "@prisma/client";
@@ -236,8 +235,11 @@ export const TabContentSection = ({
   }, [company.whyJoinUs]);
 
   // ReadOnly modda Slate editörleri için state
-  const [overviewValue, setOverviewValue] = useState<Descendant[]>(initialOverviewValue);
-  const [whyJoinUsValue, setWhyJoinUsValue] = useState<Descendant[]>(initialWhyJoinUsValue);
+  const [overviewValue, setOverviewValue] =
+    useState<Descendant[]>(initialOverviewValue);
+  const [whyJoinUsValue, setWhyJoinUsValue] = useState<Descendant[]>(
+    initialWhyJoinUsValue,
+  );
 
   return (
     <div className="w-full my-4 mt-12">

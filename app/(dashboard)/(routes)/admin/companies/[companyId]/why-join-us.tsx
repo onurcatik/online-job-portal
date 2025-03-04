@@ -65,13 +65,13 @@
 //       setIsPrompting(true);
 //       const sanitizedRollname = rollname.replace(/[^a-zA-Z0-9 ]/g, "");
 
-//       const customPrompt = `Create a compelling "Why join us" content piece 
-// for ${sanitizedRollname}. Highlight the unique opportunities, benefits, and 
-// experiences that ${sanitizedRollname} offers to its users. Emphasize the 
-// platform's value proposition, such as access to a vast music library, 
-// personalized recommendations, exclusive content, community features, 
-// and career opportunities for musicians and creators. Tailor the 
-// content to attract potential users and illustrate why ${sanitizedRollname} 
+//       const customPrompt = `Create a compelling "Why join us" content piece
+// for ${sanitizedRollname}. Highlight the unique opportunities, benefits, and
+// experiences that ${sanitizedRollname} offers to its users. Emphasize the
+// platform's value proposition, such as access to a vast music library,
+// personalized recommendations, exclusive content, community features,
+// and career opportunities for musicians and creators. Tailor the
+// content to attract potential users and illustrate why ${sanitizedRollname}
 // stands out among other music streaming platforms.`;
 
 //       const data = await getGenerativeAIResponse(customPrompt);
@@ -159,7 +159,6 @@
 //   );
 // };
 
-
 "use client";
 
 import React, { useMemo, useState, useCallback } from "react";
@@ -236,7 +235,10 @@ function renderLeaf(props: any) {
 /* -------------------------------------
    3) Asıl Bileşen
 ------------------------------------- */
-export const WhyJoinUsForm = ({ initialData, companyId }: WhyJoinUsFormProps) => {
+export const WhyJoinUsForm = ({
+  initialData,
+  companyId,
+}: WhyJoinUsFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [rollname, setRollname] = useState("");
   const [aiValue, setAiValue] = useState("");
@@ -287,7 +289,8 @@ export const WhyJoinUsForm = ({ initialData, companyId }: WhyJoinUsFormProps) =>
   const { isSubmitting, isValid } = form.formState;
 
   // Slate editor state
-  const [editorValue, setEditorValue] = useState<Descendant[]>(initialEditorValue);
+  const [editorValue, setEditorValue] =
+    useState<Descendant[]>(initialEditorValue);
 
   // Form gönderimi
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -319,7 +322,7 @@ stands out among other music streaming platforms.`;
 
       const data = await getGenerativeAIResponse(customPrompt);
       const cleanedText = data.replace(/^\s+|\s+$/g, "").replace(/[\*\#]/g, "");
-      
+
       // Slate formatına çevirme: yalnızca bir paragraf oluşturuyoruz
       const newValue: Descendant[] = [
         {
@@ -327,7 +330,7 @@ stands out among other music streaming platforms.`;
           children: [{ text: cleanedText }],
         },
       ];
-      
+
       // Form ve state güncellemesi
       form.setValue("whyJoinUs", JSON.stringify(newValue));
       setEditorValue(newValue);
@@ -374,7 +377,9 @@ stands out among other music streaming platforms.`;
       <div className="font-medium flex items-center justify-between">
         Why Join Us
         <Button onClick={toggleEditing} variant="ghost">
-          {isEditing ? "Cancel" : (
+          {isEditing ? (
+            "Cancel"
+          ) : (
             <>
               <Pencil className="w-4 h-4 mr-2" />
               Edit
@@ -407,7 +412,10 @@ stands out among other music streaming platforms.`;
             Note: Profession Name & Required skills delimited by comma
           </p>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-4 mt-4"
+            >
               <FormField
                 control={form.control}
                 name="whyJoinUs"
@@ -445,9 +453,18 @@ stands out among other music streaming platforms.`;
           </Form>
         </>
       ) : (
-        <div className={cn("text-sm mt-2", !initialData.whyJoinUs && "text-neutral-500 italic")}>
+        <div
+          className={cn(
+            "text-sm mt-2",
+            !initialData.whyJoinUs && "text-neutral-500 italic",
+          )}
+        >
           {initialData.whyJoinUs ? (
-            <Slate editor={editor} initialValue={editorValue} onChange={() => {}}>
+            <Slate
+              editor={editor}
+              initialValue={editorValue}
+              onChange={() => {}}
+            >
               <Editable
                 readOnly
                 renderLeaf={renderLeaf}
@@ -462,4 +479,3 @@ stands out among other music streaming platforms.`;
     </div>
   );
 };
-

@@ -1,6 +1,3 @@
-
-
-
 // import { db } from "@/lib/db";
 // import { auth } from "@clerk/nextjs/server";
 // import { NextResponse } from "next/server";
@@ -15,8 +12,6 @@
 
 //     const updatedValues = await req.json();
 
-
-
 //     if (!userId) {
 //         return new NextResponse("Un-Authorized", { status: 401 });
 //       }
@@ -24,8 +19,6 @@
 //     if (!jobId) {
 //       return new NextResponse("ID is missing", { status: 401 });
 //     }
-
- 
 
 //     const job = await db.job.update({
 //     where: {
@@ -50,7 +43,7 @@ import { NextResponse } from "next/server";
 
 export const PATCH = async (
   req: Request,
-  { params }: { params: { jobId: string } }
+  { params }: { params: { jobId: string } },
 ) => {
   try {
     const { userId } = await auth();
@@ -107,13 +100,11 @@ export const PATCH = async (
   }
 };
 
-
 // delete the job id
-
 
 export const DELETE = async (
   req: Request,
-  { params }: { params: { jobId: string } }
+  { params }: { params: { jobId: string } },
 ) => {
   try {
     const { userId } = await auth();
@@ -134,7 +125,6 @@ export const DELETE = async (
       },
     });
 
-    
     return NextResponse.json(deleteJob);
   } catch (error) {
     console.error("[JOB_DELETE_ERROR]:", error);

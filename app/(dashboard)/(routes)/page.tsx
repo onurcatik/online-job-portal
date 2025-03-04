@@ -1,5 +1,3 @@
-
-
 // import Box from "@/components/box";
 // import { db } from "@/lib/db";
 // import { auth } from "@clerk/nextjs/server";
@@ -37,7 +35,6 @@
 //         </p>
 //       </Box>
 //     <HomesearchContainer/>
-    
 
 //     <Box className="relative overflow-hidden h-64 justify-center rounded-lg mt-12">
 //   <Image
@@ -62,7 +59,6 @@
 // };
 
 // export default DashboardHomePage;
-
 
 import Box from "@/components/box";
 import { db } from "@/lib/db";

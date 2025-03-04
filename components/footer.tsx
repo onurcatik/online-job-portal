@@ -1,11 +1,9 @@
-
 // import Box from "./box";
 // import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
 // import Link from "next/link";
 // import { Card, CardDescription, CardTitle } from "./ui/card";
 // import Image from "next/image";
 // import Logo from "@/app/(dashboard)/_components/logo";
-
 
 // const menu = [
 //   { href: "#", label: "About Us" },
@@ -86,7 +84,7 @@ export const Footer = () => {
             <h2 className="text-2xl font-bold text-black">WorkNow</h2>
             <p className="mt-4 text-sm text-black">Connect with us</p>
           </div>
-       
+
           <div className="flex gap-4 mt-2 text-black relative right-96">
             <Link href="www.facebook.com">
               <Facebook className="w-6 h-6 hover:text-blue-500 transition-transform transform hover:scale-110" />

@@ -17,7 +17,9 @@ export const MobileSideBar = () => {
         <Menu />
       </SheetTrigger>
 
-      <SheetContent side="left"> {/* Ensure correct side value */}
+      <SheetContent side="left">
+        {" "}
+        {/* Ensure correct side value */}
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
           <SheetDescription>

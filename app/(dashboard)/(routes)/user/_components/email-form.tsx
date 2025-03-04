@@ -104,7 +104,6 @@
 // //   );
 // // };
 
-
 // "use client";
 
 // import axios from "axios";
@@ -231,7 +230,6 @@
 //   );
 // };
 
-
 "use client";
 
 import axios from "axios";
@@ -296,7 +294,7 @@ export const EmailForm = ({ initialData, userId }: NameFormProps) => {
         <div
           className={cn(
             "text-lg flex items-center gap-2",
-            !initialData?.email && "text-neutral-500 italic"
+            !initialData?.email && "text-neutral-500 italic",
           )}
         >
           <UserCircle className="w-6 h-6 text-primary-500" />

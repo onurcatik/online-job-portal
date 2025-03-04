@@ -1,4 +1,3 @@
-
 // src/types/slate.d.ts
 import { BaseEditor } from "slate";
 import { ReactEditor } from "slate-react";
@@ -12,8 +11,8 @@ type CustomText = {
   [key: string]: any; // Bu satır, string index ile erişime izin verir.
 };
 
-export type CustomElement = { 
-  type: "paragraph" | string; 
+export type CustomElement = {
+  type: "paragraph" | string;
   children: CustomText[];
 };
 

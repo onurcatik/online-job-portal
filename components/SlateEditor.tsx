@@ -11,7 +11,11 @@ interface SlateEditorProps {
   placeholder?: string;
 }
 
-export function SlateEditor({ value, onChange, placeholder = "Metninizi buraya yazın..." }: SlateEditorProps) {
+export function SlateEditor({
+  value,
+  onChange,
+  placeholder = "Metninizi buraya yazın...",
+}: SlateEditorProps) {
   const editor = useMemo(() => withReact(createEditor()), []);
 
   return (

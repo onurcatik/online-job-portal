@@ -1,12 +1,11 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Eye, MoreHorizontal, Pencil } from "lucide-react";
-import Link from "next/link";
-import { CellActions } from "./cell-actions";
 
+// import { CellActions } from "./cell-actions";
 
 export type ApplicantColumns = {
   id: string;
@@ -73,11 +72,10 @@ export const columns: ColumnDef<ApplicantColumns>[] = [
     ),
   },
   {
-  id: "actions",
-  cell: ({ row }) => {
-  const { id, fullname, email } = row.original;
-  return <CellActions id={id} fullname={fullname} email={email} />;
-},
+    id: "actions",
+    cell: ({ row }) => {
+      const { id, fullname, email } = row.original;
+      // return <CellActions id={id} fullname={fullname} email={email} />;
+    },
   },
-
-]
+];

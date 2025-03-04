@@ -1,5 +1,3 @@
-
-
 // import { db } from "@/lib/db";
 // import { auth } from "@clerk/nextjs/server";
 // import { NextResponse } from "next/server";
@@ -129,8 +127,8 @@ export const PATCH = async (req: Request) => {
         data: {
           userId,
           fullName: "Örnek Kullanıcıı", // Gerçek kullanıcı bilgilerini kullanmayı düşünün.
-          email: "ornek@eposta.com444",  // Gerçek e-posta bilgisini alın.
-          contact: "05195555555",        // Gerçek telefon numarası.
+          email: "ornek@eposta.com444", // Gerçek e-posta bilgisini alın.
+          contact: "05195555555", // Gerçek telefon numarası.
           activeResume: "resume_örnek_id", // Gerçek resume bilgisi.
           appliedJobs: {
             create: { jobId },
@@ -141,9 +139,13 @@ export const PATCH = async (req: Request) => {
       console.log("Yeni profil oluşturuldu:", profile);
     } else {
       // 6. Eğer profil varsa, aynı jobId için appliedJob eklenip eklenmediğini kontrol et.
-      const alreadyApplied = profile.appliedJobs.some((job) => job.jobId === jobId);
+      const alreadyApplied = profile.appliedJobs.some(
+        (job) => job.jobId === jobId,
+      );
       if (!alreadyApplied) {
-        console.log("Profil var fakat bu job için appliedJob eklenmemiş. Güncelleme yapılıyor...");
+        console.log(
+          "Profil var fakat bu job için appliedJob eklenmemiş. Güncelleme yapılıyor...",
+        );
         profile = await db.userProfile.update({
           where: { userId },
           data: {

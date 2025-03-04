@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useDebounce}  from "@/hooks/use-debounce";
+import { useDebounce } from "@/hooks/use-debounce";
 import qs from "query-string";
 
 export const SearchContainer = () => {
@@ -39,9 +39,9 @@ export const SearchContainer = () => {
       {
         skipNull: true,
         skipEmptyString: true,
-      }
+      },
     );
-  
+
     router.push(url);
   }, [
     debounceValue,
@@ -52,9 +52,6 @@ export const SearchContainer = () => {
     currentShiftTiming,
     currentWorkMode,
   ]);
-  
-
-
 
   return (
     <div className="flex items-center gap-x-2 relative flex-1">
@@ -80,8 +77,7 @@ export const SearchContainer = () => {
       )}
     </div>
   );
-}
-
+};
 
 // "use client";
 

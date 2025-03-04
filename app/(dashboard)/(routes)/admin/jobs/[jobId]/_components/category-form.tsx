@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import axios from "axios"; // Added missing axios import
@@ -11,7 +9,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Pencil } from "lucide-react"; // Removed unused PencilIcon
 import { useRouter } from "next/navigation";
@@ -23,7 +21,6 @@ import { cn } from "@/lib/utils";
 
 import { Job } from "@prisma/client";
 import { ComboBox } from "@/components/ui/combo-box";
-
 
 interface CategoryBoxProps {
   initialData: Job;
@@ -66,7 +63,7 @@ export const CategoryForm = ({
   const toggleEditing = () => setIsEditing((current) => !current);
 
   const selectedOptions = options.find(
-    (option) => option.value === initialData.categoryId
+    (option) => option.value === initialData.categoryId,
   );
   return (
     <div className="mt-6 border bg-neutral-100 rounded-md p-4">
@@ -83,52 +80,50 @@ export const CategoryForm = ({
             </>
           )}
         </Button>
-        </div>
-        {/* display the categoryId if not editing */}
-        {!isEditing && (
-          <p
-            className={cn(
-              "text-sm mt-2",
-              !initialData?.categoryId && "text-neutral-500 italic"
-            )}
-          >
-            {selectedOptions?.label || "No Category"}
-          </p>
-        )}
-        {/* on editing mode display the input */}
-        {isEditing && (
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 mt-4"
-            >
-              <FormField
-            control={form.control}
-            name="categoryId"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <ComboBox
-                    options={options}
-                    value={field.value}
-                    onChange={(value: string) => field.onChange(value)}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          
-              
-              <div className="flex items-center gap-x-2">
-                <Button disabled={!isValid || isSubmitting} type="submit">
-                  Save
-                </Button>
-              </div>
-            </form>
-          </Form>
-        )}
       </div>
-    
+      {/* display the categoryId if not editing */}
+      {!isEditing && (
+        <p
+          className={cn(
+            "text-sm mt-2",
+            !initialData?.categoryId && "text-neutral-500 italic",
+          )}
+        >
+          {selectedOptions?.label || "No Category"}
+        </p>
+      )}
+      {/* on editing mode display the input */}
+      {isEditing && (
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 mt-4"
+          >
+            <FormField
+              control={form.control}
+              name="categoryId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <ComboBox
+                      options={options}
+                      value={field.value}
+                      onChange={(value: string) => field.onChange(value)}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="flex items-center gap-x-2">
+              <Button disabled={!isValid || isSubmitting} type="submit">
+                Save
+              </Button>
+            </div>
+          </form>
+        </Form>
+      )}
+    </div>
   );
 };

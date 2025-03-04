@@ -18,7 +18,7 @@ export const ListItem = ({ category, onSelect, isChecked }: ListItemProps) => {
       <Check
         className={cn(
           "ml-auto h-4 w-4",
-          isChecked ? "opacity-100" : "opacity-0"
+          isChecked ? "opacity-100" : "opacity-0",
         )}
       />
       <p className="w-full truncate text-sm whitespace-nowrap">

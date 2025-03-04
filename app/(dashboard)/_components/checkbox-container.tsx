@@ -1,11 +1,7 @@
 "use client";
 
-
-
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
-;
-
 import { useEffect, useState } from "react";
 
 interface AppliedFilter {
@@ -39,26 +35,31 @@ export const CheckBoxContainer = ({
       }
       return item;
     });
-  
+
     setFilters(updatedFilters);
 
     onChange(
-        updatedFilters.filter(item => item.checked).map(item => item.value)
-      );
-      
+      updatedFilters.filter((item) => item.checked).map((item) => item.value),
+    );
   };
-  
-  
 
   return (
     <div className="flex w-full flex-col items-start justify-start gap-2">
       {filters.map((item) => (
-        <div key={item.value} className={cn("flex items-center gap-2", item.checked ? "text-purple-500" : "text-muted-foreground")}>
-          <Checkbox checked={item.checked || false} onCheckedChange={()=> handleCheckedChange(item)}/>
+        <div
+          key={item.value}
+          className={cn(
+            "flex items-center gap-2",
+            item.checked ? "text-purple-500" : "text-muted-foreground",
+          )}
+        >
+          <Checkbox
+            checked={item.checked || false}
+            onCheckedChange={() => handleCheckedChange(item)}
+          />
           {item.label}
         </div>
       ))}
     </div>
   );
-  
 };

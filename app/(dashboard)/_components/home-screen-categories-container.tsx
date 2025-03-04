@@ -17,7 +17,7 @@
 
 //   return (
 //     <Card
-//       className="flex items-center gap-2 p-2 text-muted-foreground hover:text-purple-500 
+//       className="flex items-center gap-2 p-2 text-muted-foreground hover:text-purple-500
 //                  hover:border-purple-500 hover:shadow-md cursor-pointer"
 //       onClick={() => handleClick(data.id)}
 //     >
@@ -42,7 +42,6 @@
 //   );
 // };
 
-
 "use client";
 
 import { Card } from "@/components/ui/card";
@@ -65,7 +64,11 @@ export const CategoryListItemCard = ({ data }: { data: Category }) => {
       onClick={() => handleClick(data.id)}
       className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg transform transition duration-300 hover:-translate-y-1 cursor-pointer"
     >
-      <Icon name={data.name as IconName} iconNode={[]} className="text-purple-500 w-6 h-6" />
+      <Icon
+        name={data.name as IconName}
+        iconNode={[]}
+        className="text-purple-500 w-6 h-6"
+      />
       <span className="flex-1 font-semibold text-gray-700 dark:text-gray-300 truncate">
         {data.name}
       </span>
@@ -74,10 +77,13 @@ export const CategoryListItemCard = ({ data }: { data: Category }) => {
   );
 };
 
-export const HomescreenCategoriesContainer = ({ categories }: { categories: Category[] }) => {
+export const HomescreenCategoriesContainer = ({
+  categories,
+}: {
+  categories: Category[];
+}) => {
   return (
     <Box className="flex flex-col items-center mt-16 px-4">
-   
       <div className="w-full max-w-6xl flex flex-wrap items-center justify-center gap-6">
         {categories.map((item) => (
           <CategoryListItemCard key={item.id} data={item} />

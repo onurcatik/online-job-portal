@@ -28,7 +28,7 @@ export const DateFilter = () => {
       ...currentQueryParams,
       createdAtFilter: value,
     };
-  
+
     const url = qs.stringifyUrl(
       {
         url: pathname,
@@ -37,12 +37,11 @@ export const DateFilter = () => {
       {
         skipNull: true,
         skipEmptyString: true,
-      }
+      },
     );
-  
+
     router.push(url);
   };
-  
 
   return (
     <Select onValueChange={(selected) => onChange(selected)}>

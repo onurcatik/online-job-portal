@@ -1,5 +1,3 @@
-
-
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { Job } from "@prisma/client";
@@ -27,7 +25,7 @@ export const getJobs = async ({
 
   try {
     // Initialize the query object with common options
-    let query: any = {
+    const query: any = {
       where: {
         isPublished: true, // Ensure this is always present
       },
@@ -39,7 +37,7 @@ export const getJobs = async ({
         createdAt: "desc",
       },
     };
-    
+
     if (typeof title !== "undefined" || typeof categoryId !== "undefined") {
       // Ensure that the published condition is always included
       query.where = {
@@ -91,98 +89,92 @@ export const getJobs = async ({
     //   };
     // }
 
-    
-
     // check whether the createdAtFilter is provided or not
     if (createdAtFilter) {
       const currentDate = new Date();
       let startDate: Date;
-      
+
       switch (createdAtFilter) {
         case "today":
           // Bugünün başlangıcını ayarla (00:00:00)
           startDate = new Date(currentDate);
           startDate.setHours(0, 0, 0, 0);
           break;
-    
+
         case "yesterday":
           // Dün başlangıç (00:00:00)
           startDate = new Date(currentDate);
           startDate.setDate(startDate.getDate() - 1);
           startDate.setHours(0, 0, 0, 0);
           break;
-    
+
         case "thisWeek":
           startDate = new Date(currentDate);
           startDate.setDate(currentDate.getDate() - currentDate.getDay());
           startDate.setHours(0, 0, 0, 0);
           break;
-    
+
         case "lastWeek":
           startDate = new Date(currentDate);
           startDate.setDate(currentDate.getDate() - currentDate.getDay() - 7);
           startDate.setHours(0, 0, 0, 0);
           break;
-    
+
         case "thisMonth":
-          startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+          startDate = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            1,
+          );
           break;
-    
+
         default:
           startDate = new Date(0);
       }
-      
+
       query.where.createdAt = {
         gte: startDate,
       };
     }
-    
 
-  // filter the data based on the shift timing
-let formattedShiftTiming = shiftTiming?.split(",");
+    // filter the data based on the shift timing
+    const formattedShiftTiming = shiftTiming?.split(",");
 
-if (formattedShiftTiming && formattedShiftTiming.length > 0) {
-  query.where.shiftTiming = {
-    in: formattedShiftTiming,
-  };
-}
+    if (formattedShiftTiming && formattedShiftTiming.length > 0) {
+      query.where.shiftTiming = {
+        in: formattedShiftTiming,
+      };
+    }
 
-let formattedWorkingModes = workMode?.split(",");
+    const formattedWorkingModes = workMode?.split(",");
 
-if (formattedWorkingModes && formattedWorkingModes.length > 0) {
-  query.where.workMode = {
-    in: formattedWorkingModes,
-  };
-}
+    if (formattedWorkingModes && formattedWorkingModes.length > 0) {
+      query.where.workMode = {
+        in: formattedWorkingModes,
+      };
+    }
 
-let formattedYOExperience = yearsOfExperience?.split(",");
+    const formattedYOExperience = yearsOfExperience?.split(",");
 
-if (formattedYOExperience && formattedYOExperience.length > 0) {
-  query.where.yearsOfExperience = {
-    in: formattedYOExperience,
-  };
-}
+    if (formattedYOExperience && formattedYOExperience.length > 0) {
+      query.where.yearsOfExperience = {
+        in: formattedYOExperience,
+      };
+    }
 
-if (savedJobs) {
-  query.where.savedUsers = {
-    has: userId,
-  };
-}
+    if (savedJobs) {
+      query.where.savedUsers = {
+        has: userId,
+      };
+    }
 
-
-
-    
-
-    const jobs = await db.job.findMany(query)
-    return jobs
-
+    const jobs = await db.job.findMany(query);
+    return jobs;
   } catch (error) {
     console.log("GET_JOBS:", error);
     return [];
   }
 };
-
-
 
 // import { db } from "@/lib/db";
 // import { auth } from "@clerk/nextjs/server";

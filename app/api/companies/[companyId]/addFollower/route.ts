@@ -2,7 +2,10 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-export const PATCH = async (req: Request, context: { params: { companyId: string } }) => {
+export const PATCH = async (
+  req: Request,
+  context: { params: { companyId: string } },
+) => {
   try {
     console.log("PATCH işlemi başlatıldı.");
 
@@ -45,15 +48,16 @@ export const PATCH = async (req: Request, context: { params: { companyId: string
 
     // Şirketin kullanıcının sahibi olup olmadığını kontrol et
     if (company.userId !== userId) {
-      console.error("Kullanıcının şirket üzerinde yetkisi yok. Şirket sahibi:", company.userId);
+      console.error(
+        "Kullanıcının şirket üzerinde yetkisi yok. Şirket sahibi:",
+        company.userId,
+      );
       return new NextResponse("Unauthorized", { status: 403 });
     }
 
     // Takipçi (followers) güncelleme verisini hazırla
     const updatedData = {
-      followers: company.followers 
-        ? { push: userId } 
-        : [userId]
+      followers: company.followers ? { push: userId } : [userId],
     };
     console.log("Güncellenen veri:", updatedData);
 
@@ -61,7 +65,7 @@ export const PATCH = async (req: Request, context: { params: { companyId: string
       where: {
         id: companyId,
       },
-      data: updatedData
+      data: updatedData,
     });
 
     console.log("Şirket güncellendi:", updatedCompany);
@@ -70,4 +74,4 @@ export const PATCH = async (req: Request, context: { params: { companyId: string
     console.error("[COMPANY_PATCH] Hata:", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
-}
+};

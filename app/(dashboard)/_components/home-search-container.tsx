@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import Box from "@/components/box";
 import Input_ from "postcss/lib/input";
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input";
 
 export const HomesearchContainer = () => {
   const [title, setTitle] = useState("");
@@ -32,10 +32,12 @@ export const HomesearchContainer = () => {
           placeholder="Search by job name..."
           type="text"
           value={title}
-          onChange={(e: { target: { value: SetStateAction<string>; }; }) => setTitle(e.target.value)}
+          onChange={(e: { target: { value: SetStateAction<string> } }) =>
+            setTitle(e.target.value)
+          }
           className="flex-1 text-lg font-sans bg-transparent outline-none border-none min-w-72 focus:outline-none focus:border-none"
         />
-  
+
         <Button
           onClick={handleClick}
           disabled={!title}
@@ -47,9 +49,7 @@ export const HomesearchContainer = () => {
       </Box>
     </div>
   );
-  
 };
-
 
 // "use client";
 

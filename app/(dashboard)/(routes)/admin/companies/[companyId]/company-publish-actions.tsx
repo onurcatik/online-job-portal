@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 interface CompanyPublishActionProps {
   disabled?: boolean;

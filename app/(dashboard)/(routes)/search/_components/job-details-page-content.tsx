@@ -21,12 +21,17 @@ interface UpdatedProfile extends UserProfile {
 }
 
 interface JobDetailsPageContentProps {
-  job: Job & { company: Company | null; location?: { country: string; city: string } | null };
+  job: Job & {
+    company: Company | null;
+    location?: { country: string; city: string } | null;
+  };
   jobId: string;
-  userProfile: (UserProfile & {
-    resumes: Resumes[];
-    appliedJobs: { jobId: string; appliedAt?: Date }[];
-  }) | null;
+  userProfile:
+    | (UserProfile & {
+        resumes: Resumes[];
+        appliedJobs: { jobId: string; appliedAt?: Date }[];
+      })
+    | null;
 }
 
 export const JobDetailsPageContent = ({
@@ -38,7 +43,9 @@ export const JobDetailsPageContent = ({
   const [open, setOpen] = useState(false);
   // Profile bilgisinde appliedJobs alanı eksikse boş bir dizi atıyoruz
   const [profile, setProfile] = useState(
-    userProfile ? { ...userProfile, appliedJobs: userProfile.appliedJobs || [] } : null
+    userProfile
+      ? { ...userProfile, appliedJobs: userProfile.appliedJobs || [] }
+      : null,
   );
   const router = useRouter();
 
@@ -54,7 +61,10 @@ export const JobDetailsPageContent = ({
         console.log("Parsed job.description:", parsed);
         return parsed;
       } catch (error) {
-        console.warn("job.description JSON parse edilemiyor, plain text kullanılıyor:", error);
+        console.warn(
+          "job.description JSON parse edilemiyor, plain text kullanılıyor:",
+          error,
+        );
         return [
           {
             type: "paragraph",
@@ -80,7 +90,7 @@ export const JobDetailsPageContent = ({
     try {
       const response = await axios.patch<UpdatedProfile>(
         `/api/users/${profile?.userId}/appliedJobs`,
-        { jobId, userHasApplied: true }
+        { jobId, userHasApplied: true },
       );
       const updatedProfile = response.data;
       toast.success("Job Başvurusu Kaydedildi");
@@ -92,7 +102,10 @@ export const JobDetailsPageContent = ({
         };
       });
     } catch (error) {
-      console.error("Başvuru kaydı oluşturulurken hata:", (error as Error).message);
+      console.error(
+        "Başvuru kaydı oluşturulurken hata:",
+        (error as Error).message,
+      );
       toast.error("Bir sorun oluştu, tekrar deneyiniz.");
     } finally {
       setOpen(false);
@@ -167,7 +180,7 @@ export const JobDetailsPageContent = ({
             <div className="ml-auto">
               {profile ? (
                 (profile.appliedJobs ?? []).some(
-                  (appliedJob) => appliedJob.jobId === jobId
+                  (appliedJob) => appliedJob.jobId === jobId,
                 ) ? (
                   <Button
                     className="px-4 py-2 border border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white transition-all"
@@ -198,7 +211,11 @@ export const JobDetailsPageContent = ({
       {/* Detaylı İş Açıklaması (Slate ile) */}
       <Box className="mt-8 p-6 bg-white shadow rounded-lg">
         {job?.description ? (
-          <Slate editor={editor} initialValue={initialValue} onChange={() => {}}>
+          <Slate
+            editor={editor}
+            initialValue={initialValue}
+            onChange={() => {}}
+          >
             <Editable readOnly className="prose max-w-full" />
           </Slate>
         ) : (

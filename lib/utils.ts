@@ -1,6 +1,28 @@
-
 import { type ClassValue, clsx } from "clsx";
-import { Box,BarChart, Brain, Cloud, Code, Cpu,Lock,CreditCard, Currency, Database, DollarSign, FileText, Globe, Headphones, LucideIcon, Monitor, Palette, Scale, Shield, Smartphone, Terminal, Users } from "lucide-react";
+import {
+  Box,
+  BarChart,
+  Brain,
+  Cloud,
+  Code,
+  Cpu,
+  Lock,
+  CreditCard,
+  Currency,
+  Database,
+  DollarSign,
+  FileText,
+  Globe,
+  Headphones,
+  LucideIcon,
+  Monitor,
+  Palette,
+  Scale,
+  Shield,
+  Smartphone,
+  Terminal,
+  Users,
+} from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -18,7 +40,6 @@ export const formattedString = (input: string) => {
 
   return capitalized.join(" ");
 };
-
 
 export type IconName =
   | "Software Development"
@@ -45,30 +66,28 @@ export type IconName =
   | "Accounting"
   | "Legal";
 
-  export const iconMapping: Record<IconName, LucideIcon> = {
-    "Software Development": Code,
-    "Web Development": Monitor,
-    "Mobile App Development": Smartphone,
-    "Data Science": BarChart,
-    "Machine Learning": Cpu,
-    "Artificial Intelligence": Brain,
-    "UI/UX Design": Palette,
-    "Product Management": Box,
+export const iconMapping: Record<IconName, LucideIcon> = {
+  "Software Development": Code,
+  "Web Development": Monitor,
+  "Mobile App Development": Smartphone,
+  "Data Science": BarChart,
+  "Machine Learning": Cpu,
+  "Artificial Intelligence": Brain,
+  "UI/UX Design": Palette,
+  "Product Management": Box,
 
-    "Quality Assurance": Shield,
-    DevOps: Terminal,
-    Cybersecurity: Lock,
-    "Cloud Computing": Cloud,
-    "Database Administration": Database,
-    "Network Engineering": Globe,
-    "Business Analysis": FileText,
-    Sales: DollarSign,
-    Marketing: CreditCard,
-    "Customer Support": Headphones,
-    "Human Resources": Users,
-    Finance: Currency,
-    Accounting: CreditCard,
-    Legal: Scale,
-    
-  };
-  
+  "Quality Assurance": Shield,
+  DevOps: Terminal,
+  Cybersecurity: Lock,
+  "Cloud Computing": Cloud,
+  "Database Administration": Database,
+  "Network Engineering": Globe,
+  "Business Analysis": FileText,
+  Sales: DollarSign,
+  Marketing: CreditCard,
+  "Customer Support": Headphones,
+  "Human Resources": Users,
+  Finance: Currency,
+  Accounting: CreditCard,
+  Legal: Scale,
+};

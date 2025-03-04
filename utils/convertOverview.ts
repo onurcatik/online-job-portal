@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 // utils/convertOverview.ts
 import { Descendant, Node } from "slate";

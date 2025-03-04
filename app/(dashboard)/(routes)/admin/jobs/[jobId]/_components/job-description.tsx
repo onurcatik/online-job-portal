@@ -144,8 +144,6 @@
 //             Note: Profession Name & Required skills delimited by comma
 //           </p>
 
-
-
 //           {/* Display the AI-generated description */}
 //           {/* {aiValue && (
 //             <div className="w-full h-96 max-h-96 rounded-md bg-white overflow-y-scroll p-3 relative mt-4 text-muted-foreground">
@@ -192,7 +190,6 @@
 //   );
 // };
 
-
 "use client";
 
 import React, { useMemo, useState, useCallback } from "react";
@@ -209,7 +206,7 @@ import getGenerativeAIResponse from "@/scripts/aistudio";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Job } from "@prisma/client";
 import axios from "axios";
-import { Lightbulb, Loader2, Pencil, Copy } from "lucide-react";
+import { Lightbulb, Loader2, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -227,10 +224,7 @@ const formSchema = z.object({
   description: z.string().min(1),
 });
 
-export const JobDescription = ({
-  initialData,
-  jobId,
-}: JobDescriptionProps) => {
+export const JobDescription = ({ initialData, jobId }: JobDescriptionProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [rollname, setRollname] = useState("");
   const [skills, setSkills] = useState("");
@@ -273,7 +267,8 @@ export const JobDescription = ({
   }, [initialData.description]);
 
   // Slate editor state
-  const [editorValue, setEditorValue] = useState<Descendant[]>(initialEditorValue);
+  const [editorValue, setEditorValue] =
+    useState<Descendant[]>(initialEditorValue);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -317,10 +312,10 @@ export const JobDescription = ({
     }
   };
 
-  const onCopy = () => {
-    navigator.clipboard.writeText(aiValue);
-    toast.success("Copied to clipboard");
-  };
+  // const onCopy = () => {
+  //   navigator.clipboard.writeText(aiValue);
+  //   toast.success("Copied to clipboard");
+  // };
 
   // Slate: Mark toggle fonksiyonları
   function toggleMark(editor: Editor, format: string) {
@@ -388,7 +383,9 @@ export const JobDescription = ({
       <div className="font-medium flex items-center justify-between">
         Job Description
         <Button onClick={toggleEditing} variant={"ghost"}>
-          {isEditing ? "Cancel" : (
+          {isEditing ? (
+            "Cancel"
+          ) : (
             <>
               <Pencil className="w-4 h-4 mr-2" />
               Edit
@@ -399,8 +396,15 @@ export const JobDescription = ({
 
       {/* Display description if not editing */}
       {!isEditing && (
-        <div className={cn("text-sm mt-2", !initialData.description && "text-neutral-500 italic")}>
-          {!initialData.description ? "No Description" : initialData.description}
+        <div
+          className={cn(
+            "text-sm mt-2",
+            !initialData.description && "text-neutral-500 italic",
+          )}
+        >
+          {!initialData.description
+            ? "No Description"
+            : initialData.description}
         </div>
       )}
 
@@ -438,7 +442,10 @@ export const JobDescription = ({
 
           {/* Slate.js editörü ile AI tarafından oluşturulan description */}
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-4 mt-4"
+            >
               <FormField
                 control={form.control}
                 name="description"

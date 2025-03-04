@@ -7,7 +7,7 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { columns } from "./create/_components/columns";
-import { CompanyColumns } from "./create/_components/columns"
+import { CompanyColumns } from "./create/_components/columns";
 
 const CompaniesOverviewPage = async () => {
   const { userId } = await auth();
@@ -25,20 +25,17 @@ const CompaniesOverviewPage = async () => {
   });
 
   const formattedCompanies: CompanyColumns[] = companies.map((company) => ({
-  id: company.id,
-  name: company.name || "",
-  logo: company.logo || "",
-  createdAt: company.created
-    ? format(new Date(company.created), "MMMM do, yyyy")
-    : "N/A",
-  title: company.name, // "title" alanını company.name ile doldurduk
-  company: company.name, // Eğer farklı bir değer kullanmak isterseniz burayı güncelleyin
-  category: "Default Category", // Uygun değeri ekleyin
-  isPublished: true, // Uygun değeri ekleyin
-}));
-
-  
-
+    id: company.id,
+    name: company.name || "",
+    logo: company.logo || "",
+    createdAt: company.created
+      ? format(new Date(company.created), "MMMM do, yyyy")
+      : "N/A",
+    title: company.name, // "title" alanını company.name ile doldurduk
+    company: company.name, // Eğer farklı bir değer kullanmak isterseniz burayı güncelleyin
+    category: "Default Category", // Uygun değeri ekleyin
+    isPublished: true, // Uygun değeri ekleyin
+  }));
 
   return (
     <div className="p-6">
@@ -53,11 +50,14 @@ const CompaniesOverviewPage = async () => {
 
       {/* DataTable - List of Jobs */}
       <div className="mt-6">
-        <DataTable columns={columns} data={formattedCompanies} searchKey="title" />
+        <DataTable
+          columns={columns}
+          data={formattedCompanies}
+          searchKey="title"
+        />
       </div>
     </div>
   );
 };
-
 
 export default CompaniesOverviewPage;
