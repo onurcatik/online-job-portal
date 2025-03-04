@@ -1,4 +1,4 @@
-import { MobileSideBar, ResponsiveSidebar } from "./mobile-side-bar";
+import {  ResponsiveSidebar } from "./mobile-side-bar";
 import { NavbarRoutes } from "./navbar-routes";
 
 export const Navbar = () => {
