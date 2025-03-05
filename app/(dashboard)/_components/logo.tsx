@@ -17,7 +17,7 @@ const Logo = () => {
       onClick={handleClick}
     >
       <Image height={60} width={60} alt="Logo" src="/images/favicon.ico" />
-      <span className="text-lg font-semibold text-black">Work Now</span>
+      <span className="text-lg font-semibold text-black">WorkBridge</span>
     </div>
   );
 };
