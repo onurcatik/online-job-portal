@@ -11,7 +11,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Online Job Portal",
+  title: "Job Portal",
   description: "Create your own online portal application",
 };
 

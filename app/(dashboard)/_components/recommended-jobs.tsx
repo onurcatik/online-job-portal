@@ -17,7 +17,7 @@ export const RecommendedJobsList = ({
 }: RecommendedJobsListProps) => {
   return (
     <Box className="flex flex-col items-center justify-center gap-y-6 my-8 px-4">
-      <h2 className="text-3xl font-bold tracking-wide text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-semibold tracking-wide text-gray-900 dark:text-white">
         Recommended Jobs
       </h2>
 

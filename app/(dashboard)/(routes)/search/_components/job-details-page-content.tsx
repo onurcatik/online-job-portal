@@ -377,7 +377,7 @@ export const JobDetailsPageContent = ({
               className="object-cover"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center">
+            <div className="w-full h-full bg-gradient-to-r from-blue-500 to-blue-500 flex items-center justify-center">
               <h2 className="text-3xl font-bold text-white">
                 {job?.title ?? "No Job Title Available"}
               </h2>
@@ -425,7 +425,7 @@ export const JobDetailsPageContent = ({
                   </Button>
                 ) : (
                   <Button
-                    className="px-6 py-2 bg-purple-600 text-white hover:bg-purple-700 transition-all"
+                    className="px-6 py-2 bg-blue-600 text-white hover:bg-blue-700 transition-all"
                     onClick={() => setOpen(true)}
                   >
                     Apply Now
