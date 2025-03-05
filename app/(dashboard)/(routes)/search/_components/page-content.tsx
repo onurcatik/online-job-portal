@@ -22,9 +22,9 @@ const PageContent = ({ jobs, userId }: PageContentProps) => {
             className="w-full h-full object-contain"
           />
         </div>
-        <h2 className="text-4xl font-semibold text-muted-foreground">
+        {/* <h2 className="text-4xl font-semibold text-muted-foreground">
           No Job Found
-        </h2>
+        </h2> */}
       </div>
     );
   }
