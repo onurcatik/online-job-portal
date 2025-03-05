@@ -18,7 +18,7 @@ const PageContent = ({ jobs, userId }: PageContentProps) => {
           <Image
             fill
             alt="Not Found"
-            src={"/img/404.svg"}
+            src={"/img/404.jpeg"}
             className="w-full h-full object-contain"
           />
         </div>
