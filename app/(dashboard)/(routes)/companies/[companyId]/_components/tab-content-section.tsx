@@ -247,19 +247,19 @@ export const TabContentSection = ({
         <TabsList className="bg-transparent shadow-md">
           <TabsTrigger
             value="overview"
-            className="data-[state=active]:border-b-2 data-[state=active]:border-purple-500"
+            className="data-[state=active]:border-b-2 data-[state=active]:border-blue-500"
           >
             Overview
           </TabsTrigger>
           <TabsTrigger
             value="whyJoinUs"
-            className="data-[state=active]:border-b-2 data-[state=active]:border-purple-500"
+            className="data-[state=active]:border-b-2 data-[state=active]:border-blue-500"
           >
             Why Join Us
           </TabsTrigger>
           <TabsTrigger
             value="jobs"
-            className="data-[state=active]:border-b-2 data-[state=active]:border-purple-500"
+            className="data-[state=active]:border-b-2 data-[state=active]:border-blue-500"
           >
             Jobs
           </TabsTrigger>

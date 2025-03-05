@@ -58,7 +58,7 @@ export const ApplyModal = ({
         </label> */}
           <div className="col-span-2 flex items-center justify-end text-sm text-muted-foreground">
             Change your details{" "}
-            <Link href="/user" className="text-purple-700 ml-2">
+            <Link href="/user" className="text-blue-700 ml-2">
               over here
             </Link>
           </div>

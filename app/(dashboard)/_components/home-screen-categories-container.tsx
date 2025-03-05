@@ -67,7 +67,7 @@ export const CategoryListItemCard = ({ data }: { data: Category }) => {
       <Icon
         name={data.name as IconName}
         iconNode={[]}
-        className="text-purple-500 w-6 h-6"
+        className="text-blue-500 w-6 h-6"
       />
       <span className="flex-1 font-semibold text-gray-700 dark:text-gray-300 truncate ">
         {data.name}

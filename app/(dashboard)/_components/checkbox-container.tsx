@@ -50,7 +50,7 @@ export const CheckBoxContainer = ({
           key={item.value}
           className={cn(
             "flex items-center gap-2",
-            item.checked ? "text-purple-500" : "text-muted-foreground",
+            item.checked ? "text-blue-500" : "text-muted-foreground",
           )}
         >
           <Checkbox

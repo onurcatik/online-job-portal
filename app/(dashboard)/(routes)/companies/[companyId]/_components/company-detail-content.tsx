@@ -527,7 +527,7 @@ const CompanyDetailContentPage = ({
             </a>
           </div>
           <div className="flex items-center gap-3 text-gray-600">
-            <MapPin className="w-5 h-5 text-green-500" />
+            <MapPin className="w-5 h-5 text-blue-500" />
             <p>
               {initialData.address_line_1}
               {initialData.address_line_2 ? `, ${initialData.address_line_2}` : ""}

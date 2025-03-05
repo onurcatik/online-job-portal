@@ -93,7 +93,7 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
               {isBookmarkLoading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
               ) : (
-                <SavedUsersIcon className="w-5 h-5 text-purple-500" />
+                <SavedUsersIcon className="w-5 h-5 text-blue-500" />
               )}
             </Button>
           </Box>

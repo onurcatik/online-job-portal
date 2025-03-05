@@ -46,7 +46,7 @@ export const AppliedFilters = ({ categories }: AppliedFiltersProps) => {
                   variant="outline"
                   type="button"
                   key={item}
-                  className="flex items-center gap-x-2 text-neutral-500 px-4 py-1 rounded-md bg-purple-50/80 border-purple-200 capitalize cursor-pointer hover:bg-purple-50"
+                  className="flex items-center gap-x-2 text-neutral-500 px-4 py-1 rounded-md bg-blue-50/80 border-blue-200 capitalize cursor-pointer hover:bg-blue-50"
                 >
                   {item}
                 </Button>
@@ -62,7 +62,7 @@ export const AppliedFilters = ({ categories }: AppliedFiltersProps) => {
                   variant="outline"
                   type="button"
                   key={item}
-                  className="flex items-center gap-x-4  text-neutral-500 px-2 py-0 rounded-md bg-purple-50/80 border-purple-200 capitalize cursor-pointer hover:bg-purple-50"
+                  className="flex items-center gap-x-4  text-neutral-500 px-2 py-0 rounded-md bg-blue-50/80 border-blue-200 capitalize cursor-pointer hover:bg-blue-50"
                 >
                   {item}
                 </Button>
@@ -78,7 +78,7 @@ export const AppliedFilters = ({ categories }: AppliedFiltersProps) => {
                   variant="outline"
                   type="button"
                   key={item}
-                  className="flex items-center gap-x-4  text-neutral-500 px-2 py-0 rounded-md bg-purple-50/80 border-purple-200 capitalize cursor-pointer hover:bg-purple-50"
+                  className="flex items-center gap-x-4  text-neutral-500 px-2 py-0 rounded-md bg-blue-50/80 border-blue-200 capitalize cursor-pointer hover:bg-blue-50"
                 >
                   {item}
                 </Button>
@@ -90,7 +90,7 @@ export const AppliedFilters = ({ categories }: AppliedFiltersProps) => {
           <Button
             variant="outline"
             type="button"
-            className="flex items-center gap-x-2 text-neutral-500 px-4 py-1 rounded-md bg-purple-50/80 border-purple-200 capitalize cursor-pointer hover:bg-purple-50"
+            className="flex items-center gap-x-2 text-neutral-500 px-4 py-1 rounded-md bg-blue-50/80 border-blue-200 capitalize cursor-pointer hover:bg-blue-50"
           >
             {getCategoryName(searchParams.get("categoryId"))}
           </Button>

@@ -28,7 +28,7 @@ export const NavbarRoutes = () => {
             <Button
               variant={"outline"}
               size={"sm"}
-              className="border-purple-700/20"
+              className="border-blue-700/20"
             >
               <LogOut />
               Exit
@@ -39,7 +39,7 @@ export const NavbarRoutes = () => {
             <Button
               variant={"outline"}
               size={"sm"}
-              className="border-purple-700/20"
+              className="border-blue-700/20"
             >
               <LogOut />
               Admin Mode

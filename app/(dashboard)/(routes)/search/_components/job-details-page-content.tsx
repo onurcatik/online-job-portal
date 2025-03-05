@@ -142,7 +142,7 @@
 //               className="object-cover"
 //             />
 //           ) : (
-//             <div className="w-full h-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center">
+//             <div className="w-full h-full bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center">
 //               <h2 className="text-3xl font-bold text-white">
 //                 {job?.title ?? "No Job Title Available"}
 //               </h2>
@@ -155,7 +155,7 @@
 //         <div className="p-6 relative">
 //           <div className="flex items-center space-x-4">
 //             {job?.company?.logo && (
-//               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-purple-500">
+//               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500">
 //                 <Image
 //                   alt={job?.company?.name}
 //                   src={job.company.logo}
@@ -183,14 +183,14 @@
 //                   (appliedJob) => appliedJob.jobId === jobId,
 //                 ) ? (
 //                   <Button
-//                     className="px-4 py-2 border border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white transition-all"
+//                     className="px-4 py-2 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
 //                     variant="outline"
 //                   >
 //                     Already Applied
 //                   </Button>
 //                 ) : (
 //                   <Button
-//                     className="px-6 py-2 bg-purple-600 text-white hover:bg-purple-700 transition-all"
+//                     className="px-6 py-2 bg-blue-600 text-white hover:bg-blue-700 transition-all"
 //                     onClick={() => setOpen(true)}
 //                   >
 //                     Apply Now
@@ -390,7 +390,7 @@ export const JobDetailsPageContent = ({
         <div className="p-6 relative">
           <div className="flex items-center space-x-4">
             {job?.company?.logo && (
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-purple-500">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500">
                 <Image
                   alt={job?.company?.name}
                   src={job.company.logo}
@@ -418,7 +418,7 @@ export const JobDetailsPageContent = ({
                   (appliedJob) => appliedJob.jobId === jobId,
                 ) ? (
                   <Button
-                    className="px-4 py-2 border border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white transition-all"
+                    className="px-4 py-2 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
                     variant="outline"
                   >
                     Already Applied
