@@ -81,7 +81,7 @@ export const Footer = () => {
         <div className="flex flex-col items-center md:items-start mb-8 md:mb-0">
           <div className="flex items-center gap-4">
             <Logo />
-            <h2 className="text-2xl font-bold text-black">WorkNow</h2>
+            {/* <h2 className="text-2xl font-bold text-black">WorkNow</h2> */}
           </div>
           <p className="mt-2 text-sm text-black">Connect with us</p>
           <div className="flex gap-4 mt-4">

@@ -12,14 +12,13 @@ const Logo = () => {
   };
 
   return (
-    <Image
-      height={60}
-      width={60}
-      alt="Logo"
-      src="/images/favicon.ico"
+    <div 
+      className="flex items-center space-x-3 cursor-pointer" 
       onClick={handleClick}
-      style={{ cursor: "pointer" }}
-    />
+    >
+      <Image height={60} width={60} alt="Logo" src="/images/favicon.ico" />
+      <span className="text-lg font-semibold text-black">Work Now</span>
+    </div>
   );
 };
 
