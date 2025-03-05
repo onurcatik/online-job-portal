@@ -58,7 +58,7 @@ export const CompanyName = ({ initialData, companyId }: CompanyNameProps) => {
   return (
     <div className="mt-6 border bg-neutral-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Job Title
+        Company Title
         <Button onClick={toggleEditing} variant="ghost">
           {isEditing ? (
             <>Cancel</>

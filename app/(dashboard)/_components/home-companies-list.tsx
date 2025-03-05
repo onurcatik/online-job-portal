@@ -34,6 +34,7 @@ export const HomeCompaniesList = ({ companies }: HomeCompaniesListProps) => {
       <div className="mt-12 w-full flex items-center justify-center flex-wrap gap-4 ">
         {companies.map((item) => (
           <CompanyListItemCard company={item} key={item.id} />
+          
         ))}
       </div>
     </Box>

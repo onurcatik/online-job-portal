@@ -62,7 +62,7 @@ export const CompanyLogoForm = ({ initialData, companyId }: ImageFormProps) => {
   return (
     <div className="mt-6 border bg-neutral-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Job Cover Image
+        Company Logo Image
         <Button onClick={toggleEditing} variant="ghost">
           {isEditing ? (
             "Cancel"

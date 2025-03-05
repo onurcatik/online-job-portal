@@ -135,11 +135,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
               <HourlyRateForm initialData={job} jobId={job.id} />
 
-              <WorkModeForm initialData={job} jobId={job.id} />
-
-              <YearsOfExperienceForm initialData={job} jobId={job.id} />
-
-              <JobDescription initialData={job} jobId={job.id} />
+              
             </div>
           </div>
           {/* right container */}
@@ -156,6 +152,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
             <div className="flex items-center gap-x-2">
               <IconBadge icon={ListChecks} />
               <h2 className="text-xl text-neutral-700">Company Details</h2>
+              
             </div>
 
             {/* company details */}
@@ -171,8 +168,14 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
             />
             <div className="flex items-center gap-x-2">
               <IconBadge icon={File} />
-              <h2 className="text-xl text-neutral-700">Job Attachments</h2>
+              <h2 className="text-xl text-neutral-700">Job Details</h2>
+              
             </div>
+            <WorkModeForm initialData={job} jobId={job.id} />
+
+              <YearsOfExperienceForm initialData={job} jobId={job.id} />
+
+              <JobDescription initialData={job} jobId={job.id} />
           </div>
 
           <div>

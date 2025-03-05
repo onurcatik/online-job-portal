@@ -86,27 +86,29 @@ const DashboardHomePage = async () => {
   });
 
   return (
-    <div className="flex flex-col items-center py-6 px-4 space-y-24">
-
-<Box className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center py-8 px-4 space-y-16">
+      {/* HERO BANNER */}
+      <Box className="relative w-full h-[480px] rounded-xl overflow-hidden shadow-lg">
         <Image
-          src="/img/job.jpg"
+          src="/img/job3.png"
           alt="Home Banner"
-          layout="fill"
-          objectFit="cover"
-          className="transition-transform duration-700 ease-in-out transform hover:scale-105"
+          fill
+          className="object-cover object-center transition-transform duration-700 ease-in-out hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black opacity-40"></div>
-      </Box>
-      {/* Hero Section */}
-      <Box className="flex flex-col items-center justify-center w-full space-y-4 mt-12 text-center">
-        <h2 className="text-3xl md:text-5xl font-serif font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-500">
-          Find Your Dream Job Now
-        </h2>
-        <p className="text-xl md:text-2xl text-gray-700">
-          {jobs.length}+ jobs curated just for you.
-        </p>
-        <HomesearchContainer />
+        {/* Koyu bir gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-black to-black opacity-50" />
+        {/* Banner içi metin */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+            Find Your Dream Job Now
+          </h1>
+          <p className="text-lg md:text-2xl drop-shadow-lg">
+            Over {jobs.length}+ jobs curated just for you
+          </p>
+          <div className="mt-6 w-full max-w-xl">
+            <HomesearchContainer />
+          </div>
+        </div>
       </Box>
 
       {/* Banner Section with Overlay */}

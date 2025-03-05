@@ -41,9 +41,9 @@ const CategoryListItem = ({ label, value }: CategoryListItemProps) => {
       variant="outline"
       className={cn(
         "whitespace-nowrap text-sm tracking-wider text-muted-foreground",
-        "border px-2 py-[2px] rounded-md hover:bg-purple-700",
+        "border px-2 py-[2px] rounded-md hover:bg-blue-700",
         "hover:text-white transition cursor-pointer hover:shadow-md",
-        isSelected && "bg-purple-700 text-white shadow-md",
+        isSelected && "bg-blue-700 text-white shadow-md",
       )}
     >
       {label}

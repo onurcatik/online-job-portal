@@ -41,7 +41,7 @@ export const HomesearchContainer = () => {
         <Button
           onClick={handleClick}
           disabled={!title}
-          className="bg-purple-600 hover:bg-purple-700"
+          className="bg-blue-600 hover:bg-blue-700"
           size="icon"
         >
           <Search className="w-5 h-5 min-w-5" />

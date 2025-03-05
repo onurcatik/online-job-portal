@@ -95,7 +95,7 @@ export const TagsForm = ({ initialData, jobId }: TagsFormProps) => {
           {initialData.tags.length > 0 ? (
             initialData.tags.map((tag, index) => (
               <div
-                className="text-xs flex items-center gap-1 whitespace-nowrap py-1 px-2 rounded-md bg-purple-100"
+                className="text-xs flex items-center gap-1 whitespace-nowrap py-1 px-2 rounded-md bg-blue-100"
                 key={index}
               >
                 {tag}
@@ -135,7 +135,7 @@ export const TagsForm = ({ initialData, jobId }: TagsFormProps) => {
               jobTags.map((tag, index) => (
                 <div
                   key={index}
-                  className="text-xs flex items-center gap-1 whitespace-nowrap py-1 px-2 rounded-md bg-purple-100"
+                  className="text-xs flex items-center gap-1 whitespace-nowrap py-1 px-2 rounded-md bg-blue-100"
                 >
                   {tag}{" "}
                   {isEditing && (

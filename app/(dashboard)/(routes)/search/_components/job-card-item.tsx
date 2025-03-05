@@ -125,7 +125,7 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
 
               <Link
                 href={`/companies/${company?.id}`}
-                className="text-base text-purple-600 hover:text-purple-800 transition-colors duration-300 truncate"
+                className="text-base text-blue-600 hover:text-blue-800 transition-colors duration-300 truncate"
               >
                 {company?.name}
               </Link>

@@ -132,10 +132,10 @@ export const columns: ColumnDef<CompanyColumns>[] = [
               </DropdownMenuItem>
             </Link>
             <Link href={`/admin/companies/${id}/applicants`}>
-              <DropdownMenuItem>
+              {/* <DropdownMenuItem>
                 <Eye className="w-4 h-4 mr-2" />
                 Applicants
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>

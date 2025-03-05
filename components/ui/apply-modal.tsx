@@ -71,7 +71,7 @@ export const ApplyModal = ({
         </Button>
         <Button
           disabled={loading}
-          className="bg-purple-700 hover:bg-purple-800"
+          className="bg-blue-700 hover:bg-blue-800"
           onClick={onConfirm}
         >
           Continue
