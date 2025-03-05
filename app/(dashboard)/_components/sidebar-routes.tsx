@@ -218,9 +218,8 @@ import { Bookmark, Compass, Home, List, User } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { SidebarRouteItem } from "./side-bar-route-item";
 import Box from "@/components/box";
-import { CheckboxItem, Separator } from "@radix-ui/react-dropdown-menu";
+import { Separator } from "@radix-ui/react-dropdown-menu";
 import { DateFilter } from "./date-filter";
-
 import { CheckBoxContainer } from "@/app/(dashboard)/_components/checkbox-container";
 import qs from "query-string";
 
@@ -326,7 +325,7 @@ export const SidebarRoutes = () => {
       {
         skipNull: true,
         skipEmptyString: true,
-      },
+      }
     );
 
     router.push(url);
@@ -348,7 +347,7 @@ export const SidebarRoutes = () => {
         skipNull: true,
         skipEmptyString: true,
         arrayFormat: "comma",
-      },
+      }
     );
 
     router.push(url);
@@ -370,48 +369,49 @@ export const SidebarRoutes = () => {
         skipNull: true,
         skipEmptyString: true,
         arrayFormat: "comma",
-      },
+      }
     );
 
     router.push(url);
   };
 
   return (
-    <div className="flex flex-col w-full bg-gray-50 dark:bg-gray-900 rounded-lg shadow-lg p-6 overflow-y-auto max-h-screen">
+    // Mobil uyumluluk için yüksekliği ekran boyutuna sabitleyip, dikey kaydırma ekledik.
+    <div className="flex flex-col w-full h-screen overflow-y-scroll">
       {routes.map((route) => (
         <SidebarRouteItem
           key={route.href}
           icon={route.icon}
           label={route.label}
           href={route.href}
-          className="mb-4 last:mb-0 transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-md p-2"
         />
       ))}
       {isSearchPage && (
-        <Box className="mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow flex flex-col gap-6">
-          <Separator className="my-2" />
-          <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 tracking-wide">
+        <Box className="px-4 py-4 items-start justify-start space-x-4 flex-col gap-y-4">
+          <Separator />
+          <h2 className="text-lg text-muted-foreground tracking-wide">
             Filters
           </h2>
+          {/* filter the data by createdAt */}
           <DateFilter />
-          <Separator className="my-2" />
-          <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 tracking-wide">
+          <Separator />
+          <h2 className="text-lg text-muted-foreground tracking-wide">
             Working Schedule
           </h2>
           <CheckBoxContainer
             data={shiftTimingsData}
             onChange={handleShiftTimingChange}
           />
-          <Separator className="my-2" />
-          <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 tracking-wide">
+          <Separator />
+          <h2 className="text-lg text-muted-foreground tracking-wide">
             Working Mode
           </h2>
           <CheckBoxContainer
             data={workingModesData}
             onChange={handleWorkingModes}
           />
-          <Separator className="my-2" />
-          <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 tracking-wide">
+          <Separator />
+          <h2 className="text-lg text-muted-foreground tracking-wide">
             Experience
           </h2>
           <CheckBoxContainer
