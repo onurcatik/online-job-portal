@@ -88,9 +88,9 @@ const DashboardHomePage = async () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-8 px-4 space-y-16">
       {/* HERO BANNER */}
-      <Box className="relative w-full h-[480px] rounded-xl overflow-hidden shadow-lg">
+      <Box className="relative w-full h-[950px] rounded-xl overflow-hidden shadow-lg">
         <Image
-          src="/img/job3.png"
+          src="/img/job5.svg"
           alt="Home Banner"
           fill
           className="object-cover object-center transition-transform duration-700 ease-in-out hover:scale-105"

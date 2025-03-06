@@ -75,7 +75,7 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
       transition={{ duration: 0.3 }}
       className="w-full"
     >
-      <Card className="relative overflow-hidden rounded-xl border border-gray-300 shadow-md hover:shadow-xl transition-shadow duration-300">
+      <Card className="relative overflow-hidden rounded-xl border border-gray-300 shadow-md hover:shadow-xl transition-shadow duration-300 h-full">
         {/* Öne Çıkan Badge */}
         <div className="absolute top-2 left-2 z-10">
           {/* <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">
@@ -104,8 +104,8 @@ const JobCardItem = ({ job, userId }: JobCardItemProps) => {
                 <Image
                   alt={company?.name || "Company Logo"}
                   src={company?.logo || "/default-logo.png"}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                   className="object-contain"
                 />
               )}

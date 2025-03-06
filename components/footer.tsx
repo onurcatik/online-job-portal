@@ -76,31 +76,30 @@ const menu = [
 export const Footer = () => {
   return (
     <Box className="bg-white text-gray-200 py-12">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center md:items-start">
+      <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center lg:items-start">
         {/* Logo ve sosyal medya */}
-        <div className="flex flex-col items-center md:items-start mb-8 md:mb-0">
+        <div className="flex flex-col items-center lg:items-start mb-8 lg:mb-0 relative lg:right-0">
           <div className="flex items-center gap-4">
             <Logo />
-            {/* <h2 className="text-2xl font-bold text-black">WorkNow</h2> */}
           </div>
           <p className="mt-2 text-sm text-black">Connect with us</p>
           <div className="flex gap-4 mt-4">
             <Link href="https://www.facebook.com">
-              <Facebook className="w-6 h-6 hover:text-blue-500 transition-transform transform hover:scale-110" />
+              <Facebook className="w-6 h-6 hover:text-blue-500 transition-transform transform hover:scale-110 text-black" />
             </Link>
             <Link href="https://www.twitter.com">
-              <Twitter className="w-6 h-6 hover:text-blue-400 transition-transform transform hover:scale-110" />
+              <Twitter className="w-6 h-6 hover:text-blue-400 transition-transform transform hover:scale-110 text-black" />
             </Link>
             <Link href="https://www.linkedin.com">
-              <Linkedin className="w-6 h-6 hover:text-blue-700 transition-transform transform hover:scale-110" />
+              <Linkedin className="w-6 h-6 hover:text-blue-700 transition-transform transform hover:scale-110 text-black" />
             </Link>
             <Link href="https://www.youtube.com">
-              <Youtube className="w-6 h-6 hover:text-red-600 transition-transform transform hover:scale-110" />
+              <Youtube className="w-6 h-6 hover:text-red-600 transition-transform transform hover:scale-110 text-black" />
             </Link>
           </div>
         </div>
         {/* Menü */}
-        <div className="flex flex-col items-center md:items-end space-y-2">
+        <div className="flex flex-wrap justify-center lg:justify-end gap-6 mt-4 lg:mt-12 relative lg:mr-[400px] xl:right-36">
           {menu.map((item) => (
             <Link key={item.label} href={item.href}>
               <span className="text-sm text-black hover:underline">{item.label}</span>
@@ -108,10 +107,6 @@ export const Footer = () => {
           ))}
         </div>
       </div>
-      <div className="border-t border-gray-700 mt-8 pt-4 text-center text-xs text-black">
-        &copy; {new Date().getFullYear()} WorkNow. All rights reserved.
-      </div>
     </Box>
   );
 };
-
