@@ -154,7 +154,7 @@ const DashboardAnalyticsPage = async () => {
   return (
     <Box className="flex-col items-start p-6 space-y-6">
       <div className="flex-col items-start">
-        <h2 className="font-serif tracking-wider font-bold text-3xl text-gray-800">
+        <h2 className="tracking-wider font-bold text-3xl text-gray-800">
           Dashboard
         </h2>
         <p className="text-sm text-gray-600">
