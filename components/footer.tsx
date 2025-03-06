@@ -99,7 +99,7 @@ export const Footer = () => {
           </div>
         </div>
         {/* Menü */}
-        <div className="flex flex-wrap justify-center lg:justify-end gap-6 mt-4 lg:mt-12 relative lg:mr-[400px] xl:right-36">
+        <div className="flex flex-wrap justify-center lg:justify-end gap-6 mt-4 lg:mt-12 relative lg:mr-[270px] xl:right-36">
           {menu.map((item) => (
             <Link key={item.label} href={item.href}>
               <span className="text-sm text-black hover:underline">{item.label}</span>
