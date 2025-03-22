@@ -184,6 +184,5 @@ The application should now be running on `http://localhost:3000`
 - `POST /api/resumes/upload` – Upload resume
 - `DELETE /api/resumes/:id` – Delete resume
 
----
 
 
